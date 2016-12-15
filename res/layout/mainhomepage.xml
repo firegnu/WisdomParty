@@ -1,0 +1,223 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:circle="http://schemas.android.com/apk/res/single.wuxc.wisdomparty"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/homepage_mainbackground" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@color/main_red" >
+
+        <ImageView
+            android:id="@+id/image_search"
+            android:layout_width="@dimen/top_imageview_height"
+            android:layout_height="@dimen/top_imageview_height"
+            android:layout_marginLeft="@dimen/top_imageview_distance"
+            android:layout_marginTop="@dimen/top_imageview_distance"
+            android:src="@drawable/homepage_search" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_height"
+            android:layout_marginLeft="@dimen/top_height"
+            android:layout_marginRight="@dimen/top_height"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/title"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_size" />
+
+        <ImageView
+            android:id="@+id/image_setting"
+            android:layout_width="@dimen/top_imageview_height"
+            android:layout_height="@dimen/top_imageview_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/top_imageview_distance"
+            android:layout_marginTop="@dimen/top_imageview_distance"
+            android:src="@drawable/homepage_setting" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/top_height"
+        android:gravity="right" >
+
+        <LinearLayout
+            android:id="@+id/left"
+            android:layout_width="90dip"
+            android:layout_height="315dip"
+            android:layout_gravity="center"
+            android:background="@drawable/turnplate_bg_left"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginTop="100dip"
+                android:text="贴心的银行服务，带给您更安全、便捷的智能金融体验。" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/right"
+            android:layout_width="242dip"
+            android:layout_height="315dip"
+            android:layout_gravity="center"
+            android:background="@drawable/turnplate_bg_right"
+            android:orientation="horizontal" >
+
+            <FrameLayout
+                android:layout_width="315dip"
+                android:layout_height="315dip" >
+
+                <wuxc.wisdomparty.layout.CircleLayout
+                    android:id="@+id/main_circle_layout"
+                    android:layout_width="315dip"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    circle:firstChildPosition="South"
+                    circle:isRotating="true"
+                    circle:rotateToCenter="false" >
+
+                    <wuxc.wisdomparty.layout.CircleImageView
+                        android:id="@+id/circleimageview_employee"
+                        circle:name="@string/str_home_employee"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/image_employee"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_employee" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/str_home_employee"
+                            android:textSize="14dip" />
+                    </wuxc.wisdomparty.layout.CircleImageView>
+
+                    <wuxc.wisdomparty.layout.CircleImageView
+                        android:id="@+id/circleimageview_youth"
+                        circle:name="@string/str_home_youth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/image_youth"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_youth" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/str_home_youth"
+                            android:textSize="14dip" />
+                    </wuxc.wisdomparty.layout.CircleImageView>
+
+                    <wuxc.wisdomparty.layout.CircleImageView
+                        android:id="@+id/circleimageview_volunteer"
+                        circle:name="@string/str_home_volunteer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/image_volunteer"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_volunteer" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/str_home_volunteer"
+                            android:textSize="14dip" />
+                    </wuxc.wisdomparty.layout.CircleImageView>
+
+                    <wuxc.wisdomparty.layout.CircleImageView
+                        android:id="@+id/circleimageview_health"
+                        circle:name="@string/str_home_health"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/image_health"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_health" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/str_home_health"
+                            android:textSize="14dip" />
+                    </wuxc.wisdomparty.layout.CircleImageView>
+
+                    <wuxc.wisdomparty.layout.CircleImageView
+                        android:id="@+id/circleimageview_member"
+                        circle:name="@string/str_home_member"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/image_member"
+                            android:layout_width="40dip"
+                            android:layout_height="40dip"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_member" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/str_home_member"
+                            android:textSize="14dip" />
+                    </wuxc.wisdomparty.layout.CircleImageView>
+                </wuxc.wisdomparty.layout.CircleLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" >
+
+                    <ImageView
+                        android:layout_width="104.0dip"
+                        android:layout_height="104.0dip"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/turnplate_center_unlogin" />
+
+                    <ImageView
+                        android:layout_width="116.0dip"
+                        android:layout_height="116.0dip"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/turnplate_mask_unlogin" />
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

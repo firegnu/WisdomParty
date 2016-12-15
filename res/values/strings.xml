@@ -1,5 +1,17 @@
 <resources>
 
-    <string name="app_name">WisdomParty</string>
+    <string name="app_name">智慧党建</string>
+    <string name="str_homepage">首页</string>
+    <string name="str_public">公共功能</string>
+    <string name="str_party">党务管理</string>
+    <string name="str_member">党员中心</string>
+    <string name="str_home_member">党员之家</string>
+    <string name="str_home_youth">青年之家</string>
+    <string name="str_home_volunteer">志愿者之家</string>
+    <string name="str_home_health">健康之家</string>
+    <string name="str_home_employee">职工之家</string>
+    <string name="str_setting">设置</string>
+    <string name="str_search">搜索</string>
+    <string name="title">三门峡市医药总公司智慧党建</string>
 
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_red">#00a7ff</color>
+    <!-- 主调红色 -->
+    <color name="text_white">#ffffff</color>
+    <!-- 白色字体 -->
+    <color name="news_list_title_black">#3F3F3F</color>
+    <!-- 新闻列表标题颜色 -->
+    <color name="news_list_content_grey">#666666</color>
+    <!-- 新闻列表内容颜色 -->
+    <color name="news_list_date_grey">#999999</color>
+    <!-- 新闻列表日期颜色 -->
+    <color name="more">#7CCD7C</color>
+    <color name="grey">#E4E4E4</color>
+    <color name="green">#4FC646</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+
+</resources>
