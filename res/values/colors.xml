@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+ <color name="white">#ffffff</color>
     <color name="main_red">#00a7ff</color>
     <!-- 主调红色 -->
     <color name="text_white">#ffffff</color>
@@ -29,5 +29,13 @@
     <!-- Android standard ICS color -->
     <color name="viewfinder_mask">#60000000</color>
     <color name="hometext_red">#F91816</color>
-
+    <color name="background_grey">#f5f5f5</color>
+    <color name="search_shortcutkey_green">#58A263</color>
+    <color name="search_shortcutkey_darkbrown">#970005</color>
+    <color name="search_shortcutkey_brown">#B38865</color>
+    <color name="search_shortcutkey_mainblue">#447093</color>
+    <color name="search_shortcutkey_blue_purple">#765896</color>
+    <color name="search_shortcutkey_darkgreen">#1C6520</color>
+    <color name="search_shortcutkey_purple">#C163B1</color>
+ <color name="login_toregister">#f00000</color>
 </resources>

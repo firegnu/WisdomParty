@@ -1,5 +1,7 @@
 package wuxc.wisdomparty.main;
 
+import org.w3c.dom.Text;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore.Images;
@@ -12,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.HomeActivity.HomeOfEmployeeActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfHealthActivity;
@@ -20,6 +23,8 @@ import wuxc.wisdomparty.HomeActivity.HomeOfVolunteerActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfYouthActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSearchActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSettingActivity;
+import wuxc.wisdomparty.OtherActivity.LoginAactivity;
+import wuxc.wisdomparty.OtherActivity.NoticeDatalistActivity;
 import wuxc.wisdomparty.layout.CircleLayout;
 import wuxc.wisdomparty.layout.CircleLayout.OnItemClickListener;
 
@@ -33,6 +38,8 @@ public class MainHomePageFragment extends MainBaseFragment implements OnItemClic
 	private static String TAG = "MainHomePageFragment";
 	private FrameLayout FrameCircle;
 	private LinearLayout Right;
+	private TextView TextNotice;
+	private TextView TextTest;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,8 +67,8 @@ public class MainHomePageFragment extends MainBaseFragment implements OnItemClic
 		layoutParams1.height = circlesmall;
 
 		LinCircle.setLayoutParams(layoutParams1);
-		LinearLayout.LayoutParams	layoutParams3 = (android.widget.LinearLayout.LayoutParams) Left.getLayoutParams();
-		layoutParams3.height = circleheight  ;
+		LinearLayout.LayoutParams layoutParams3 = (android.widget.LinearLayout.LayoutParams) Left.getLayoutParams();
+		layoutParams3.height = circleheight;
 		Left.setLayoutParams(layoutParams3);
 		FrameLayout.LayoutParams layoutParams = (android.widget.FrameLayout.LayoutParams) CircleMenu.getLayoutParams();
 		layoutParams.width = circlesmall;
@@ -84,6 +91,8 @@ public class MainHomePageFragment extends MainBaseFragment implements OnItemClic
 		CircleMenu.setOnItemClickListener(this);
 		ImageSearch.setOnClickListener(this);
 		ImageSetting.setOnClickListener(this);
+		TextNotice.setOnClickListener(this);
+		TextTest.setOnClickListener(this);
 	}
 
 	private void initview(View view) {
@@ -96,6 +105,8 @@ public class MainHomePageFragment extends MainBaseFragment implements OnItemClic
 		ImageSetting = (ImageView) view.findViewById(R.id.image_setting);
 		FrameCircle = (FrameLayout) view.findViewById(R.id.frame_circle);
 		Right = (LinearLayout) view.findViewById(R.id.right);
+		TextNotice = (TextView) view.findViewById(R.id.text_notice);
+		TextTest = (TextView) view.findViewById(R.id.text_test);
 	}
 
 	@Override
@@ -151,7 +162,16 @@ public class MainHomePageFragment extends MainBaseFragment implements OnItemClic
 			intent_setting.setClass(getActivity(), HomeSettingActivity.class);
 			startActivity(intent_setting);
 			break;
-
+		case R.id.text_notice:
+			Intent intent_notice = new Intent();
+			intent_notice.setClass(getActivity(), NoticeDatalistActivity.class);
+			startActivity(intent_notice);
+			break;
+		case R.id.text_test:
+			Intent intent_test = new Intent();
+			intent_test.setClass(getActivity(), LoginAactivity.class);
+			startActivity(intent_test);
+			break;
 		default:
 			break;
 		}

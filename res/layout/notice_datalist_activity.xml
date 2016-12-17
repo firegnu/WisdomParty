@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_height"
-        android:background="@color/main_red" >
+        android:background="@drawable/homepage_top_background" >
 
         <ImageView
             android:id="@+id/image_message"
@@ -24,7 +24,7 @@
             android:layout_marginRight="@dimen/top_height"
             android:gravity="center"
             android:singleLine="true"
-            android:text="@string/str_home_member"
+            android:text="@string/notice_datalist_title"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
 

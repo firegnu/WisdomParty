@@ -56,6 +56,26 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.SearchDataListActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.NoticeDatalistActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.LoginAactivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.RegisterActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

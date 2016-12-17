@@ -1,9 +1,9 @@
 <resources>
 
     <dimen name="top_height">50dp</dimen> <!-- 顶部红条宽度 -->
-    <dimen name="top_imageview_height">30dp</dimen> <!-- 顶部按钮大小 -->
-    <dimen name="top_imageview_distance">10dp</dimen> <!-- 顶部按钮边缘距离 -->
-    <dimen name="text_size">16dp</dimen> <!-- 字体大小 -->
+    <dimen name="top_imageview_height">20dp</dimen> <!-- 顶部按钮大小 -->
+    <dimen name="top_imageview_distance">15dp</dimen> <!-- 顶部按钮边缘距离 -->
+    <dimen name="text_size">18dp</dimen> <!-- 字体大小 -->
     <dimen name="dotbar_height">23dp</dimen> <!-- 滚动点所在空间大小 -->
     <dimen name="dot_size">10dp</dimen> <!-- 滚动点大小 -->
     <dimen name="news_listtitle_size">16dp</dimen> <!-- 新闻列表标题字体大小 -->
@@ -11,5 +11,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="standard_padding">8dip</dimen>
     <dimen name="half_padding">4dip</dimen>
+    <dimen name="search_shortcutkey_size">16dip</dimen>
+    <dimen name="search_edit_height">50dip</dimen>
+    <dimen name="search_edittext_height">30dip</dimen>
+    <dimen name="search_edittext_width">330dip</dimen>
+    <dimen name="search_text_size">13dip</dimen>
+    <dimen name="search_shortcutkey_height">40dip</dimen>
+    <dimen name="login_edit_size">16dip</dimen>
+    <dimen name="login_btn_size">18dip</dimen>
+    <dimen name="auto_login">14dip</dimen>
 
 </resources>

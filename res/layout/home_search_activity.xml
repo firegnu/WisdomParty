@@ -2,20 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_height"
-        android:background="@color/main_red" >
+        android:background="@drawable/homepage_top_background" >
 
         <ImageView
-            android:id="@+id/image_message"
+            android:id="@+id/image_back"
             android:layout_width="@dimen/top_imageview_height"
             android:layout_height="@dimen/top_imageview_height"
             android:layout_marginLeft="@dimen/top_imageview_distance"
             android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_search" />
+            android:src="@drawable/arrow_left" />
 
         <TextView
             android:layout_width="match_parent"
@@ -27,15 +28,177 @@
             android:text="@string/str_search"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
-
-        <ImageView
-            android:id="@+id/image_myinfo"
-            android:layout_width="@dimen/top_imageview_height"
-            android:layout_height="@dimen/top_imageview_height"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/top_imageview_distance"
-            android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_setting" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_edit_height"
+        android:background="@color/background_grey"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="@dimen/search_edittext_width"
+            android:layout_height="@dimen/search_edittext_height"
+            android:background="@drawable/search_background"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/edit_search"
+                android:layout_width="285dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="15dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:hint="@string/search_hint"
+                android:textSize="@dimen/search_text_size" />
+
+            <TextView
+                android:id="@+id/text_search"
+                android:layout_width="30dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_shortcutkey_height"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label1"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_1"
+            android:textColor="@color/search_shortcutkey_green"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label2"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_2"
+            android:textColor="@color/search_shortcutkey_darkbrown"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label3"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_3"
+            android:textColor="@color/search_shortcutkey_mainblue"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_shortcutkey_height"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label4"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_4"
+            android:textColor="@color/search_shortcutkey_brown"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label5"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_5"
+            android:textColor="@color/search_shortcutkey_blue_purple"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label6"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_6"
+            android:textColor="@color/search_shortcutkey_darkgreen"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_shortcutkey_height"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label7"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_7"
+            android:textColor="@color/search_shortcutkey_green"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="15dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/search_shortcutkey_label8"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_5_grey"
+            android:gravity="center"
+            android:text="@string/search_label_8"
+            android:textColor="@color/search_shortcutkey_purple"
+            android:textSize="@dimen/search_shortcutkey_size" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
 
 </LinearLayout>

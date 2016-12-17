@@ -14,6 +14,22 @@
     <string name="str_search">搜索</string>
     <string name="str_hometext">三门峡市医药总公司智慧党建以“务实、高效、便捷”为原则，开启智慧党建的新模式，独立开发“e药家智慧党建平台”。</string>
     <string name="title">三门峡市医药总公司智慧党建</string>
-    <string name="homepage_notice">三门峡市医药总公司智慧党建公告公告公告公告公告公告公告公告公告公告</string>
+    <string name="homepage_notice">三门峡市医药总公司智慧党建公告</string>
+    <string name="search_hint">请输入查找内容</string>
+    <string name="search_label_1">申请书</string>
+    <string name="search_label_2">候选人</string>
+    <string name="search_label_3">组织审批</string>
+    <string name="search_label_4">组织生活会</string>
+    <string name="search_label_5">民主生活会</string>
+    <string name="search_label_6">党支部</string>
+    <string name="search_label_7">推优党员</string>
+    <string name="search_label_8">新党员</string>
+    <string name="search_datalist_title">搜索结果</string>
+    <string name="notice_datalist_title">公告</string>
+    <string name="login">登录</string>
+    <string name="login_account">请输入账号</string>
+    <string name="login_password">请输入密码</string>
+    <string name="auto_login">自动登录</string>
+    <string name="register">注册</string>
 
 </resources>

@@ -68,6 +68,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
+                        android:id="@+id/text_test"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -317,6 +318,7 @@
                         android:src="@drawable/homepage_notice" />
 
                     <TextView
+                        android:id="@+id/text_notice"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:ellipsize="marquee"
