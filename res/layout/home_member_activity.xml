@@ -7,15 +7,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_height"
-        android:background="@color/main_red" >
+        android:background="@drawable/homepage_top_background" >
 
         <ImageView
-            android:id="@+id/image_message"
+            android:id="@+id/image_back"
             android:layout_width="@dimen/top_imageview_height"
             android:layout_height="@dimen/top_imageview_height"
             android:layout_marginLeft="@dimen/top_imageview_distance"
             android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_search" />
+            android:src="@drawable/arrow_left" />
 
         <TextView
             android:layout_width="match_parent"
@@ -27,15 +27,329 @@
             android:text="@string/str_home_member"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
-
-        <ImageView
-            android:id="@+id/image_myinfo"
-            android:layout_width="@dimen/top_imageview_height"
-            android:layout_height="@dimen/top_imageview_height"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/top_imageview_distance"
-            android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_setting" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/homepage_mainbackground"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/lin_placeholder_left_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_member_party_branch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/member_background"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="10dp"
+                            android:src="@drawable/member_party_branch" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/member_party_branch"
+                            android:textSize="@dimen/member_text_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_placeholder_left_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_member_discussion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/member_background"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="10dp"
+                            android:src="@drawable/member_discussion" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/member_discussion"
+                            android:textSize="@dimen/member_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/lin_member_party_dues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/member_background"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="10dp"
+                            android:src="@drawable/member_partydues" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/member_partydues"
+                            android:textSize="@dimen/member_text_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_placeholder_middle_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_member_rules"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/member_background"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="10dp"
+                            android:src="@drawable/member_rules" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/member_rules"
+                            android:textSize="@dimen/member_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/lin_placeholder_right_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_member_party_transform"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/member_background"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="10dp"
+                            android:src="@drawable/member_party_transform" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/member_party_transform_n"
+                            android:textSize="@dimen/member_text_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_placeholder_right_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lin_member_respond"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/member_background"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="10dp"
+                            android:src="@drawable/member_party_respond" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/member_party_respond"
+                            android:textSize="@dimen/member_text_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/homepage_notice" />
+
+                <TextView
+                    android:id="@+id/text_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="@string/homepage_notice"
+                    android:textColor="#c40505"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

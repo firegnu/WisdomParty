@@ -76,6 +76,36 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.MemberDiscussionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyBranchActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyDuesActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyTransformActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.MemberRespondActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.MemberRulesActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

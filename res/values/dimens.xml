@@ -20,5 +20,6 @@
     <dimen name="login_edit_size">16dip</dimen>
     <dimen name="login_btn_size">18dip</dimen>
     <dimen name="auto_login">14dip</dimen>
+    <dimen name="member_text_size">14dip</dimen>
 
 </resources>

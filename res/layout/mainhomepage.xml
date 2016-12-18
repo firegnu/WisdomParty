@@ -2,8 +2,7 @@
     xmlns:circle="http://schemas.android.com/apk/res/single.wuxc.wisdomparty"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/homepage_mainbackground" >
+    android:layout_height="fill_parent" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,6 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/top_height"
+        android:background="@drawable/homepage_mainbackground"
         android:gravity="right" >
 
         <RelativeLayout

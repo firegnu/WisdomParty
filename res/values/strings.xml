@@ -31,5 +31,12 @@
     <string name="login_password">请输入密码</string>
     <string name="auto_login">自动登录</string>
     <string name="register">注册</string>
+    <string name="member_party_branch">网上党支部</string>
+    <string name="member_partydues">党费查询</string>
+    <string name="member_party_transform_n">组织\n关系转接</string>
+    <string name="member_party_transform">组织关系转接</string>
+    <string name="member_discussion">内部论坛</string>
+    <string name="member_rules">规章制度</string>
+    <string name="member_party_respond">党员责任区</string>
 
 </resources>
