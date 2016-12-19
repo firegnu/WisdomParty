@@ -38,5 +38,20 @@
     <string name="member_discussion">内部论坛</string>
     <string name="member_rules">规章制度</string>
     <string name="member_party_respond">党员责任区</string>
+    <string name="transform_into">转入组织选择</string>
+    <string name="transform">关系转接</string>
+    <string name="transform_confirm">确认转接</string>
+    <string name="transform_cancel">取消</string>
+    <string name="transform_branch_confirm">确认</string>
+    <string name="transform_name">姓名：</string>
+    <string name="transform_party_name">党组织名称：</string>
+    <string name="transform_party_address">党组织所在地：</string>
+    <string name="transform_time">转入本组织时间：</string>
+    <string name="transform_from_party_name">转出党组织名称：</string>
+    <string name="transform_from_party_address">转出党组织所在地：</string>
+    <string name="transform_into_party_name">转入党组织名称：</string>
+    <string name="transform_into_party_address">转入党组织所在地：</string>
+    <string name="next_page">下一页</string>
+    <string name="last_page">上一页</string>
 
 </resources>

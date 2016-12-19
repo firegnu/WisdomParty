@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- <color name="white">#ffffff</color>
+
+    <color name="white">#ffffff</color>
     <color name="main_red">#00a7ff</color>
     <!-- 主调红色 -->
     <color name="text_white">#ffffff</color>
@@ -37,5 +38,12 @@
     <color name="search_shortcutkey_blue_purple">#765896</color>
     <color name="search_shortcutkey_darkgreen">#1C6520</color>
     <color name="search_shortcutkey_purple">#C163B1</color>
- <color name="login_toregister">#f00000</color>
+    <color name="login_toregister">#f00000</color>
+    <color name="member_transform_black">#4e4a49</color>
+    <color name="member_transform_grey">#726f6a</color>
+    <color name="member_transform_yellow">#fff7a9</color>
+    <color name="member_transform_party_symbol">#f5f5f5</color>
+     <color name="member_transform_stroke">#c2c2c2</color>
+    <color name="member_transform_party_top_red">#f40000</color>
+
 </resources>

@@ -78,7 +78,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/transform_party_name"
+                        android:text="@string/transform_from_party_name"
                         android:textColor="@color/member_transform_black"
                         android:textSize="@dimen/member_transform_size" />
 
@@ -99,7 +99,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/transform_party_address"
+                        android:text="@string/transform_from_party_address"
                         android:textColor="@color/member_transform_black"
                         android:textSize="@dimen/member_transform_size" />
 
@@ -120,12 +120,33 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/transform_time"
+                        android:text="@string/transform_into_party_name"
                         android:textColor="@color/member_transform_black"
                         android:textSize="@dimen/member_transform_size" />
 
                     <TextView
-                        android:id="@+id/transform_time"
+                        android:id="@+id/transform_into_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/transform_time"
+                        android:textColor="@color/member_transform_grey"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/member_transform_height"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transform_into_party_address"
+                        android:textColor="@color/member_transform_black"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:id="@+id/transform_into_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/transform_time"
@@ -136,8 +157,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="170dp"
-            android:layout_height="180dp"
+            android:layout_width="270dp"
+            android:layout_height="80dp"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -151,7 +172,16 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:background="@drawable/member_transform_middle"
-                android:text="@string/transform"
+                android:text="@string/transform_confirm"
+                android:textColor="@color/member_transform_yellow"
+                android:textSize="@dimen/member_transform_size" />
+
+            <Button
+                android:id="@+id/btn_transform_cancel"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/member_transform_middle"
+                android:text="@string/transform_cancel"
                 android:textColor="@color/member_transform_yellow"
                 android:textSize="@dimen/member_transform_size" />
 

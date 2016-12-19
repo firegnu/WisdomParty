@@ -106,6 +106,16 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.PartyBranchDataListActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.OtherActivity.TransformConfirmActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
