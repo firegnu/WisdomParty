@@ -18,6 +18,10 @@ public class MemberPartyTransformActivity extends Activity implements OnClickLis
 	private TextView TextTransformPartyAddress;
 	private TextView TextTransformTime;
 	private Button BtnTransformConfirm;
+	private String BranchName;
+	private String BranchAddress;
+	private String Name;
+	private String BranchTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +36,14 @@ public class MemberPartyTransformActivity extends Activity implements OnClickLis
 
 	private void setdata() {
 		// TODO Auto-generated method stub
-		TextTransformName.setText("张三");
-		TextTransformPartyName.setText("高新区区政府");
-		TextTransformPartyAddress.setText("陕西省西安市高新区");
-		TextTransformTime.setText("2016-11-12");
+		BranchName = "高新区区政府";
+		BranchAddress = "陕西省西安市高新区";
+		BranchTime = "2016-11-12";
+		Name = "张志志";
+		TextTransformName.setText(Name);
+		TextTransformPartyName.setText(BranchName);
+		TextTransformPartyAddress.setText(BranchAddress);
+		TextTransformTime.setText(BranchTime);
 	}
 
 	private void initview() {
@@ -64,6 +72,11 @@ public class MemberPartyTransformActivity extends Activity implements OnClickLis
 		case R.id.btn_transform_confirm:
 			Intent intent = new Intent();
 			intent.setClass(getApplicationContext(), PartyBranchDataListActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("BranchName", BranchName);
+			bundle.putString("BranchAddress", BranchAddress);
+			bundle.putString("Name", Name);
+			intent.putExtras(bundle);
 			startActivity(intent);
 			break;
 		default:

@@ -53,5 +53,14 @@
     <string name="transform_into_party_address">转入党组织所在地：</string>
     <string name="next_page">下一页</string>
     <string name="last_page">上一页</string>
+    <string name="return_to_change">返回修改</string>
+    <string name="party_dues_hand">已交</string>
+    <string name="party_dues_search_type">查询类型：身份证</string>
+    <string name="id_number">证件号码：</string>
+    <string name="please_id_number">请输入证件号码</string>
+    <string name="search">查询</string>
+    <string name="search_result">查询结果</string>
+    <string name="str_pay">缴费</string>
+    <string name="str_pay_money"> 共计0元</string>
 
 </resources>

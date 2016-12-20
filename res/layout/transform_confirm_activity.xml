@@ -83,7 +83,7 @@
                         android:textSize="@dimen/member_transform_size" />
 
                     <TextView
-                        android:id="@+id/transform_party_name"
+                        android:id="@+id/transform_party_from_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/transform_party_name"
@@ -104,7 +104,7 @@
                         android:textSize="@dimen/member_transform_size" />
 
                     <TextView
-                        android:id="@+id/transform_party_address"
+                        android:id="@+id/transform_party_from_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/transform_party_address"
@@ -181,7 +181,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:background="@drawable/member_transform_middle"
-                android:text="@string/transform_cancel"
+                android:text="@string/return_to_change"
                 android:textColor="@color/member_transform_yellow"
                 android:textSize="@dimen/member_transform_size" />
 

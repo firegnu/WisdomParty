@@ -44,6 +44,9 @@ public class PartyBranchDataListActivity extends Activity implements OnClickList
 	private EditText EditSearch;
 	private TextView TextTransformConfirm;
 	private ImageView ImageBack;
+	private String BranchName;
+	private String BranchAddress;
+	private String Name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,11 @@ public class PartyBranchDataListActivity extends Activity implements OnClickList
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.partybranchdatalistactivity);
+		Intent intent = this.getIntent(); // 获取已有的intent对象
+		Bundle bundle = intent.getExtras(); // 获取intent里面的bundle对象
+		BranchName = bundle.getString("BranchName");
+		BranchAddress = bundle.getString("BranchAddress");
+		Name = bundle.getString("Name");
 		initview();
 		setonclicklistener();
 		getinfo();
@@ -104,7 +112,10 @@ public class PartyBranchDataListActivity extends Activity implements OnClickList
 			}
 		}
 		TotalItem = temptotalitem;
-		TotalPage = TotalItem / 6 + 1;
+		TotalPage = TotalItem / 6;
+		if (TotalPage * 6 < TotalItem) {
+			TotalPage++;
+		}
 		go(Page);
 	}
 
@@ -159,7 +170,10 @@ public class PartyBranchDataListActivity extends Activity implements OnClickList
 		}
 		initTotalPage = 27;
 		TotalItem = 27;
-		TotalPage = TotalItem / 6 + 1;
+		TotalPage = TotalItem / 6;
+		if (TotalPage * 6 < TotalItem) {
+			TotalPage++;
+		}
 		// }
 
 	}
@@ -251,8 +265,11 @@ public class PartyBranchDataListActivity extends Activity implements OnClickList
 				Intent intent = new Intent();
 				intent.setClass(getApplicationContext(), TransformConfirmActivity.class);
 				Bundle bundle = new Bundle();
-				bundle.putString("Name", data.getPartyName());
-				bundle.putString("Address", data.getPartyAddress());
+				bundle.putString("BranchName", BranchName);
+				bundle.putString("BranchAddress", BranchAddress);
+				bundle.putString("Name", Name);
+				bundle.putString("BranchIntoName", data.getPartyName());
+				bundle.putString("BranchIntoAddress", data.getPartyAddress());
 				intent.putExtras(bundle);
 				startActivity(intent);
 			} else {
