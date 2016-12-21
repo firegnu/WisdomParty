@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="7dp" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <wuxc.wisdomparty.layout.RoundImageView
+                    android:id="@+id/round_headimg"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_launcher" >
+                </wuxc.wisdomparty.layout.RoundImageView>
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="浏览"
+                    android:textColor="@color/member_transform_stroke"
+                    android:textSize="@dimen/member_transform_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="10dp"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:text="标题标题标题标题标题标题标题标题"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/member_transform_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="浏览("
+                        android:textColor="@color/member_transform_stroke"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:id="@+id/text_browse_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="30"
+                        android:textColor="@color/member_transform_party_top_red"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text=")    回复("
+                        android:textColor="@color/member_transform_stroke"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:id="@+id/text_answer_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="10"
+                        android:textColor="@color/member_transform_party_top_red"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text=")    "
+                        android:textColor="@color/member_transform_stroke"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:id="@+id/text_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="2016-10-20 20:00:00"
+                        android:textColor="@color/member_transform_stroke"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="7dp" >
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

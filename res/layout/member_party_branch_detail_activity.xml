@@ -25,7 +25,6 @@
             android:layout_marginRight="@dimen/top_height"
             android:gravity="center"
             android:singleLine="true"
-            android:text="@string/member_rules"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
     </RelativeLayout>
@@ -33,52 +32,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:background="@drawable/login_background"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/text_party_name"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:gravity="center_vertical"
-            android:textColor="#000000"
-            android:textSize="@dimen/big_text"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/text_party_manager"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textColor="@color/member_transform_stroke"
-            android:textSize="@dimen/member_transform_size" />
-
-        <TextView
-            android:id="@+id/text_party_phonenumber"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textColor="@color/member_transform_stroke"
-            android:textSize="@dimen/member_transform_size" />
-
-        <TextView
-            android:id="@+id/text_party_address"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textColor="@color/member_transform_stroke"
-            android:textSize="@dimen/member_transform_size" />
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none" >
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/text_party_detail"
+                android:id="@+id/text_party_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:textSize="@dimen/big_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_party_manager"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:textColor="@color/member_transform_stroke"
                 android:textSize="@dimen/member_transform_size" />
-        </ScrollView>
+
+            <TextView
+                android:id="@+id/text_party_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/member_transform_stroke"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_party_address"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/member_transform_stroke"
+                android:textSize="@dimen/member_transform_size" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp"
+                android:scrollbars="none" >
+
+                <TextView
+                    android:id="@+id/text_party_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/member_transform_stroke"
+                    android:textSize="@dimen/member_transform_size" />
+            </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
