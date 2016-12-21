@@ -80,14 +80,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="3"
                             android:paddingTop="10dp"
                             android:src="@drawable/member_party_branch" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
                             android:text="@string/member_party_branch"
                             android:textSize="@dimen/member_text_size" />
@@ -113,14 +113,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="3"
                             android:paddingTop="10dp"
                             android:src="@drawable/member_discussion" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
                             android:text="@string/member_discussion"
                             android:textSize="@dimen/member_text_size" />
@@ -159,14 +159,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:paddingTop="10dp"
+                            android:layout_weight="3"
+                            android:paddingTop="15dp"
                             android:src="@drawable/member_partydues" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
                             android:text="@string/member_partydues"
                             android:textSize="@dimen/member_text_size" />
@@ -192,7 +192,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="3"
                             android:paddingLeft="5dp"
                             android:paddingTop="10dp"
                             android:src="@drawable/member_rules" />
@@ -200,7 +200,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
                             android:text="@string/member_rules"
                             android:textSize="@dimen/member_text_size" />
@@ -282,14 +282,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="3"
                             android:paddingTop="10dp"
                             android:src="@drawable/member_party_respond" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:gravity="center"
                             android:text="@string/member_party_respond"
                             android:textSize="@dimen/member_text_size" />

@@ -57,77 +57,137 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.SearchDataListActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.SearchDataListActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.NoticeDatalistActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.NoticeDatalistActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.LoginAactivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.LoginAactivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.RegisterActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.RegisterActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberDiscussionActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberDiscussionActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyBranchActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberPartyBranchActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyDuesActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberPartyDuesActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyTransformActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberPartyTransformActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberRespondActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberRespondActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberRulesActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberRulesActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.PartyBranchDataListActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.PartyBranchDataListActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.TransformConfirmActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.TransformConfirmActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.MemberPartyBranchDetailActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberPartyBranchDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.RespondDetailActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.RespondDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.RulesDetailActivity"
+            android:name="wuxc.wisdomparty.HomeOfMember.RulesDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfMember.MemberDiscussionDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfMember.CommentDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.AssistanceToPauperActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.ChangeTermsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.CreationAndFightingActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.DemocraticCommentActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.InterPartyOnlineActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.MemberEducationActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.MemberManageActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.MemberRewardsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.OrganizationLifeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.PartyManage.SpecialProjectActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

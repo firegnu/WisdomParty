@@ -61,6 +61,16 @@
     <string name="search">查询</string>
     <string name="search_result">查询结果</string>
     <string name="str_pay">缴费</string>
+    <string name="str_inter_party_online">在线入党</string>
+    <string name="str_organization_life">组织生活</string>
+    <string name="str_member_manage">党员管理</string>
+    <string name="str_member_education">党员教育</string>
+    <string name="str_democratic_comment">民主评议</string>
+    <string name="str_manage_rewards">党员奖惩</string>
+    <string name="str_creation_fighting">创先争优</string>
+    <string name="str_special_project">专项活动</string>
+    <string name="str_change_term">换届选举</string>
+    <string name="str_assistance_pauper">困难补助</string>
     <string name="str_pay_money"> 共计0元</string>
 
 </resources>

@@ -23,8 +23,8 @@ import wuxc.wisdomparty.HomeActivity.HomeOfVolunteerActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfYouthActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSearchActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSettingActivity;
-import wuxc.wisdomparty.OtherActivity.LoginAactivity;
-import wuxc.wisdomparty.OtherActivity.NoticeDatalistActivity;
+import wuxc.wisdomparty.HomeOfMember.LoginAactivity;
+import wuxc.wisdomparty.HomeOfMember.NoticeDatalistActivity;
 import wuxc.wisdomparty.layout.CircleLayout;
 import wuxc.wisdomparty.layout.CircleLayout.OnItemClickListener;
 

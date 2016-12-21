@@ -43,14 +43,16 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/shape_15_white_grey_stroke" >
+            android:background="@drawable/shape_5_white_grey_stroke" >
 
             <ListView
                 android:id="@+id/list_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="5dp"
                 android:scrollbars="none" >
             </ListView>
         </LinearLayout>

@@ -10,13 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.OtherActivity.MemberDiscussionActivity;
-import wuxc.wisdomparty.OtherActivity.MemberPartyBranchActivity;
-import wuxc.wisdomparty.OtherActivity.MemberPartyDuesActivity;
-import wuxc.wisdomparty.OtherActivity.MemberPartyTransformActivity;
-import wuxc.wisdomparty.OtherActivity.MemberRespondActivity;
-import wuxc.wisdomparty.OtherActivity.MemberRulesActivity;
-import wuxc.wisdomparty.OtherActivity.NoticeDatalistActivity;
+import wuxc.wisdomparty.HomeOfMember.MemberDiscussionActivity;
+import wuxc.wisdomparty.HomeOfMember.MemberPartyBranchActivity;
+import wuxc.wisdomparty.HomeOfMember.MemberPartyDuesActivity;
+import wuxc.wisdomparty.HomeOfMember.MemberPartyTransformActivity;
+import wuxc.wisdomparty.HomeOfMember.MemberRespondActivity;
+import wuxc.wisdomparty.HomeOfMember.MemberRulesActivity;
+import wuxc.wisdomparty.HomeOfMember.NoticeDatalistActivity;
 
 public class HomeOfMemberActivity extends Activity implements OnClickListener {
 

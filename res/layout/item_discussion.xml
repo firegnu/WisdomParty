@@ -21,7 +21,7 @@
             android:orientation="horizontal" >
 
             <LinearLayout
-                android:layout_width="56dp"
+                android:layout_width="76dp"
                 android:layout_height="56dp"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -41,12 +41,7 @@
                     android:singleLine="true"
                     android:text="浏览"
                     android:textColor="@color/member_transform_stroke"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="10dp"
-                android:layout_height="match_parent" >
+                    android:textSize="@dimen/member_text_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -76,7 +71,7 @@
                         android:gravity="center_vertical"
                         android:text="浏览("
                         android:textColor="@color/member_transform_stroke"
-                        android:textSize="@dimen/member_transform_size" />
+                        android:textSize="@dimen/member_text_size" />
 
                     <TextView
                         android:id="@+id/text_browse_number"
@@ -85,7 +80,7 @@
                         android:gravity="center_vertical"
                         android:text="30"
                         android:textColor="@color/member_transform_party_top_red"
-                        android:textSize="@dimen/member_transform_size" />
+                        android:textSize="@dimen/member_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -93,7 +88,7 @@
                         android:gravity="center_vertical"
                         android:text=")    回复("
                         android:textColor="@color/member_transform_stroke"
-                        android:textSize="@dimen/member_transform_size" />
+                        android:textSize="@dimen/member_text_size" />
 
                     <TextView
                         android:id="@+id/text_answer_number"
@@ -102,7 +97,7 @@
                         android:gravity="center_vertical"
                         android:text="10"
                         android:textColor="@color/member_transform_party_top_red"
-                        android:textSize="@dimen/member_transform_size" />
+                        android:textSize="@dimen/member_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -110,7 +105,7 @@
                         android:gravity="center_vertical"
                         android:text=")    "
                         android:textColor="@color/member_transform_stroke"
-                        android:textSize="@dimen/member_transform_size" />
+                        android:textSize="@dimen/member_text_size" />
 
                     <TextView
                         android:id="@+id/text_time"
@@ -120,7 +115,7 @@
                         android:singleLine="true"
                         android:text="2016-10-20 20:00:00"
                         android:textColor="@color/member_transform_stroke"
-                        android:textSize="@dimen/member_transform_size" />
+                        android:textSize="@dimen/member_text_size" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

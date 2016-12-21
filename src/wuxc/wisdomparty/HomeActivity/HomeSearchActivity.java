@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
 import single.wuxc.wisdomparty.R.string;
-import wuxc.wisdomparty.OtherActivity.SearchDataListActivity;
+import wuxc.wisdomparty.HomeOfMember.SearchDataListActivity;
 import android.view.View.OnClickListener;
 
 public class HomeSearchActivity extends Activity implements OnClickListener {
