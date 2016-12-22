@@ -38,4 +38,276 @@
             android:src="@drawable/homepage_setting" />
     </RelativeLayout>
 
+    <HorizontalScrollView
+        android:id="@+id/scro"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/lin_label1"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup1"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="推荐"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown1"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label2"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup2"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="新闻"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown2"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label3"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup3"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="社会"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown3"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label4"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup4"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="娱乐"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown4"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label5"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup5"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="养生"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown5"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label6"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup6"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="音乐"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown6"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label7"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup7"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="美文"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown7"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label8"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup8"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="附近"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown8"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label9"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup9"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="推荐"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown9"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_label10"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_labelup10"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="推荐"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_labeldown10"
+                    android:layout_width="50dp"
+                    android:layout_height="2dp"
+                    android:background="@drawable/shapered" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <wuxc.wisdomparty.layout.Childviewpaper
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#ffffff" />
+
 </LinearLayout>
