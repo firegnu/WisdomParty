@@ -24,5 +24,6 @@
     <dimen name="member_transform_height">40dp</dimen>
     <dimen name="member_transform_size">16dp</dimen>
     <dimen name="big_text">18dp</dimen>
+    <dimen name="input_height">46dp</dimen>
 
 </resources>

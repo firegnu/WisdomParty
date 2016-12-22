@@ -30,6 +30,7 @@ import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.MemberEducationAdapter;
 import wuxc.wisdomparty.HomeOfMember.RespondDetailActivity;
 import wuxc.wisdomparty.Model.MemberEducationModel;
+import wuxc.wisdomparty.PartyManage.MemberEducationDetailActivity;
 
 public class MemberEducationOneFragment extends Fragment
 		implements OnTouchListener, OnClickListener, OnItemClickListener {
@@ -117,7 +118,7 @@ public class MemberEducationOneFragment extends Fragment
 			for (int i = 0; i < 10; i++) {
 
 				MemberEducationModel listinfo = new MemberEducationModel();
-				listinfo.setTime("2016-12-14 20:00:00");
+				listinfo.setTime("2016-12-14");
 				listinfo.setTitle("中共十八大习近平总书记的讲话" + arg);
 				listinfo.setImageUrl("");
 				list.add(listinfo);
@@ -235,9 +236,10 @@ public class MemberEducationOneFragment extends Fragment
 		// TODO Auto-generated method stub
 		MemberEducationModel data = list.get(position - 1);
 		Intent intent = new Intent();
-		intent.setClass(getActivity(), RespondDetailActivity.class);
+		intent.setClass(getActivity(), MemberEducationDetailActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("Title", position + data.getTitle());
+		bundle.putString("Title",   data.getTitle());
+		bundle.putString("Time",  data.getTime());
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}

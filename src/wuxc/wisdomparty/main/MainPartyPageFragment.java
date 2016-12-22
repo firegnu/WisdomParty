@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.HomeActivity.HomeSearchActivity;
+import wuxc.wisdomparty.HomeActivity.HomeSettingActivity;
 import wuxc.wisdomparty.PartyManage.AssistanceToPauperActivity;
 import wuxc.wisdomparty.PartyManage.ChangeTermsActivity;
 import wuxc.wisdomparty.PartyManage.CreationAndFightingActivity;
@@ -33,6 +35,8 @@ public class MainPartyPageFragment extends MainBaseFragment implements OnClickLi
 	private LinearLayout LinMemberManage;
 	private LinearLayout LinOranizationLife;
 	private LinearLayout LinInterPartyOnline;
+	private ImageView ImageSearch;
+	private ImageView ImageSetting;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +71,8 @@ public class MainPartyPageFragment extends MainBaseFragment implements OnClickLi
 		LinMemberManage = (LinearLayout) view.findViewById(R.id.lin_member_manage);
 		LinOranizationLife = (LinearLayout) view.findViewById(R.id.lin_organization_life);
 		LinInterPartyOnline = (LinearLayout) view.findViewById(R.id.lin_inter_party_online);
-
+		ImageSearch = (ImageView) view.findViewById(R.id.image_search);
+		ImageSetting = (ImageView) view.findViewById(R.id.image_setting);
 	}
 
 	private void setonclicklistener() {
@@ -82,7 +87,8 @@ public class MainPartyPageFragment extends MainBaseFragment implements OnClickLi
 		LinMemberManage.setOnClickListener(this);
 		LinOranizationLife.setOnClickListener(this);
 		LinInterPartyOnline.setOnClickListener(this);
-
+		ImageSearch.setOnClickListener(this);
+		ImageSetting.setOnClickListener(this);
 	}
 
 	@Override
@@ -149,7 +155,16 @@ public class MainPartyPageFragment extends MainBaseFragment implements OnClickLi
 			intent10.setClass(getActivity(), InterPartyOnlineActivity.class);
 			startActivity(intent10);
 			break;
-
+		case R.id.image_search:
+			Intent intent_search = new Intent();
+			intent_search.setClass(getActivity(), HomeSearchActivity.class);
+			startActivity(intent_search);
+			break;
+		case R.id.image_setting:
+			Intent intent_setting = new Intent();
+			intent_setting.setClass(getActivity(), HomeSettingActivity.class);
+			startActivity(intent_setting);
+			break;
 		default:
 			break;
 		}
