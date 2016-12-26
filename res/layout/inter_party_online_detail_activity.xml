@@ -420,6 +420,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/input_big"
+                        android:focusable="true"
                         android:gravity="center"
                         android:orientation="vertical" >
 
@@ -511,6 +512,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
+                                android:maxLines="3"
                                 android:hint="(包含对党的认识、政治信念、入党动机和心愿以及对党的态度和决心)"
                                 android:textColor="@color/member_transform_stroke"
                                 android:textSize="12dp" />
