@@ -43,7 +43,9 @@
     <color name="member_transform_grey">#726f6a</color>
     <color name="member_transform_yellow">#fff7a9</color>
     <color name="member_transform_party_symbol">#f5f5f5</color>
-     <color name="member_transform_stroke">#c2c2c2</color>
+    <color name="member_transform_stroke">#c2c2c2</color>
     <color name="member_transform_party_top_red">#f40000</color>
+    <color name="vote_right">#5c3e3e</color>
+    <color name="vote_left">#6ba7bf</color>
 
 </resources>

@@ -48,7 +48,7 @@ public class ChangeTermsActivity extends Activity implements OnClickListener, On
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.member_discussion_activity);
+		setContentView(R.layout.change_term_activity);
 		initview();
 		setonclicklistener();
 		setheadtextview();
@@ -211,16 +211,15 @@ public class ChangeTermsActivity extends Activity implements OnClickListener, On
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		// ChangeTermsModel data = list.get(position - 1);
-		// Intent intent = new Intent();
-		// intent.setClass(getApplicationContext(),
-		// MemberChangeTermsDetailActivity.class);
-		// Bundle bundle = new Bundle();
-		// bundle.putString("Name", data.getName());
-		// bundle.putString("Time", data.getTime());
-		// bundle.putString("Title", data.getTitle());
-		// intent.putExtras(bundle);
-		// startActivity(intent);
+		ChangeTermsModel data = list.get(position - 1);
+		Intent intent = new Intent();
+		intent.setClass(getApplicationContext(), ChangeTermsDetailActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("StartTime", "开始时间：2016.12.23 04:40:23");
+		bundle.putString("EndTime", "结束时间：2016.12.29 04:40:23");
+		bundle.putString("Title", data.getTitle());
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 
 }

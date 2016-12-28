@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <stroke
+        android:width="0.5dp"
+        android:color="@android:color/black" />
+    <!-- padding：Button里面的文字与Button边界的间隔 -->
+    <solid android:color="@color/member_transform_party_top_red" />
+
+</shape>

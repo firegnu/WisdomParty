@@ -61,6 +61,7 @@
                 android:background="@color/member_transform_stroke" />
 
             <TextView
+               
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
@@ -72,6 +73,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text_start_time"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
@@ -83,6 +85,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                 android:id="@+id/text_end_time"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
@@ -105,6 +108,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
+                android:divider="#00000000"
                 android:scrollbars="none" >
             </ListView>
         </LinearLayout>

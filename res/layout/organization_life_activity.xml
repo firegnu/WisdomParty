@@ -10,12 +10,12 @@
         android:background="@drawable/homepage_top_background" >
 
         <ImageView
-            android:id="@+id/image_message"
+            android:id="@+id/image_back"
             android:layout_width="@dimen/top_imageview_height"
             android:layout_height="@dimen/top_imageview_height"
             android:layout_marginLeft="@dimen/top_imageview_distance"
             android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_search" />
+            android:src="@drawable/arrow_left" />
 
         <TextView
             android:layout_width="match_parent"
@@ -27,15 +27,46 @@
             android:text="@string/str_organization_life"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rela_organization"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/member_transform_party_symbol" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:text="组织结构"
+            android:textColor="#000000"
+            android:textSize="@dimen/big_text"
+            android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/image_myinfo"
-            android:layout_width="@dimen/top_imageview_height"
-            android:layout_height="@dimen/top_imageview_height"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/top_imageview_distance"
-            android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_setting" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/arrow_right" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rewards_back" >
+
+        <ListView
+            android:id="@+id/list_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:divider="#00000000"
+            android:scrollbars="none" >
+        </ListView>
+    </LinearLayout>
 
 </LinearLayout>

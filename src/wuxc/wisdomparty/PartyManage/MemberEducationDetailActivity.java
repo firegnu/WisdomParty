@@ -28,7 +28,7 @@ public class MemberEducationDetailActivity extends Activity implements OnClickLi
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.membereducationdetailactivity);
+		setContentView(R.layout.member_education_detail_activity);
 		Intent intent = this.getIntent(); // 获取已有的intent对象
 		Bundle bundle = intent.getExtras(); // 获取intent里面的bundle对象
 
