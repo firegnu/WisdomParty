@@ -77,14 +77,14 @@ public class RoundImageView extends ImageView {
 		// setLayoutParams(params);
 		// }
 		int radius = 0;
-		if (mBorderInsideColor != defaultColor && mBorderOutsideColor != defaultColor) {// 瀹氫箟鐢讳袱涓竟妗嗭紝鍒嗗埆涓哄鍦嗚竟妗嗗拰鍐呭渾杈规
+		if (mBorderInsideColor != defaultColor && mBorderOutsideColor != defaultColor) {// 定义画两个边框，分别为外圆边框和内圆边框
 			radius = (defaultWidth < defaultHeight ? defaultWidth : defaultHeight) / 2 - 2 * mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2, mBorderInsideColor);
 			drawCircleBorder(canvas, radius + mBorderThickness + mBorderThickness / 2, mBorderOutsideColor);
-		} else if (mBorderInsideColor != defaultColor && mBorderOutsideColor == defaultColor) {// 瀹氫箟鐢讳竴涓竟妗?
+		} else if (mBorderInsideColor != defaultColor && mBorderOutsideColor == defaultColor) {// 定义画一个边桿
 			radius = (defaultWidth < defaultHeight ? defaultWidth : defaultHeight) / 2 - mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2, mBorderInsideColor);
-		} else if (mBorderInsideColor == defaultColor && mBorderOutsideColor != defaultColor) {// 瀹氫箟鐢讳竴涓竟妗?
+		} else if (mBorderInsideColor == defaultColor && mBorderOutsideColor != defaultColor) {// 定义画一个边桿
 			radius = (defaultWidth < defaultHeight ? defaultWidth : defaultHeight) / 2 - mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2, mBorderOutsideColor);
 		} else {
