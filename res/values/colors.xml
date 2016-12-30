@@ -47,5 +47,7 @@
     <color name="member_transform_party_top_red">#f40000</color>
     <color name="vote_right">#5c3e3e</color>
     <color name="vote_left">#6ba7bf</color>
+    <color name="pink">#fef3f1</color>
+    <color name="member_grey">#efefef</color>
 
 </resources>
