@@ -202,6 +202,9 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		case R.id.lin_fund:
 			Intent intent_lin_fund = new Intent();
 			intent_lin_fund.setClass(getActivity(), MemberCenterMyFund.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("fund", "12");
+			intent_lin_fund.putExtras(bundle);
 			startActivity(intent_lin_fund);
 			break;
 		case R.id.lin_evaluate:

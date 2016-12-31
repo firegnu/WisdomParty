@@ -51,7 +51,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:hint="@string/search_hint"
+                android:hint="请输入关键字"
                 android:textSize="@dimen/search_text_size" />
 
             <TextView
