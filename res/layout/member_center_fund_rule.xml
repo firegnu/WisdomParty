@@ -29,4 +29,14 @@
             android:textSize="@dimen/text_size" />
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:layout_marginLeft="@dimen/top_height"
+        android:layout_marginRight="@dimen/top_height"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="基金规则详细..."
+        android:textSize="@dimen/text_size" />
+
 </LinearLayout>

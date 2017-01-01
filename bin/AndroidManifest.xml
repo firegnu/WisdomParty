@@ -383,6 +383,26 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="wuxc.wisdomparty.MemberCenter.MemberCenterMyMarkRule"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.MemberCenter.MemberCenterChangeResume"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.MemberCenter.MemberCenterMyRank"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.MemberCenter.MemberCenterMyHeadimg"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- ###################注册SDK使用的Activity###################### -->
         <!-- 分享编辑页 -->
         <activity

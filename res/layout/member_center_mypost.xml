@@ -29,4 +29,38 @@
             android:textSize="@dimen/text_size" />
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/lin_top"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/myreward_left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/text_reward"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="我的评论"
+            android:textSize="@dimen/big_text" />
+
+        <TextView
+            android:id="@+id/text_punish"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="我的回复"
+            android:textSize="@dimen/big_text" />
+    </LinearLayout>
+
+    <wuxc.wisdomparty.layout.Childviewpaper
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#ffffff" />
+
 </LinearLayout>

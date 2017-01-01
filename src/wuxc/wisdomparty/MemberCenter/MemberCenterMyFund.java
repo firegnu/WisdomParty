@@ -44,7 +44,7 @@ public class MemberCenterMyFund extends Activity implements OnTouchListener, OnC
 	private TextView headTextView = null;
 	private TextView TextFundNumber;
 	private String FundNumber;
-	 private ImageView ImageFundDetail;
+	private ImageView ImageFundDetail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class MemberCenterMyFund extends Activity implements OnTouchListener, OnC
 		Intent intent = this.getIntent(); // 获取已有的intent对象
 		Bundle bundle = intent.getExtras(); // 获取intent里面的bundle对象
 		FundNumber = bundle.getString("fund");
-		 TextFundNumber.setText(FundNumber);
+		TextFundNumber.setText(FundNumber);
 	}
 
 	private void setheadtextview() {
@@ -116,14 +116,14 @@ public class MemberCenterMyFund extends Activity implements OnTouchListener, OnC
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		TextFundNumber = (TextView) findViewById(R.id.text_number);
-		 ImageFundDetail = (ImageView) findViewById(R.id.image_fund_detail);
+		ImageFundDetail = (ImageView) findViewById(R.id.image_fund_detail);
 	}
 
 	private void setonclicklistener() {
 		// TODO Auto-generated method stub
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
-		 ImageFundDetail.setOnClickListener(this);
+		ImageFundDetail.setOnClickListener(this);
 	}
 
 	@Override

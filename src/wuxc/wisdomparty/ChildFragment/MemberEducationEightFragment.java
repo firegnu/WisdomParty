@@ -238,8 +238,8 @@ public class MemberEducationEightFragment extends Fragment
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), MemberEducationDetailActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("Title",   data.getTitle());
-		bundle.putString("Time",  data.getTime());
+		bundle.putString("Title", data.getTitle());
+		bundle.putString("Time", data.getTime());
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}

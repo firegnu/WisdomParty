@@ -7,15 +7,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_height"
-        android:background="@color/main_red" >
+        android:background="@drawable/homepage_top_background" >
 
         <ImageView
-            android:id="@+id/image_message"
+            android:id="@+id/image_back"
             android:layout_width="@dimen/top_imageview_height"
             android:layout_height="@dimen/top_imageview_height"
             android:layout_marginLeft="@dimen/top_imageview_distance"
             android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_search" />
+            android:src="@drawable/arrow_left" />
 
         <TextView
             android:layout_width="match_parent"
@@ -27,15 +27,106 @@
             android:text="@string/str_home_employee"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
-
-        <ImageView
-            android:id="@+id/image_myinfo"
-            android:layout_width="@dimen/top_imageview_height"
-            android:layout_height="@dimen/top_imageview_height"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/top_imageview_distance"
-            android:layout_marginTop="@dimen/top_imageview_distance"
-            android:src="@drawable/homepage_setting" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/member_transform_party_top_red"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/text_party"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="执业药师考试"
+                android:textSize="@dimen/member_transform_size" />
+
+            <ImageView
+                android:id="@+id/image_party"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/caret_top" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/text_inform"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="暖心工程"
+                android:textSize="@dimen/member_transform_size" />
+
+            <ImageView
+                android:id="@+id/image_inform"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/caret_top" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/text_study"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="网上公会"
+                android:textSize="@dimen/member_transform_size" />
+
+            <ImageView
+                android:id="@+id/image_study"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/caret_top" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/text_vote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="网上投票"
+                android:textSize="@dimen/member_transform_size" />
+
+            <ImageView
+                android:id="@+id/image_vote"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/caret_top" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <wuxc.wisdomparty.layout.Childviewpaper
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#ffffff" />
 
 </LinearLayout>

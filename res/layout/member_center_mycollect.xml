@@ -29,4 +29,12 @@
             android:textSize="@dimen/text_size" />
     </RelativeLayout>
 
+    <ListView
+        android:id="@+id/list_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        android:scrollbars="none" >
+    </ListView>
+
 </LinearLayout>

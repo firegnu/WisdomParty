@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/single.wuxc.wisdomparty"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@drawable/homepage_top_background" >
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="@dimen/top_imageview_height"
+            android:layout_height="@dimen/top_imageview_height"
+            android:layout_marginLeft="@dimen/top_imageview_distance"
+            android:layout_marginTop="@dimen/top_imageview_distance"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_height"
+            android:layout_marginLeft="@dimen/top_height"
+            android:layout_marginRight="@dimen/top_height"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="我的等级"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/resume_top" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/resume_bottom" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rela_headimg"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="20dp" >
+
+                <wuxc.wisdomparty.layout.RoundedImageView
+                    android:id="@+id/rounded_headimg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_launcher"
+                    app:corner_radius="14dp"
+                    app:mutate_background="true"
+                    app:oval="false" />
+
+                <ImageView
+                    android:id="@+id/image_head_party"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/head_party" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="70dp"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张三"
+                    android:textSize="@dimen/big_text" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/shape_10"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rank" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
