@@ -25,11 +25,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.Adapter.RewardsAdapter;
+import wuxc.wisdomparty.Adapter.StudyArticleAdapter;
 import wuxc.wisdomparty.Adapter.StudyVideoAadapter;
-import wuxc.wisdomparty.Model.RewardsModel;
+import wuxc.wisdomparty.Model.StudyArticleModel;
 import wuxc.wisdomparty.Model.StudyVideoModel;
-import wuxc.wisdomparty.PartyManage.RewardsDetailActivity;
+import wuxc.wisdomparty.PartyManage.StudyArticleDetailActivity;
 import wuxc.wisdomparty.PartyManage.StudyArticleDetailActivity;
 import wuxc.wisdomparty.PartyManage.StudyVideoDetailActivity;
 
@@ -37,8 +37,8 @@ public class MainPublicPageStudyFragment extends Fragment
 		implements OnTouchListener, OnClickListener, OnItemClickListener {
 	private TextView text_list_title;
 	private ListView ListData;
-	List<RewardsModel> list = new ArrayList<RewardsModel>();
-	private static RewardsAdapter mAdapter;
+	List<StudyArticleModel> list = new ArrayList<StudyArticleModel>();
+	private static StudyArticleAdapter mAdapter;
 	List<StudyVideoModel> listVideo = new ArrayList<StudyVideoModel>();
 	private static StudyVideoAadapter VAdapter;
 	private int firstItemIndex = 0;
@@ -103,11 +103,10 @@ public class MainPublicPageStudyFragment extends Fragment
 			if (type == 0) {
 				for (int i = 0; i < 10; i++) {
 
-					RewardsModel listinfo = new RewardsModel();
+					StudyArticleModel listinfo = new StudyArticleModel();
 					listinfo.setTime("2016-12-14");
-					listinfo.setDetail(
-							"中共十八大习近平总书记的讲话中共十八大习近平总书记的讲话中共十八大习近平总书记的讲话中共十八大习近平总书记的讲话中共十八大习近平总书记的讲话中共十八大习近平总书记的讲话");
-					listinfo.setTitle("中共十八大习近平总书记的讲话" + arg);
+					listinfo.setDetail("2016年12月18日，三门峡市党规党纪知识竞赛顺利举行，其中，三门峡医药总公司代表队获得一等奖");
+					listinfo.setTitle("三门峡市党规党纪知识竞赛纪实" + arg);
 					listinfo.setBackGround("");
 					;
 					list.add(listinfo);
@@ -116,14 +115,10 @@ public class MainPublicPageStudyFragment extends Fragment
 			} else {
 				for (int i = 0; i < 10; i++) {
 					StudyVideoModel listinfo = new StudyVideoModel();
-					listinfo.setTime("2016-12-14");
+					listinfo.setTime("20:15");
 					listinfo.setTitle("中共十八大习近平总书记的讲话" + arg);
-					listinfo.setTimeLong("23:10");
 					listinfo.setNumberCollect("12");
 					listinfo.setNumberGreat("23");
-					listinfo.setLabel1("扶贫");
-					listinfo.setLabel2("共产党");
-					listinfo.setLabel3("一家亲");
 					listinfo.setImageUrl("");
 					listVideo.add(listinfo);
 				}
@@ -149,7 +144,7 @@ public class MainPublicPageStudyFragment extends Fragment
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
 		if (type == 0) {
-			mAdapter = new RewardsAdapter(getActivity(), list, ListData);
+			mAdapter = new StudyArticleAdapter(getActivity(), list, ListData);
 			ListData.setAdapter(mAdapter);
 		} else {
 			VAdapter = new StudyVideoAadapter(getActivity(), listVideo, ListData);
@@ -257,7 +252,7 @@ public class MainPublicPageStudyFragment extends Fragment
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 		if (type == 0) {
-			RewardsModel data = list.get(position - 1);
+			StudyArticleModel data = list.get(position - 1);
 			Intent intent = new Intent();
 			intent.setClass(getActivity(), StudyArticleDetailActivity.class);
 			Bundle bundle = new Bundle();
@@ -272,7 +267,7 @@ public class MainPublicPageStudyFragment extends Fragment
 			Bundle bundle = new Bundle();
 			bundle.putString("Title", data.getTitle());
 			bundle.putString("Time", data.getTime());
-			bundle.putString("TimeLong", data.getTimeLong());
+			bundle.putString("TimeLong", data.getTime());
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}

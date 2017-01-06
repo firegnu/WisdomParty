@@ -30,7 +30,8 @@ import wuxc.wisdomparty.Cache.StudyVideoCache;
 import wuxc.wisdomparty.Internet.ImageLoader;
 import wuxc.wisdomparty.Internet.ImageLoader.ImageCallback;
 import wuxc.wisdomparty.Internet.URLcontainer;
-import wuxc.wisdomparty.Model.StudyVideoModel;;
+import wuxc.wisdomparty.Model.StudyVideoModel;
+import wuxc.wisdomparty.layout.SelectableRoundedImageView;;
 
 public class StudyVideoAadapter extends ArrayAdapter<StudyVideoModel> {
 	private ListView listView;
@@ -67,11 +68,11 @@ public class StudyVideoAadapter extends ArrayAdapter<StudyVideoModel> {
 
 		// Load the image and set it on the ImageView
 		String imageUrl = imageAndText.getImageUrl();
-		ImageView imageView = viewCache.getImageBackGround();
+		SelectableRoundedImageView imageView = viewCache.getImageHeadimg();
 		imageView.setTag(URLcontainer.urlip + imageUrl);
 		Log.e("imageUrl", imageUrl);
 		if (imageUrl.equals(imageurl)) {
-			imageView.setImageResource(R.drawable.knbz);
+			imageView.setImageResource(R.drawable.video);
 		} else {
 			try {
 				String imageName1 = getBitName(imageUrl);
@@ -90,7 +91,7 @@ public class StudyVideoAadapter extends ArrayAdapter<StudyVideoModel> {
 						}
 					});
 					if (cachedImage == null) {
-						imageView.setImageResource(R.drawable.knbz);
+						imageView.setImageResource(R.drawable.video);
 					} else {
 						Drawable d = cachedImage; // xxx根据自己的情况获取drawable
 
@@ -110,32 +111,13 @@ public class StudyVideoAadapter extends ArrayAdapter<StudyVideoModel> {
 			}
 
 		}
-		TextView TextLabel1 = viewCache.getTextLabel1();
-		TextView TextLabel2 = viewCache.getTextLabel2();
-		TextView TextLabel3 = viewCache.getTextLabel3();
-		if (TextUtils.isEmpty(imageAndText.getLabel1())) {
-			TextLabel1.setVisibility(View.GONE);
-		} else {
-			TextLabel1.setText(imageAndText.getLabel1());
-		}
-		if (TextUtils.isEmpty(imageAndText.getLabel2())) {
-			TextLabel2.setVisibility(View.GONE);
-		} else {
-			TextLabel2.setText(imageAndText.getLabel2());
-		}
-		if (TextUtils.isEmpty(imageAndText.getLabel3())) {
-			TextLabel3.setVisibility(View.GONE);
-		} else {
-			TextLabel3.setText(imageAndText.getLabel3());
-		}
+
 		TextView TextNUmberGreat = viewCache.getTextNumberGreat();
 		TextNUmberGreat.setText(imageAndText.getNumberGreat());
 		TextView TextNUmberCollect = viewCache.getTextNumberCollect();
 		TextNUmberCollect.setText(imageAndText.getNumberCollect());
 		TextView TextTitle = viewCache.getTextTitle();
 		TextTitle.setText("" + imageAndText.getTitle());
-		TextView TextTimeLong = viewCache.getTextTimeLong();
-		TextTimeLong.setText("时长：" + imageAndText.getTimeLong());
 		TextView TextTime = viewCache.getTextTime();
 		TextTime.setText("" + imageAndText.getTime());
 		RelativeLayout Half = viewCache.getRelaHalf();
@@ -146,7 +128,7 @@ public class StudyVideoAadapter extends ArrayAdapter<StudyVideoModel> {
 		scale = thisactivity.getResources().getDisplayMetrics().density;
 		dp = screenwidth / scale + 0.5f;
 		scalepx = screenwidth / dp;
-		int height = (int) ((screenwidth - 60 * scalepx) / 2);
+		int height = (int) ((screenwidth - 14 * scalepx) * 0.6);
 		LinearLayout.LayoutParams layoutParams1 = (android.widget.LinearLayout.LayoutParams) Half.getLayoutParams();
 		layoutParams1.height = height;
 		Half.setLayoutParams(layoutParams1);
