@@ -63,7 +63,7 @@
                 android:id="@+id/lin_top_back"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@drawable/banner"
+                android:background="@drawable/user_bg"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -151,7 +151,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginRight="8dp"
-                                        android:text="张三"
+                                        android:text="薛飞"
                                         android:textColor="#ffffff"
                                         android:textSize="@dimen/big_text" />
 
@@ -199,7 +199,7 @@
                                 android:layout_height="18dp"
                                 android:layout_alignParentBottom="true"
                                 android:gravity="bottom"
-                                android:text="格言"
+                                android:text="在生活中践行入党时的誓言"
                                 android:textColor="#ffffff"
                                 android:textSize="@dimen/member_transform_size" />
                         </RelativeLayout>

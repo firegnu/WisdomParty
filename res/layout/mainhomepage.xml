@@ -156,6 +156,29 @@
                             circle:rotateToCenter="false" >
 
                             <wuxc.wisdomparty.layout.CircleImageView
+                                android:id="@+id/circleimageview_study"
+                                circle:name="@string/str_home_study"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" >
+
+                                <ImageView
+                                    android:id="@+id/image_study"
+                                    android:layout_width="40dip"
+                                    android:layout_height="40dip"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/zxxx" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="@string/str_home_study"
+                                    android:textSize="13dip" />
+                            </wuxc.wisdomparty.layout.CircleImageView>
+
+                            <wuxc.wisdomparty.layout.CircleImageView
                                 android:id="@+id/circleimageview_employee"
                                 circle:name="@string/str_home_employee"
                                 android:layout_width="wrap_content"

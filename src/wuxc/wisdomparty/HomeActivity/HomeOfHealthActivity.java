@@ -43,8 +43,6 @@ import wuxc.wisdomparty.ChildFragment.SpecialTopTenFragment;
 import wuxc.wisdomparty.ChildFragment.SpecialTopThreeFragment;
 import wuxc.wisdomparty.ChildFragment.SpecialTopTwoFragment;
 import wuxc.wisdomparty.Model.SpecialModel;
-import wuxc.wisdomparty.OtherActivity.Dongtai;
-import wuxc.wisdomparty.OtherActivity.Tuanyuan;
 import wuxc.wisdomparty.OtherActivity.Yangsheng;
 import wuxc.wisdomparty.OtherActivity.yaodian;
 import wuxc.wisdomparty.PartyManage.SpecialDetailActivity;

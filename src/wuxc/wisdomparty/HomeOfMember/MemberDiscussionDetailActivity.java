@@ -122,9 +122,10 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 
 				CommentModel listinfo = new CommentModel();
 				listinfo.setTime("2016-12-14 20:00:00");
-				listinfo.setComment("刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子");
+				listinfo.setComment(
+						"党的十八届六中全会审议通过的《中国共产党党内监督条例》（以下简称《条例》）突出全面从严治党这个主题，根据新形势新任务的发展变化，在２００３年颁布施行的《中国共产党党内监督条例（试行）》基础上进行修订和完善，把党的十八大以来加强党的建设、强化党内监督的实践探索及时转化为制度成果，实现了党内监督制度的与时俱进。《条例》聚焦党内监督存在的薄弱环节，明确了新形势下加强党内监督的指导思想、基本原则、主要内容、任务、对象和方式等，为全面从严治党锻造了新的制度利器");
 				listinfo.setRoundUrl("");
-				listinfo.setName("刘小二子");
+				listinfo.setName("薛飞");
 
 				list.add(listinfo);
 
@@ -167,7 +168,7 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 		// TODO Auto-generated method stub
 		TextWarning.setText("没有更多了");
 		TextDetail.setText(
-				"党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性");
+				"加强党内监督是马克思主义政党的一贯要求。长期以来，我们党高度重视党内监督，采取了有力措施，取得了显著成绩。但也应看到，当前党内监督制度不健全、覆盖不到位、责任不明晰、执行不力等问题不可忽视。“外疾之害，轻于秋毫，人知避之；内疾之害，重于泰山，而莫之避。”全面从严治党必须从根本上解决主体责任缺失、监督责任缺位、管党治党宽松软的问题，就必然要求抓好党内监督这个基础性工程，把制度的笼子扎得更紧，把监督的制度优势充分释放出来。");
 		TextTime.setText(Time);
 		TextName.setText(Name);
 		TextTitle.setText(Title);

@@ -20,6 +20,8 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +47,7 @@ public class MainPublicPageVoteFragment extends Fragment
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
+	private ImageView image_headimg;
 	private Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg1) {
@@ -113,8 +116,7 @@ public class MainPublicPageVoteFragment extends Fragment
 			for (int i = 0; i < 10; i++) {
 
 				VoteModel listinfo = new VoteModel();
-				listinfo.setDetail(
-						"歌歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比歌唱祖国评比");
+				listinfo.setDetail("2016年12月28日，我公司组织了歌唱祖国歌唱大赛，现在请各位投选自己喜欢的同志。歌唱祖国比赛彰显了各位同志的精神面貌与时代精神");
 				listinfo.setTitle("歌唱祖国评比" + i);
 				listinfo.setImageUrl("");
 				list.add(listinfo);
@@ -140,7 +142,16 @@ public class MainPublicPageVoteFragment extends Fragment
 
 	private void initview(View view) {
 		// TODO Auto-generated method stub
+		int screenwidth;
+		int ScreenHeight = 0;
+		image_headimg = (ImageView) view.findViewById(R.id.image_headimg);
 		ListData = (ListView) view.findViewById(R.id.list_data);
+		screenwidth = getActivity().getWindow().getWindowManager().getDefaultDisplay().getWidth();
+		ScreenHeight = (int) (screenwidth / 1.7);
+		LinearLayout.LayoutParams LayoutParams = (android.widget.LinearLayout.LayoutParams) image_headimg
+				.getLayoutParams();
+		LayoutParams.height = ScreenHeight;
+		image_headimg.setLayoutParams(LayoutParams);
 	}
 
 	private void setonclicklistener() {

@@ -10,6 +10,7 @@
     <string name="str_home_volunteer">志愿者之家</string>
     <string name="str_home_health">健康之家</string>
     <string name="str_home_employee">职工之家</string>
+    <string name="str_home_study">在线学习</string>
     <string name="str_setting">设置</string>
     <string name="str_search">搜索</string>
     <string name="str_hometext">三门峡市医药总公司智慧党建以“务实、高效、便捷”为原则，开启智慧党建的新模式，独立开发“e药家智慧党建平台”。</string>
@@ -72,5 +73,15 @@
     <string name="str_change_term">换届选举</string>
     <string name="str_assistance_pauper">困难补助</string>
     <string name="str_pay_money"> 共计0元</string>
+    <string name="ptr_pull_to_refresh">Pull to refresh</string>
+    <string name="ptr_release_to_refresh">Release to refresh</string>
+    <string name="ptr_refreshing">Refreshing</string>
+    <string name="ptr_last_updated">Updated: %1$s</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
 
 </resources>

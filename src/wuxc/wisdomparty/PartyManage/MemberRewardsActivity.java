@@ -214,6 +214,7 @@ public class MemberRewardsActivity extends Activity implements OnTouchListener, 
 		Intent intent = new Intent();
 		intent.setClass(getApplicationContext(), RewardsDetailActivity.class);
 		Bundle bundle = new Bundle();
+		bundle.putString("detail", data.getDetail());
 		bundle.putString("Title", data.getTitle());
 		bundle.putString("Time", data.getTime());
 		intent.putExtras(bundle);

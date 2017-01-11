@@ -44,19 +44,6 @@
             android:layout_weight="1"
             android:background="#ffffff" />
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dotbar_height"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="100dp"
-            android:singleLine="true"
-            android:text="西安交大"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/big_text"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dotbar_height"
@@ -137,30 +124,119 @@
                 android:visibility="visible" />
         </LinearLayout>
     </RelativeLayout>
-
-    <ListView
-        android:id="@+id/list_data"
+ <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#00000000"
-        android:scrollbars="none"
-        android:visibility="gone" >
-    </ListView>
-
-    <ImageView
-        android:id="@+id/img1"
+        android:layout_height="10dp" />
+    <LinearLayout
+        android:id="@+id/lin_dynamic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/dongtai" />
+        android:layout_height="80dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/dynamic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="动态信息"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/member_transform_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_dynamic_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:textColor="#9c9c9c"
+                    android:textSize="@dimen/member_text_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_dynamic_detail"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textColor="#9c9c9c"
+                android:textSize="@dimen/member_text_size" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
+        android:layout_height="10dp" />
 
-    <ImageView
-        android:id="@+id/img2"
+    <LinearLayout
+        android:id="@+id/lin_appearance"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tuanyuan" />
+        android:layout_height="80dp"
+        android:background="#ffffff"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/appearance" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="团员风采"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/member_transform_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_appearance_detail"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="#9c9c9c"
+                android:textSize="@dimen/member_text_size" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

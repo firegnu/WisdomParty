@@ -84,6 +84,7 @@ public class ChangeTermsDetailActivity extends Activity
 	}
 
 	private void getdatalist(int arg) {
+		String[] name = { "张琪琪", "李志高", "赵娇辉", "李志毅", "徐本华", "胡新宇", "刘志利", "梦泽阳", "吴哲裕", "田博吉" };
 		if (arg == 1) {
 			list.clear();
 		}
@@ -94,8 +95,8 @@ public class ChangeTermsDetailActivity extends Activity
 			for (int i = 0; i < 10; i++) {
 
 				CandicateModel listinfo = new CandicateModel();
-				listinfo.setName("老张");
-				listinfo.setNumber("123");
+				listinfo.setName(name[i]);
+				listinfo.setNumber("65");
 				listinfo.setImageUrl("");
 				listinfo.setScale(scale[i]);
 				list.add(listinfo);

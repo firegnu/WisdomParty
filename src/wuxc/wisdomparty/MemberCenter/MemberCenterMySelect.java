@@ -82,7 +82,7 @@ public class MemberCenterMySelect extends Activity implements OnTouchListener, O
 			for (int i = 0; i < 10; i++) {
 
 				MydueModel listinfo = new MydueModel();
-				listinfo.setMoney("老张");
+				listinfo.setMoney("李志高");
 				listinfo.setMonth("部长选举");
 				listinfo.setTime("2016-11-03");
 				list.add(listinfo);

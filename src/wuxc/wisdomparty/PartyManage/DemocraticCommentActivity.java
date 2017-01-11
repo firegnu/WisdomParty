@@ -80,7 +80,7 @@ public class DemocraticCommentActivity extends Activity
 				RewardsModel listinfo = new RewardsModel();
 				listinfo.setTime("2016-12-14");
 				listinfo.setDetail(
-						"学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员学习系列讲话，争做合格党员"
+						"虽然从岗位上退了，但作为一名党员，要不断加强学习，不落伍、不掉队、不退志、不褪色。”10月底，新疆察布查尔锡伯自治县民政局为离退休老同志“送学上门”，确保“两学一做”学习教育不留空白。在“两学一做”学习教育中，新疆维吾尔自治区党委着眼社会稳定和长治久安总目标，注重突出政治坚强，突出融入民族团结，突出问题导向，要求学深做实，取得成效。伊犁州集中学习习近平总书记系列重要讲话尤其是关于新疆工作的重要讲话，开展专题讨论。阿克苏地区开展“五找五查五做”活动，推动党员干部增强责任担当，补齐工作短板。塔城地区对县处级以上党员领导干部进行3天封闭式培训，围绕总目标真正学起来、动起来、做起来。“领导干部要在各个方面，做同党中央保持高度一致的表率，做贯彻落实中央各项决策部署的表率，做民族团结的模范。”莎车县公路分局党组副书记、局长艾力克木·阿布都拉说。"
 								+ arg);
 				listinfo.setTitle("学习系列讲话，争做合格党员" + arg);
 				listinfo.setBackGround("");
@@ -215,6 +215,7 @@ public class DemocraticCommentActivity extends Activity
 		Intent intent = new Intent();
 		intent.setClass(getApplicationContext(), RewardsDetailActivity.class);
 		Bundle bundle = new Bundle();
+		bundle.putString("detail", data.getDetail());
 		bundle.putString("Title", data.getTitle());
 		bundle.putString("Time", data.getTime());
 		intent.putExtras(bundle);

@@ -71,7 +71,7 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 				listinfo.setTime("2016-12-14 20:00:00");
 				listinfo.setTitle("党内监督没有禁区没有例外" + arg);
 				listinfo.setRoundUrl("");
-				listinfo.setName("刘小二子");
+				listinfo.setName("薛飞");
 				listinfo.setAnswerNumber("13");
 				listinfo.setBrowseNumber("26");
 				list.add(listinfo);

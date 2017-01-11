@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="张三"
+                    android:text="薛飞"
                     android:textSize="@dimen/big_text" />
             </LinearLayout>
         </LinearLayout>
@@ -132,7 +132,7 @@
                     android:layout_height="match_parent"
                     android:background="#ffffff"
                     android:gravity="center|right"
-                    android:text="张三"
+                    android:text="薛飞"
                     android:textSize="@dimen/member_transform_size" />
             </LinearLayout>
 
@@ -184,7 +184,7 @@
                     android:layout_height="match_parent"
                     android:background="#ffffff"
                     android:gravity="center|right"
-                    android:text="12234343423"
+                    android:text="13595392423"
                     android:textSize="@dimen/member_transform_size" />
             </LinearLayout>
 
@@ -210,7 +210,7 @@
                     android:layout_height="match_parent"
                     android:background="#ffffff"
                     android:gravity="center|right"
-                    android:text="陕西省西安市"
+                    android:text="机关支部家属院"
                     android:textSize="@dimen/member_transform_size" />
             </LinearLayout>
 
@@ -262,7 +262,7 @@
                     android:layout_height="match_parent"
                     android:background="#ffffff"
                     android:gravity="center|right"
-                    android:text="3年"
+                    android:text="12年"
                     android:textSize="@dimen/member_transform_size" />
             </LinearLayout>
 
@@ -288,7 +288,7 @@
                     android:layout_height="match_parent"
                     android:background="#ffffff"
                     android:gravity="center|right"
-                    android:text="为人名服务"
+                    android:text="在生活中践行入党时的誓言"
                     android:textSize="@dimen/member_transform_size" />
             </LinearLayout>
         </LinearLayout>

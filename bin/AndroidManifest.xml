@@ -409,12 +409,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.Dongtai"
+            android:name="wuxc.wisdmparty.HomeOfYouth.DynamicActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.Tuanyuan"
+            android:name="wuxc.wisdmparty.HomeOfYouth.AppearanceOfMember"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
@@ -425,6 +425,11 @@
         </activity>
         <activity
             android:name="wuxc.wisdomparty.OtherActivity.yaodian"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeActivity.HomeOfStudyActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

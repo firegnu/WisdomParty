@@ -234,6 +234,7 @@ public class MainPublicPagePartyFragment extends Fragment
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), SpecialDetailActivity.class);
 		Bundle bundle = new Bundle();
+		bundle.putString("detail", data.getTitle());
 		bundle.putString("Title", data.getTitle());
 		bundle.putString("Time", data.getTime());
 		bundle.putString("Name", "Ãû×Ö");

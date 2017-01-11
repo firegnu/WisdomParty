@@ -80,7 +80,7 @@ public class OrganizationLifeActivity extends Activity
 				RewardsModel listinfo = new RewardsModel();
 				listinfo.setTime("2016-12-14");
 				listinfo.setDetail(
-						"宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动宁县开展非公企业党建工作专项督查活动"
+						"此次专项检查的范围是招用农民工较多的建筑、制造、采矿、餐饮和其他中小型劳动密集型企业以及个体经济组织。检查内容包括：非公企业与劳动者签订劳动合同情况；按照工资支付有关规定支付职工工资情况；遵守最低工资规定及依法支付加班工资情况；依法参加社会保险和缴纳社会保险费情况；遵守禁止使用童工规定以及女职工和未成年工特殊劳动保护规定情况；其他遵守劳动保障法律法规的情况。"
 								+ arg);
 				listinfo.setTitle("宁县开展非公企业党建工作专项督查活动" + arg);
 				listinfo.setBackGround("");
@@ -215,6 +215,7 @@ public class OrganizationLifeActivity extends Activity
 		Intent intent = new Intent();
 		intent.setClass(getApplicationContext(), RewardsDetailActivity.class);
 		Bundle bundle = new Bundle();
+		bundle.putString("detail", data.getDetail());
 		bundle.putString("Title", data.getTitle());
 		bundle.putString("Time", data.getTime());
 		intent.putExtras(bundle);

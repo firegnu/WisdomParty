@@ -115,7 +115,8 @@ public class MainPublicPageInformFragment extends Fragment
 				PartyNewsModel listinfo = new PartyNewsModel();
 				listinfo.setTime("2016-12-14");
 				listinfo.setTitle("中共党史研究新成果" + arg);
-				listinfo.setDetail("中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果");
+				listinfo.setDetail(
+						"中共党史是中国共产党历史的简称。是中国共产党从1921年7月1日成立以来整个发展过程的全部历史。主要包括中国共产党历次代表大会的情况、党章的不断完善过程、党在各个不同时期的组织建设和发展状况、党领导全国各族人民进行革命和建设的发展历程和全部史实的记载。");
 				list.add(listinfo);
 
 			}
@@ -234,6 +235,7 @@ public class MainPublicPageInformFragment extends Fragment
 		intent.setClass(getActivity(), SpecialDetailActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("Title", data.getTitle());
+		bundle.putString("detail", data.getDetail());
 		bundle.putString("Time", data.getTime());
 		bundle.putString("Name", "名字");
 		intent.putExtras(bundle);

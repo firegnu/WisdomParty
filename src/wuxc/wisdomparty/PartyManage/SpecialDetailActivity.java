@@ -62,6 +62,8 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 	private float scale = 0;
 	private float scalepx = 0;
 	private float dp = 0;
+	private String detail = "此次专项检查的范围是招用农民工较多的建筑、制造、采矿、餐饮和其他中小型劳动密集型企业以及个体经济组织。检查内容包括：非公企业与劳动者签订劳动合同情况；按照工资支付有关规定支付职工工资情况；遵守最低工资规定及依法支付加班工资情况；依法参加社会保险和缴纳社会保险费情况；遵守禁止使用童工规定以及女职工和未成年工特殊劳动保护规定情况；其他遵守劳动保障法律法规的情况。";
+
 	private Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg1) {
@@ -88,6 +90,11 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 		Name = bundle.getString("Name");
 		Title = bundle.getString("Title");
 		Time = bundle.getString("Time");
+		try {
+			detail = bundle.getString("detail");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		initview();
 		setonclicklistener();
 		setlistheight(0);
@@ -124,9 +131,9 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 
 				CommentModel listinfo = new CommentModel();
 				listinfo.setTime("2016-12-14 20:00:00");
-				listinfo.setComment("刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子刘小二子");
+				listinfo.setComment("这真是一篇好文章，学习了");
 				listinfo.setRoundUrl("");
-				listinfo.setName("刘小二子");
+				listinfo.setName("刘志刚");
 
 				list.add(listinfo);
 
@@ -157,7 +164,7 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 				.getLayoutParams();
 		layoutParams1.height = height;
 		ListData.setLayoutParams(layoutParams1);
-		height = (int) ((screenwidth -20*scalepx)/ 2);
+		height = (int) ((screenwidth - 20 * scalepx) / 2);
 		layoutParams1 = (android.widget.RelativeLayout.LayoutParams) ImagePic.getLayoutParams();
 		layoutParams1.height = height;
 		ImagePic.setLayoutParams(layoutParams1);
@@ -172,8 +179,7 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 	private void settext() {
 		// TODO Auto-generated method stub
 		TextWarning.setText("没有更多了");
-		TextDetail.setText(
-				"党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性党的先进性");
+		TextDetail.setText(detail);
 		TextTime.setText(Time);
 		TextName.setText(Name);
 		TextTitle.setText(Title);

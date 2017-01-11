@@ -70,7 +70,7 @@ public class StudyVideoDetailActivity extends Activity implements OnClickListene
 		TextTimeLong.setText(TimeLong);
 		TextTitle.setText(Title);
 		TextResource.setText("来源：" + "组织部");
-		TextDetail.setText("挺好的视频挺好的视频挺好的视频挺好的视频挺好的视频");
+		TextDetail.setText("这是一个很好的视频，学习了");
 
 	}
 

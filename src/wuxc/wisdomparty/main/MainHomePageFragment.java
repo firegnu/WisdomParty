@@ -19,6 +19,7 @@ import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.HomeActivity.HomeOfEmployeeActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfHealthActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfMemberActivity;
+import wuxc.wisdomparty.HomeActivity.HomeOfStudyActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfVolunteerActivity;
 import wuxc.wisdomparty.HomeActivity.HomeOfYouthActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSearchActivity;
@@ -142,6 +143,10 @@ public class MainHomePageFragment extends MainBaseFragment implements OnItemClic
 			} else if (this.getString(R.string.str_home_member).equals(name)) {
 				Intent intent = new Intent();
 				intent.setClass(getActivity(), HomeOfMemberActivity.class);
+				startActivity(intent);
+			} else if (this.getString(R.string.str_home_study).equals(name)) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), HomeOfStudyActivity.class);
 				startActivity(intent);
 			}
 		}
