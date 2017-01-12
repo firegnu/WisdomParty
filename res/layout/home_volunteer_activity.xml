@@ -29,37 +29,40 @@
             android:textSize="@dimen/text_size" />
     </RelativeLayout>
 
+
     <RelativeLayout
-        android:id="@+id/rela_apply"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/member_transform_party_symbol" >
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/list_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00000000"
+            android:scrollbars="none" >
+        </ListView>
+
+        <wuxc.wisdomparty.layout.RoundImageView
+            android:id="@+id/round_headimg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/round_volunteer" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:text="志愿者申请"
-            android:textColor="#000000"
-            android:textSize="@dimen/big_text"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="18dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_marginBottom="20dp"
             android:layout_marginRight="20dp"
-            android:src="@drawable/arrow_right" />
+            android:gravity="center"
+            android:text="志愿者\n申请"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/member_transform_size" />
     </RelativeLayout>
-
-    <ListView
-        android:id="@+id/list_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#00000000"
-        android:scrollbars="none" >
-    </ListView>
 
 </LinearLayout>

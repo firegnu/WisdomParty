@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.PartyManage.AssistancePayActivity;
 import wuxc.wisdomparty.layout.dialogfour;
 
 public class AssistanceDetailActivity extends Activity implements OnClickListener {
@@ -26,9 +27,7 @@ public class AssistanceDetailActivity extends Activity implements OnClickListene
 	private ImageView ImageBack;
 	private ImageView ImageShare;
 	private TextView TextTitle;
-	private TextView TextTime;
-	private TextView TextAuthor;
-	private TextView TextReadNumber;
+	private TextView TextAuthorAandTime;
 	private TextView TextDetail;
 	private Button BtnConfirm;
 	private String Time;
@@ -50,10 +49,8 @@ public class AssistanceDetailActivity extends Activity implements OnClickListene
 
 		Title = bundle.getString("Title");
 		Time = bundle.getString("Time");
-		TextTime.setText("日期：" + Time);
 		TextTitle.setText(Title);
-		TextAuthor.setText("作者：超级管理员");
-		TextReadNumber.setText("访问量：2341");
+		TextAuthorAandTime.setText("作者：超级管理员" + "    " + Time);
 		TextDetail.setText(ToDBC(
 				"杨润贵一行查看了黄洞村村委会办公场所，详细了解该村的农业生产、党建、卫生、村庄规划、活动场所等各方面情况，并走进贫困户家中，与困难群众谈心，了解他们的生产生活，为贫困户送上慰问物品和慰问金，要求驻村工作组和镇村干部重点关心伤残人士，落实保障措施，让他们感受到党和政府的关怀和温暖。座谈会上，柳城镇相关负责人、驻村第一书记及黄洞村负责人分别作了工作汇报。据了解，粤财驻村工作组已为全村39户贫困户共124人完成建档立卡工作，因地制宜地形成了精准帮扶的工作思路。为有效缓解农民群众因病致贫、因病返贫的现象发生，工作组还为黄洞村村民购买了2017年新型农村合作医疗保险。"));
 
@@ -65,9 +62,7 @@ public class AssistanceDetailActivity extends Activity implements OnClickListene
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		ImageShare = (ImageView) findViewById(R.id.image_share);
 		TextTitle = (TextView) findViewById(R.id.text_title);
-		TextTime = (TextView) findViewById(R.id.text_time);
-		TextAuthor = (TextView) findViewById(R.id.text_author);
-		TextReadNumber = (TextView) findViewById(R.id.text_readnumber);
+		TextAuthorAandTime = (TextView) findViewById(R.id.text_authorandtime);
 		TextDetail = (TextView) findViewById(R.id.text_detail);
 		BtnConfirm = (Button) findViewById(R.id.btn_confirm);
 
@@ -99,7 +94,7 @@ public class AssistanceDetailActivity extends Activity implements OnClickListene
 	private void setlayout() {
 		// TODO Auto-generated method stub
 		screenwidth = getWindow().getWindowManager().getDefaultDisplay().getWidth();
-		int height = screenwidth / 2;
+		int height = (int) (screenwidth / 1.52);
 		LinearLayout.LayoutParams layoutParams1 = (android.widget.LinearLayout.LayoutParams) ImageBackground
 				.getLayoutParams();
 		layoutParams1.height = height;

@@ -3,8 +3,6 @@ package wuxc.wisdomparty.HomeActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,22 +18,21 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.Adapter.AssistanceAdapter;
-import wuxc.wisdomparty.Model.AssistanceModel;
-import wuxc.wisdomparty.OtherActivity.VolunteerApplyAactivity;
+import wuxc.wisdomparty.Adapter.VolunteerAdapter;
+import wuxc.wisdomparty.HomeOfVolunteer.VolunteerApplyActivity;
+import wuxc.wisdomparty.HomeOfVolunteer.VolunteerDetailActivity;
+import wuxc.wisdomparty.Model.VolunteerModel;
 import wuxc.wisdomparty.PartyManage.AssistanceDetailActivity;
-import wuxc.wisdomparty.Model.AssistanceModel;
+import wuxc.wisdomparty.layout.RoundImageView;
 
-public class HomeOfVolunteerActivity extends Activity
-		implements OnTouchListener, OnClickListener, OnItemClickListener {
+public class HomeOfVolunteerActivity extends Activity implements OnTouchListener, OnClickListener, OnItemClickListener {
 	private ListView ListData;
 	private ImageView ImageBack;
-	List<AssistanceModel> list = new ArrayList<AssistanceModel>();
-	private static AssistanceAdapter mAdapter;
+	List<VolunteerModel> list = new ArrayList<VolunteerModel>();
+	private static VolunteerAdapter mAdapter;
 	private int firstItemIndex = 0;
 	private int lastItemIndex = 0;
 	private float startY = 0;
@@ -47,7 +44,7 @@ public class HomeOfVolunteerActivity extends Activity
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
-	private RelativeLayout RelaApply;
+	private RoundImageView RoundImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +82,12 @@ public class HomeOfVolunteerActivity extends Activity
 
 			for (int i = 0; i < 10; i++) {
 
-				AssistanceModel listinfo = new AssistanceModel();
+				VolunteerModel listinfo = new VolunteerModel();
 				listinfo.setTitle("爱心助学");
 				listinfo.setDetail(
 						"陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学陕西省委爱心助学");
 				listinfo.setBackGround("");
-				listinfo.setAim("12");
-				listinfo.setNumber("3421");
+
 				list.add(listinfo);
 
 			}
@@ -109,7 +105,7 @@ public class HomeOfVolunteerActivity extends Activity
 
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
-		mAdapter = new AssistanceAdapter(this, list, ListData);
+		mAdapter = new VolunteerAdapter(this, list, ListData);
 		ListData.setAdapter(mAdapter);
 	}
 
@@ -117,14 +113,14 @@ public class HomeOfVolunteerActivity extends Activity
 		// TODO Auto-generated method stub
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
-		RelaApply = (RelativeLayout) findViewById(R.id.rela_apply);
+		RoundImage = (RoundImageView) findViewById(R.id.round_headimg);
 	}
 
 	private void setonclicklistener() {
 		// TODO Auto-generated method stub
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
-		RelaApply.setOnClickListener(this);
+		RoundImage.setOnClickListener(this);
 	}
 
 	@Override
@@ -134,11 +130,12 @@ public class HomeOfVolunteerActivity extends Activity
 		case R.id.image_back:
 			finish();
 			break;
-		case R.id.rela_apply:
-			Intent intent = new Intent();
-			intent.setClass(getApplicationContext(), VolunteerApplyAactivity.class);
-			startActivity(intent);
+		case R.id.round_headimg:
+			Intent intent1 = new Intent();
+			intent1.setClass(getApplicationContext(), VolunteerApplyActivity.class);
+			startActivity(intent1);
 			break;
+
 		default:
 			break;
 		}
@@ -226,9 +223,9 @@ public class HomeOfVolunteerActivity extends Activity
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		AssistanceModel data = list.get(position - 1);
+		VolunteerModel data = list.get(position - 1);
 		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), AssistanceDetailActivity.class);
+		intent.setClass(getApplicationContext(), VolunteerDetailActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("Title", data.getTitle());
 		bundle.putString("Time", "2016-11-30");

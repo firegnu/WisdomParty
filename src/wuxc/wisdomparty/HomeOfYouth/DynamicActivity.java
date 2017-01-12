@@ -1,4 +1,4 @@
-package wuxc.wisdmparty.HomeOfYouth;
+package wuxc.wisdomparty.HomeOfYouth;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -313,17 +313,21 @@ public class DynamicActivity extends FragmentActivity
 	public void onItemClick(PLA_AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 		Toast.makeText(getApplicationContext(), position + "页", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent();
+		intent.setClass(getApplicationContext(), YouthDetailActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("Title", "14年抗战表述更完整、更全面、更客观");
+		bundle.putString("Time", "2016-11-23");
+		bundle.putString("Name", "新华社");
+		bundle.putString("PageTitle", "动态信息");
+		bundle.putString("Detail",
+				"1931年日本发动‘九一八’事变，中国开启抗日序幕。1937年7月7日，宛平城外卢沟桥的炮声和枪响，把中国带入全面抗战。从‘九一八’事变到太平洋战争爆发，中国是反抗日本法西斯的唯一战场。14年抗战比8年抗战的表述，更完整、更全面、更客观。”11日，中国人民抗日战争胜利受降纪念馆馆长吴建宏对新华社记者说。");
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), SpecialDetailActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putString("Title", "中央党史研究新成果");
-		bundle.putString("Time", "2016-11-23");
-		bundle.putString("Name", "小李");
-		intent.putExtras(bundle);
 
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -331,36 +335,7 @@ public class DynamicActivity extends FragmentActivity
 		case R.id.image_back:
 			finish();
 			break;
-		case R.id.image1:
-			startActivity(intent);
-			break;
-		case R.id.image2:
-			startActivity(intent);
-			break;
-		case R.id.image3:
-			startActivity(intent);
-			break;
-		case R.id.image4:
-			startActivity(intent);
-			break;
-		case R.id.image5:
-			startActivity(intent);
-			break;
-		case R.id.image6:
-			startActivity(intent);
-			break;
-		case R.id.image7:
-			startActivity(intent);
-			break;
-		case R.id.image8:
-			startActivity(intent);
-			break;
-		case R.id.image9:
-			startActivity(intent);
-			break;
-		case R.id.image10:
-			startActivity(intent);
-			break;
+
 		default:
 			break;
 		}

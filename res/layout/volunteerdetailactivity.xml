@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@drawable/homepage_top_background" >
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="@dimen/top_imageview_height"
+            android:layout_height="@dimen/top_imageview_height"
+            android:layout_marginLeft="@dimen/top_imageview_distance"
+            android:layout_marginTop="@dimen/top_imageview_distance"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_height"
+            android:layout_marginLeft="@dimen/top_height"
+            android:layout_marginRight="@dimen/top_height"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="志愿详情"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_size" />
+
+        <ImageView
+            android:id="@+id/image_share"
+            android:layout_width="@dimen/top_imageview_height"
+            android:layout_height="@dimen/top_imageview_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/top_imageview_distance"
+            android:layout_marginTop="@dimen/top_imageview_distance"
+            android:src="@drawable/image_share" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_10"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/member_transform_size"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" >
+
+                    <TextView
+                        android:id="@+id/text_authorandtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="发布者：吴新初"
+                        android:textColor="@color/member_transform_stroke"
+                        android:textSize="@dimen/member_text_size" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/image_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/volunteerdetail" />
+
+                <TextView
+                    android:id="@+id/text_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间"
+                    android:textSize="@dimen/member_transform_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/member_transform_left" />
+
+                    <Button
+                        android:id="@+id/btn_confirm"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/member_transform_middle"
+                        android:text="我要参加"
+                        android:textColor="@color/member_transform_yellow"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/member_transform_right" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

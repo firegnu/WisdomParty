@@ -79,7 +79,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.HomeActivity.HomeOfVolunteerActivity"
+            android:name="wuxc.wisdomparty.HomeOfVolunteer.VolunteerApplyActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
@@ -404,17 +404,17 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.VolunteerApplyAactivity"
+            android:name="wuxc.wisdomparty.HomeActivity.HomeOfVolunteerActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdmparty.HomeOfYouth.DynamicActivity"
+            android:name="wuxc.wisdomparty.HomeOfYouth.DynamicActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdmparty.HomeOfYouth.AppearanceOfMember"
+            android:name="wuxc.wisdomparty.HomeOfYouth.AppearanceOfMember"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
@@ -430,6 +430,16 @@
         </activity>
         <activity
             android:name="wuxc.wisdomparty.HomeActivity.HomeOfStudyActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfYouth.YouthDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfVolunteer.VolunteerDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

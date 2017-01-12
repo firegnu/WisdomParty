@@ -212,7 +212,7 @@ public class MainPublicPageStudyFragment extends Fragment
 				ListData.setPadding(0, -100, 0, 0);
 			} else {
 				curPage = 1;
-				Toast.makeText(getActivity(), "正在刷新", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "正在刷新study", Toast.LENGTH_SHORT).show();
 				getdatalist(curPage);
 			}
 			int temp = 1;

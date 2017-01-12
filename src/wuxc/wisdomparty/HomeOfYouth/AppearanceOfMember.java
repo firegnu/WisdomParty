@@ -1,4 +1,4 @@
-package wuxc.wisdmparty.HomeOfYouth;
+package wuxc.wisdomparty.HomeOfYouth;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -297,17 +297,21 @@ public class AppearanceOfMember extends FragmentActivity
 	public void onItemClick(PLA_AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 		Toast.makeText(getApplicationContext(), position + "页", Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onClick(View v) {
 		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), SpecialDetailActivity.class);
+		intent.setClass(getApplicationContext(), YouthDetailActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("Title", "中央党史研究新成果");
 		bundle.putString("Time", "2016-11-23");
 		bundle.putString("Name", "小李");
+		bundle.putString("PageTitle", "团员风采");
+		bundle.putString("Detail",
+				"中国共产主义青年团，简称共青团，原名中国社会主义青年团，是中国共产党领导的一个由信仰共产主义的中国青年组成的群众性组织。共青团中央委员会受中共中央委员会领导，共青团的地方各级组织受同级党的委员会领导，同时受共青团上级组织领导。1922年5月，团的第一次代表大会在广州举行，正式成立中国社会主义青年团，1925年1月26日改称中国共产主义青年团。1959年5月4日共青团中央颁布共青团团徽。");
 		intent.putExtras(bundle);
+		startActivity(intent);
+	}
+
+	@Override
+	public void onClick(View v) {
 
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -315,36 +319,7 @@ public class AppearanceOfMember extends FragmentActivity
 		case R.id.image_back:
 			finish();
 			break;
-		case R.id.image1:
-			startActivity(intent);
-			break;
-		case R.id.image2:
-			startActivity(intent);
-			break;
-		case R.id.image3:
-			startActivity(intent);
-			break;
-		case R.id.image4:
-			startActivity(intent);
-			break;
-		case R.id.image5:
-			startActivity(intent);
-			break;
-		case R.id.image6:
-			startActivity(intent);
-			break;
-		case R.id.image7:
-			startActivity(intent);
-			break;
-		case R.id.image8:
-			startActivity(intent);
-			break;
-		case R.id.image9:
-			startActivity(intent);
-			break;
-		case R.id.image10:
-			startActivity(intent);
-			break;
+
 		default:
 			break;
 		}

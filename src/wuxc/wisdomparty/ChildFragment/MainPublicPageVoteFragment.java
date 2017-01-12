@@ -5,12 +5,17 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -23,16 +28,17 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.VoteAdapter;
 import wuxc.wisdomparty.Model.VoteModel;
 import wuxc.wisdomparty.PartyManage.ChangeTermsDetailActivity;
+import wuxc.wisdomparty.layout.Childviewpaper;
 
 public class MainPublicPageVoteFragment extends Fragment
 		implements OnTouchListener, OnClickListener, OnItemClickListener {
-	private TextView text_list_title;
 	private ListView ListData;
 	List<VoteModel> list = new ArrayList<VoteModel>();
 	private static VoteAdapter mAdapter;
@@ -47,7 +53,19 @@ public class MainPublicPageVoteFragment extends Fragment
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
-	private ImageView image_headimg;
+
+	private RelativeLayout RelativeViewPage;
+	private Childviewpaper ViewPaper;
+	private ImageView dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8, dot9, dot10;
+	private ImageView[] dot = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8, dot9, dot10 };
+	private int screenwidth;
+	private int ScreenHeight = 0;
+	public List<Fragment> Fragments = new ArrayList<Fragment>();
+	private FragmentManager FragmentManager;
+	private int NumberPicture = 4;
+	private String[] Title = { "习大大的讲话1", "习大大的讲话2", "习大大的讲话3", "习大大的讲话4", "习大大的讲话5", "习大大的讲话6", "习大大的讲话7", "习大大的讲话8",
+			"习大大的讲话9", "习大大的讲话10" };
+	private TextView TextTitle;
 	private Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg1) {
@@ -70,7 +88,6 @@ public class MainPublicPageVoteFragment extends Fragment
 
 	protected void getdatalist() {
 		// TODO Auto-generated method stub
-		text_list_title.setText("lail");
 	}
 
 	@Override
@@ -84,12 +101,96 @@ public class MainPublicPageVoteFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View view = inflater.inflate(R.layout.main_publicpage_vote_fragment, container, false);
-		text_list_title = (TextView) view.findViewById(R.id.text_list_title);
 		initview(view);
 		setonclicklistener();
+		Fragments.clear();// 清空list
+		initfragment();// list 装填fragment
+		FragmentManager = getActivity().getSupportFragmentManager();
+		ViewPaper.setOffscreenPageLimit(NumberPicture);
+		ViewPaper.setOnPageChangeListener(new MyOnPageChangeListener());
+		ViewPaper.setAdapter(new MyPagerAdapter());
+		initdot(NumberPicture);
+		godotchange(0);// 显示第一个逗点为绿色
 		setheadtextview();
 		getdatalist(curPage);
 		return view;
+	}
+
+	private void initdot(int numpic) {
+		// TODO Auto-generated method stub
+		for (int i = 9; i >= numpic; i--) {
+			dot[i].setVisibility(View.GONE);
+		}
+	}
+
+	private void godotchange(int position) {
+		for (int i = 0; i < NumberPicture; i++) {
+			dot[i].setBackgroundResource(R.drawable.dotn);
+		}
+		dot[position].setBackgroundResource(R.drawable.dotc);
+		TextTitle.setText(Title[position]);
+	}
+
+	private class MyPagerAdapter extends PagerAdapter {
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			return arg0 == arg1;
+		}
+
+		@Override
+		public int getCount() {
+			return NumberPicture;
+		}
+
+		@Override
+		public void destroyItem(View container, int position, Object object) {
+			((ViewPager) container).removeView(Fragments.get(position).getView());
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup container, int position) {
+			Fragment fragment = Fragments.get(position);
+			if (!fragment.isAdded()) {
+				FragmentTransaction ft = FragmentManager.beginTransaction();
+				ft.add(fragment, fragment.getClass().getSimpleName());
+				ft.commit();
+				FragmentManager.executePendingTransactions();
+			}
+
+			if (fragment.getView().getParent() == null) {
+				container.addView(fragment.getView());
+			}
+			return fragment.getView();
+		}
+	};
+
+	public class MyOnPageChangeListener implements OnPageChangeListener {
+		@Override
+		public void onPageSelected(int arg0) {
+			godotchange(arg0);
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+		}
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+		}
+	}
+
+	private void initfragment() {
+		// TODO Auto-generated method stub
+		Fragments.add(new PublicVoteOneFragment());
+		Fragments.add(new PublicVoteTwoFragment());
+		Fragments.add(new PublicVoteThreeFragment());
+		Fragments.add(new PublicVoteFourFragment());
+		Fragments.add(new PublicVoteFiveFragment());
+		Fragments.add(new PublicVoteSixFragment());
+		Fragments.add(new PublicVoteSevenFragment());
+		Fragments.add(new PublicVoteEightFragment());
+		Fragments.add(new PublicVoteNineFragment());
+		Fragments.add(new PublicVoteTenFragment());
 	}
 
 	private void setheadtextview() {
@@ -142,16 +243,29 @@ public class MainPublicPageVoteFragment extends Fragment
 
 	private void initview(View view) {
 		// TODO Auto-generated method stub
+		RelativeViewPage = (RelativeLayout) view.findViewById(R.id.rel_viewpaper);
+		ViewPaper = (Childviewpaper) view.findViewById(R.id.viewPager);
+		TextTitle = (TextView) view.findViewById(R.id.text_title);
+		dot[0] = (ImageView) view.findViewById(R.id.dot1);
+		dot[1] = (ImageView) view.findViewById(R.id.dot2);
+		dot[2] = (ImageView) view.findViewById(R.id.dot3);
+		dot[3] = (ImageView) view.findViewById(R.id.dot4);
+		dot[4] = (ImageView) view.findViewById(R.id.dot5);
+		dot[5] = (ImageView) view.findViewById(R.id.dot6);
+		dot[6] = (ImageView) view.findViewById(R.id.dot7);
+		dot[7] = (ImageView) view.findViewById(R.id.dot8);
+		dot[8] = (ImageView) view.findViewById(R.id.dot9);
+		dot[9] = (ImageView) view.findViewById(R.id.dot10);
 		int screenwidth;
 		int ScreenHeight = 0;
-		image_headimg = (ImageView) view.findViewById(R.id.image_headimg);
 		ListData = (ListView) view.findViewById(R.id.list_data);
 		screenwidth = getActivity().getWindow().getWindowManager().getDefaultDisplay().getWidth();
-		ScreenHeight = (int) (screenwidth / 1.7);
-		LinearLayout.LayoutParams LayoutParams = (android.widget.LinearLayout.LayoutParams) image_headimg
+		ScreenHeight = (int) (screenwidth / 2);
+		LinearLayout.LayoutParams LayoutParams = (android.widget.LinearLayout.LayoutParams) RelativeViewPage
 				.getLayoutParams();
 		LayoutParams.height = ScreenHeight;
-		image_headimg.setLayoutParams(LayoutParams);
+		RelativeViewPage.setLayoutParams(LayoutParams);
+
 	}
 
 	private void setonclicklistener() {
@@ -161,8 +275,12 @@ public class MainPublicPageVoteFragment extends Fragment
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
+
 		// TODO Auto-generated method stub
-		float tempY = event.getY();
+		float tempY = event.getRawY();// 使用GetY时横滑时会出错，原因未知
+		// float a = event.getRawY();
+		// Log.e("tempY", "" + tempY);
+		// Log.e("getRawY", "" + a);
 		float tempyfoot = event.getY();
 		firstItemIndex = ListData.getFirstVisiblePosition();
 		lastItemIndex = ListData.getLastVisiblePosition();
@@ -202,7 +320,7 @@ public class MainPublicPageVoteFragment extends Fragment
 				ListData.setPadding(0, -100, 0, 0);
 			} else {
 				curPage = 1;
-				Toast.makeText(getActivity(), "正在刷新", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "正在刷新vote", Toast.LENGTH_SHORT).show();
 				getdatalist(curPage);
 			}
 			int temp = 1;

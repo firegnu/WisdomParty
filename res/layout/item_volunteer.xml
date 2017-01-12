@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rela_half"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" >
+
+            <ImageView
+                android:id="@+id/image_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/knbz" />
+
+            <RelativeLayout
+                android:id="@+id/rela_oneoften"
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/knbz_bottom" >
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="村小的音乐梦想"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/member_transform_size" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/member_transform_party_top_red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:text="志愿简介"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/member_transform_size" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_detail"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间暖心瞬间" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

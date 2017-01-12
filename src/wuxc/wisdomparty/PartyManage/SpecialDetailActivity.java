@@ -148,7 +148,11 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 		} else {
 			mAdapter.notifyDataSetChanged();
 		}
-
+		if (arg == totalPage) {
+			TextWarning.setText("没有更多了");
+		} else {
+			TextWarning.setText("点击加载更多");
+		}
 	}
 
 	private void setlistheight(int size) {
@@ -178,7 +182,7 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 
 	private void settext() {
 		// TODO Auto-generated method stub
-		TextWarning.setText("没有更多了");
+		TextWarning.setText("正在加载数据...");
 		TextDetail.setText(detail);
 		TextTime.setText(Time);
 		TextName.setText(Name);
@@ -206,6 +210,7 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 		BtnAnswer.setOnClickListener(this);
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
+		TextWarning.setOnClickListener(this);
 	}
 
 	@Override
@@ -216,6 +221,14 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 			finish();
 			break;
 		case R.id.btn_answer:
+
+			break;
+		case R.id.text_warning:
+			curPage++;
+			if (!(curPage > totalPage)) {
+				getdatalist(curPage);
+				Toast.makeText(getApplicationContext(), "正在加载", Toast.LENGTH_SHORT).show();
+			}
 
 			break;
 		default:

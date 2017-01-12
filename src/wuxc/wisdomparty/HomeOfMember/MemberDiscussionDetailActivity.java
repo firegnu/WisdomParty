@@ -86,6 +86,7 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 		Name = bundle.getString("Name");
 		Title = bundle.getString("Title");
 		Time = bundle.getString("Time");
+
 		initview();
 		setonclicklistener();
 		setlistheight(0);
@@ -111,6 +112,7 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 	}
 
 	private void getdatalist(int arg) {
+
 		if (arg == 1) {
 			list.clear();
 		}
@@ -141,6 +143,11 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 			mAdapter.notifyDataSetChanged();
 		}
 
+		if (arg == totalPage) {
+			TextWarning.setText("没有更多了");
+		} else {
+			TextWarning.setText("点击加载更多");
+		}
 	}
 
 	private void setlistheight(int size) {
@@ -166,12 +173,12 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 
 	private void settext() {
 		// TODO Auto-generated method stub
-		TextWarning.setText("没有更多了");
 		TextDetail.setText(
 				"加强党内监督是马克思主义政党的一贯要求。长期以来，我们党高度重视党内监督，采取了有力措施，取得了显著成绩。但也应看到，当前党内监督制度不健全、覆盖不到位、责任不明晰、执行不力等问题不可忽视。“外疾之害，轻于秋毫，人知避之；内疾之害，重于泰山，而莫之避。”全面从严治党必须从根本上解决主体责任缺失、监督责任缺位、管党治党宽松软的问题，就必然要求抓好党内监督这个基础性工程，把制度的笼子扎得更紧，把监督的制度优势充分释放出来。");
 		TextTime.setText(Time);
 		TextName.setText(Name);
 		TextTitle.setText(Title);
+		TextWarning.setText("正在加载数据...");
 	}
 
 	private void initview() {
@@ -194,6 +201,7 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 		BtnAnswer.setOnClickListener(this);
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
+		TextWarning.setOnClickListener(this);
 	}
 
 	@Override
@@ -204,6 +212,14 @@ public class MemberDiscussionDetailActivity extends Activity implements OnClickL
 			finish();
 			break;
 		case R.id.btn_answer:
+
+			break;
+		case R.id.text_warning:
+			curPage++;
+			if (!(curPage > totalPage)) {
+				getdatalist(curPage);
+				Toast.makeText(getApplicationContext(), "正在加载", Toast.LENGTH_SHORT).show();
+			}
 
 			break;
 		default:

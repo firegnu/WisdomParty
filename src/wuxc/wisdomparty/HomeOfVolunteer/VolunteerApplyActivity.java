@@ -1,4 +1,4 @@
-package wuxc.wisdomparty.OtherActivity;
+package wuxc.wisdomparty.HomeOfVolunteer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +27,7 @@ import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.layout.ImageTools;
 
-public class VolunteerApplyAactivity extends Activity implements OnClickListener {
+public class VolunteerApplyActivity extends Activity implements OnClickListener {
 	private ImageView ImageBack;
 	private ImageView ImagePhoto;
 	private LinearLayout LinPhoto;

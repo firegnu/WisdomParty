@@ -38,7 +38,7 @@ public class YouthTopFourFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.youth_top_picture, container, false);
+		View view = inflater.inflate(R.layout.youth_top_fragment, container, false);
 		two_one_text = (ImageView) view.findViewById(R.id.two_one_text);
 		picinfo = getActivity().getSharedPreferences("picinfo", Context.MODE_PRIVATE);
 

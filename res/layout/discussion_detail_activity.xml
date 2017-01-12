@@ -141,7 +141,7 @@
                 <TextView
                     android:id="@+id/text_warning"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_below="@id/line1"
                     android:gravity="center"
                     android:textColor="@color/member_transform_stroke"

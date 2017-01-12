@@ -41,13 +41,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/dove_background"
         android:orientation="horizontal" >
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
             android:background="@drawable/shape_10"
             android:scrollbars="none" >
 
@@ -63,7 +61,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="@dimen/member_transform_size"
                     android:textStyle="bold" />
@@ -75,30 +73,13 @@
                     android:layout_marginRight="10dp" >
 
                     <TextView
-                        android:id="@+id/text_time"
+                        android:id="@+id/text_authorandtime"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="center"
-                        android:textColor="@color/member_transform_stroke"
-                        android:textSize="@dimen/member_text_size" />
-
-                    <TextView
-                        android:id="@+id/text_author"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
                         android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/text_time"
                         android:gravity="center"
-                        android:textColor="@color/member_transform_stroke"
-                        android:textSize="@dimen/member_text_size" />
-
-                    <TextView
-                        android:id="@+id/text_readnumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center"
+                        android:text="发布者：吴新初"
                         android:textColor="@color/member_transform_stroke"
                         android:textSize="@dimen/member_text_size" />
                 </RelativeLayout>
@@ -107,7 +88,7 @@
                     android:id="@+id/image_background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/knbz" />
+                    android:src="@drawable/volunteerdetail" />
 
                 <TextView
                     android:id="@+id/text_detail"
