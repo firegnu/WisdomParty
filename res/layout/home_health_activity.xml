@@ -125,15 +125,6 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/list_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#00000000"
-        android:scrollbars="none"
-        android:visibility="gone" >
-    </ListView>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -156,7 +147,7 @@
                 android:orientation="vertical" >
 
                 <RelativeLayout
-                    android:id="@+id/rela_special"
+                    android:id="@+id/rela_webmedical"
                     android:layout_width="match_parent"
                     android:layout_height="30dp" >
 
@@ -168,7 +159,7 @@
                         android:background="@color/member_transform_party_top_red" />
 
                     <TextView
-                        android:id="@+id/text_special"
+                        android:id="@+id/text_webmedical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -202,12 +193,12 @@
                 <LinearLayout
                     android:id="@+id/lin_webmedical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="20dp"
                     android:background="#ffffff"
                     android:orientation="horizontal" >
 
                     <LinearLayout
-                        android:id="@+id/lin_special_left"
+                        android:id="@+id/lin_webmedical_left"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -226,7 +217,7 @@
                                 android:layout_marginLeft="14dp"
                                 android:layout_marginTop="10dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/member_home" />
+                                android:src="@drawable/health" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -272,7 +263,7 @@
                         android:orientation="vertical" >
 
                         <LinearLayout
-                            android:id="@+id/lin_special_right_top"
+                            android:id="@+id/lin_webmedical_right_top"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginBottom="5dp"
@@ -290,7 +281,6 @@
                                 android:gravity="center_vertical"
                                 android:maxLines="2"
                                 android:text="医药总公司走访慰问活动"
-                                android:textColor="#000000"
                                 android:textSize="@dimen/member_transform_size" />
 
                             <ImageView
@@ -299,7 +289,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_weight="2"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/member_home" />
+                                android:src="@drawable/health" />
                         </LinearLayout>
 
                         <TextView
@@ -308,7 +298,7 @@
                             android:background="@color/background_grey" />
 
                         <LinearLayout
-                            android:id="@+id/lin_special_right_bottom"
+                            android:id="@+id/lin_webmedical_right_bottom"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginBottom="5dp"
@@ -325,7 +315,7 @@
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="2"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/member_home" />
+                                android:src="@drawable/health" />
 
                             <TextView
                                 android:layout_width="0dp"
@@ -334,7 +324,6 @@
                                 android:gravity="center_vertical"
                                 android:maxLines="2"
                                 android:text="医药总公司走访慰问活动"
-                                android:textColor="#000000"
                                 android:textSize="@dimen/member_transform_size" />
                         </LinearLayout>
                     </LinearLayout>
@@ -370,7 +359,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/image__health_left"
                         android:gravity="center_vertical"
-                        android:text="网上药店"
+                        android:text="养生专栏"
                         android:textColor="#000000"
                         android:textSize="@dimen/member_transform_size" />
 
@@ -394,7 +383,96 @@
                         android:layout_marginRight="15dp"
                         android:src="@drawable/image_right_white" />
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_health"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/lin_health_left"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/health" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_grey" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_health_right"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="3"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:text="养生推荐内容或标题名称"
+                            android:textSize="@dimen/member_transform_size" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_weight="2"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/health" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#ffffff" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/background_grey" />
+
+            <ListView
+                android:id="@+id/list_data"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:divider="#00000000"
+                android:scrollbars="none" >
+            </ListView>
+
+            <TextView
+                android:id="@+id/text_warning"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/line1"
+                android:gravity="center"
+                android:textColor="@color/member_transform_stroke"
+                android:textSize="@dimen/member_text_size" />
         </LinearLayout>
     </ScrollView>
 

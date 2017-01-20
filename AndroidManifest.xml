@@ -419,12 +419,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.HomeOfHealth.Yangsheng"
+            android:name="wuxc.wisdomparty.HomeOfHealth.RegimenOfHealth"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.HomeOfHealth.yaodian"
+            android:name="wuxc.wisdomparty.HomeOfHealth.MedicalShopOfHealth"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
@@ -450,6 +450,11 @@
         </activity>
         <activity
             android:name="wuxc.wisdomparty.HomeOfEmployee.AppeaeanceOfVipDetail"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfHealth.RegimenDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

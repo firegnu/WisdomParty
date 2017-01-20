@@ -104,6 +104,7 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 	}
 
 	private void starttimedelay() {
+		// 原因：不延时的话list会滑到顶部
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 
@@ -142,12 +143,13 @@ public class SpecialDetailActivity extends Activity implements OnClickListener, 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setlistheight(list.size());
+
 		if (arg == 1) {
 			go();
 		} else {
 			mAdapter.notifyDataSetChanged();
 		}
+		setlistheight(list.size());
 		if (arg == totalPage) {
 			TextWarning.setText("没有更多了");
 		} else {

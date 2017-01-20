@@ -2,12 +2,16 @@ package wuxc.wisdomparty.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.w3c.dom.Text;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +19,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,7 +36,7 @@ import android.widget.Toast;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.Adapter.SpecialAdapter;
+import wuxc.wisdomparty.Adapter.HealthAdapter;
 import wuxc.wisdomparty.ChildFragment.HealthEightFragment;
 import wuxc.wisdomparty.ChildFragment.HealthFiveFragment;
 import wuxc.wisdomparty.ChildFragment.HealthFourFragment;
@@ -42,14 +47,13 @@ import wuxc.wisdomparty.ChildFragment.HealthSixFragment;
 import wuxc.wisdomparty.ChildFragment.HealthTenFragment;
 import wuxc.wisdomparty.ChildFragment.HealthThreeFragment;
 import wuxc.wisdomparty.ChildFragment.HealthTwoFragment;
-import wuxc.wisdomparty.HomeOfHealth.Yangsheng;
-import wuxc.wisdomparty.HomeOfHealth.yaodian;
-import wuxc.wisdomparty.Model.SpecialModel;
-import wuxc.wisdomparty.PartyManage.SpecialDetailActivity;
+import wuxc.wisdomparty.HomeOfHealth.RegimenOfHealth;
+import wuxc.wisdomparty.HomeOfHealth.MedicalShopOfHealth;
+import wuxc.wisdomparty.HomeOfHealth.RegimenDetailActivity;
+import wuxc.wisdomparty.Model.HealthModel;
 import wuxc.wisdomparty.layout.Childviewpaper;
 
-public class HomeOfHealthActivity extends FragmentActivity
-		implements OnTouchListener, OnClickListener, OnItemClickListener {
+public class HomeOfHealthActivity extends FragmentActivity implements OnClickListener, OnItemClickListener {
 	private RelativeLayout RelativeViewPage;
 	private Childviewpaper ViewPaper;
 	private ImageView dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8, dot9, dot10;
@@ -61,20 +65,42 @@ public class HomeOfHealthActivity extends FragmentActivity
 	private int NumberPicture = 4;
 	private ListView ListData;
 	private ImageView ImageBack;
-	List<SpecialModel> list = new ArrayList<SpecialModel>();
-	private static SpecialAdapter mAdapter;
-	private int firstItemIndex = 0;
-	private int lastItemIndex = 0;
-	private float startY = 0;
-	private float startYfoot = 0;
-	private boolean isRecored;
-	private boolean isRecoredfoot;
+	List<HealthModel> list = new ArrayList<HealthModel>();
+	private static HealthAdapter mAdapter;
+
 	private int pageSize = 10;
 	private int totalPage = 5;
 	private int curPage = 1;
-	private final static int RATIO = 2;
-	private TextView headTextView = null;
+
 	private LinearLayout LinWebMedical;
+	private LinearLayout LinHealth;
+
+	private float scale = 0;
+	private float scalepx = 0;
+	private float dp = 0;
+	private TextView TextWarning;
+
+	private TextView TextMore;
+	private TextView TextHealthMore;
+	private LinearLayout LinWebMedicalLeft;
+	private LinearLayout LinWebMedicalRightTop;
+	private LinearLayout LinWebMedicalRightBottom;
+	private LinearLayout LinHealthLeft;
+	private LinearLayout LinHealthRight;
+	private Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg1) {
+			switch (msg1.what) {
+			case 0:
+				getdatalist(curPage);
+				break;
+
+			default:
+				break;
+
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,21 +119,25 @@ public class HomeOfHealthActivity extends FragmentActivity
 		ViewPaper.setAdapter(new MyPagerAdapter());
 		initdot(NumberPicture);
 		godotchange(0);// 显示第一个逗点为绿色
-		setheadtextview();
-		getdatalist(curPage);
+		setlistheight(0);
+		starttimedelay();
 	}
 
-	private void setheadtextview() {
-		headTextView = new TextView(this);
-		headTextView.setGravity(Gravity.CENTER);
-		headTextView.setMinHeight(100);
-		headTextView.setText("正在刷新...");
-		headTextView.setTypeface(Typeface.DEFAULT_BOLD);
-		headTextView.setTextSize(15);
-		headTextView.invalidate();
-		ListData.addHeaderView(headTextView, null, false);
-		ListData.setPadding(0, -100, 0, 0);
-		ListData.setOnTouchListener(this);
+	private void starttimedelay() {
+		// 原因：不延时的话list会滑到顶部
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+
+				Message msg1 = new Message();
+				msg1.what = 0;
+				uiHandler.sendMessage(msg1);
+
+			}
+
+		}, 2000);
 	}
 
 	private void getdatalist(int arg) {
@@ -120,14 +150,15 @@ public class HomeOfHealthActivity extends FragmentActivity
 
 			for (int i = 0; i < 10; i++) {
 
-				SpecialModel listinfo = new SpecialModel();
-				listinfo.setTime("2016-12-14");
-				listinfo.setDetail(
-						"中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果中共党史研究新成果"
-								+ arg);
-				listinfo.setTitle("中共党史研究新成果" + arg);
-				listinfo.setNumber("23");
-				listinfo.setImageUrl("");
+				HealthModel listinfo = new HealthModel();
+
+				listinfo.setTitle("最健康的养生法，我在这里，你在哪呢？" + i);
+				listinfo.setLabel("养生专栏");
+				listinfo.setCollect("23");
+				listinfo.setGreat("45");
+				listinfo.setIamgeUrl("");
+				listinfo.setIsCollect(true);
+				listinfo.setIsGreat(false);
 				list.add(listinfo);
 
 			}
@@ -135,17 +166,39 @@ public class HomeOfHealthActivity extends FragmentActivity
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		if (arg == 1) {
 			go();
+
 		} else {
 			mAdapter.notifyDataSetChanged();
 		}
+		setlistheight(list.size());
+		if (arg == totalPage) {
+			TextWarning.setText("没有更多了");
+		} else {
+			TextWarning.setText("点击加载更多");
+		}
+	}
+
+	private void setlistheight(int size) {
+		// TODO Auto-generated method stub
+		screenwidth = getWindow().getWindowManager().getDefaultDisplay().getWidth();
+		DisplayMetrics mMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
+		scale = getResources().getDisplayMetrics().density;
+		dp = screenwidth / scale + 0.5f;
+		scalepx = screenwidth / dp;
+		int height = (int) (size * (screenwidth * 0.5 + 96 * scalepx));
+		LinearLayout.LayoutParams layoutParams1 = (android.widget.LinearLayout.LayoutParams) ListData.getLayoutParams();
+		layoutParams1.height = height;
+		ListData.setLayoutParams(layoutParams1);
 
 	}
 
 	protected void go() {
-		ListData.setPadding(0, -100, 0, 0);
-		mAdapter = new SpecialAdapter(this, list, ListData);
+
+		mAdapter = new HealthAdapter(this, list, ListData);
 		ListData.setAdapter(mAdapter);
 	}
 
@@ -182,6 +235,14 @@ public class HomeOfHealthActivity extends FragmentActivity
 		// TODO Auto-generated method stub
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
+		TextWarning.setOnClickListener(this);
+		TextMore.setOnClickListener(this);
+		TextHealthMore.setOnClickListener(this);
+		LinWebMedicalLeft.setOnClickListener(this);
+		LinWebMedicalRightTop.setOnClickListener(this);
+		LinWebMedicalRightBottom.setOnClickListener(this);
+		LinHealthLeft.setOnClickListener(this);
+		LinHealthRight.setOnClickListener(this);
 
 	}
 
@@ -197,6 +258,10 @@ public class HomeOfHealthActivity extends FragmentActivity
 		LayoutParams = (android.widget.LinearLayout.LayoutParams) LinWebMedical.getLayoutParams();
 		LayoutParams.height = ScreenHeight;
 		LinWebMedical.setLayoutParams(LayoutParams);
+		ScreenHeight = (int) (screenwidth / 4);
+		LayoutParams = (android.widget.LinearLayout.LayoutParams) LinHealth.getLayoutParams();
+		LayoutParams.height = ScreenHeight;
+		LinHealth.setLayoutParams(LayoutParams);
 	}
 
 	private void initview() {
@@ -217,7 +282,16 @@ public class HomeOfHealthActivity extends FragmentActivity
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		LinWebMedical = (LinearLayout) findViewById(R.id.lin_webmedical);
-
+		LinHealth = (LinearLayout) findViewById(R.id.lin_health);
+		TextMore = (TextView) findViewById(R.id.text_more);
+		TextHealthMore = (TextView) findViewById(R.id.text_more_health);
+		LinWebMedicalLeft = (LinearLayout) findViewById(R.id.lin_webmedical_left);
+		LinWebMedicalRightTop = (LinearLayout) findViewById(R.id.lin_webmedical_right_top);
+		LinWebMedicalRightBottom = (LinearLayout) findViewById(R.id.lin_webmedical_right_bottom);
+		LinHealthLeft = (LinearLayout) findViewById(R.id.lin_health_left);
+		LinHealthRight = (LinearLayout) findViewById(R.id.lin_health_right);
+		TextWarning = (TextView) findViewById(R.id.text_warning);
+		TextWarning.setText("正在加载数据...");
 	}
 
 	private class MyPagerAdapter extends PagerAdapter {
@@ -275,7 +349,58 @@ public class HomeOfHealthActivity extends FragmentActivity
 		case R.id.image_back:
 			finish();
 			break;
-
+		case R.id.text_warning:
+			curPage++;
+			if (!(curPage > totalPage)) {
+				getdatalist(curPage);
+				Toast.makeText(getApplicationContext(), "正在加载", Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case R.id.text_more:
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), MedicalShopOfHealth.class);
+			startActivity(intent);
+			break;
+		case R.id.lin_webmedical_left:
+			Toast.makeText(getApplicationContext(), "药店", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.lin_webmedical_right_top:
+			Toast.makeText(getApplicationContext(), "药店", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.lin_webmedical_right_bottom:
+			Toast.makeText(getApplicationContext(), "药店", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.text_more_health:
+			Intent intent1 = new Intent();
+			intent1.setClass(getApplicationContext(), RegimenOfHealth.class);
+			startActivity(intent1);
+			break;
+		case R.id.lin_health_left:
+			Intent intent2 = new Intent();
+			intent2.setClass(getApplicationContext(), RegimenDetailActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("PageTitle", "中医养生");
+			bundle.putString("Time", "2016-11-26");
+			bundle.putString("Name", "新华社");
+			bundle.putString("Title", "补血顺气");
+			bundle.putString("Detail",
+					"中医学以阴阳五行作为理论基础，将人体看成是气、形、神的统一体，通过望闻问切四诊合参的方法，探求病因、病性、病位、分析病机及人体内五脏六腑、经络关节、气血津液的变化、判断邪正消长，进而得出病名，归纳出证型，以辨证论治原则，制定汗、吐、下、和、温、清、补、消等治法，使用中药、针灸、推拿、按摩、拔罐、气功、食疗等多种治疗手段，使人体达到阴阳调和而康复。");
+			intent2.putExtras(bundle);
+			startActivity(intent2);
+			break;
+		case R.id.lin_health_right:
+			Intent intent3 = new Intent();
+			intent3.setClass(getApplicationContext(), RegimenDetailActivity.class);
+			Bundle bundle3 = new Bundle();
+			bundle3.putString("PageTitle", "中医养生");
+			bundle3.putString("Time", "2016-11-26");
+			bundle3.putString("Name", "新华社");
+			bundle3.putString("Title", "补血顺气");
+			bundle3.putString("Detail",
+					"中医学以阴阳五行作为理论基础，将人体看成是气、形、神的统一体，通过望闻问切四诊合参的方法，探求病因、病性、病位、分析病机及人体内五脏六腑、经络关节、气血津液的变化、判断邪正消长，进而得出病名，归纳出证型，以辨证论治原则，制定汗、吐、下、和、温、清、补、消等治法，使用中药、针灸、推拿、按摩、拔罐、气功、食疗等多种治疗手段，使人体达到阴阳调和而康复。");
+			intent3.putExtras(bundle3);
+			startActivity(intent3);
+			break;
 		default:
 			break;
 		}
@@ -284,94 +409,18 @@ public class HomeOfHealthActivity extends FragmentActivity
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		SpecialModel data = list.get(position - 1);
+		HealthModel data = list.get(position);
 		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), SpecialDetailActivity.class);
+		intent.setClass(getApplicationContext(), RegimenDetailActivity.class);
 		Bundle bundle = new Bundle();
+		bundle.putString("PageTitle", data.getLabel());
+		bundle.putString("Time", "2016-11-26");
+		bundle.putString("Name", "新华社");
 		bundle.putString("Title", data.getTitle());
-		bundle.putString("Time", data.getTime());
-		bundle.putString("Name", "名字");
+		bundle.putString("Detail",
+				"中医学以阴阳五行作为理论基础，将人体看成是气、形、神的统一体，通过望闻问切四诊合参的方法，探求病因、病性、病位、分析病机及人体内五脏六腑、经络关节、气血津液的变化、判断邪正消长，进而得出病名，归纳出证型，以辨证论治原则，制定汗、吐、下、和、温、清、补、消等治法，使用中药、针灸、推拿、按摩、拔罐、气功、食疗等多种治疗手段，使人体达到阴阳调和而康复。");
 		intent.putExtras(bundle);
 		startActivity(intent);
-	}
-
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
-		float tempY = event.getY();
-		float tempyfoot = event.getY();
-		firstItemIndex = ListData.getFirstVisiblePosition();
-		lastItemIndex = ListData.getLastVisiblePosition();
-		// Toast.makeText(getActivity(), " lastItemIndex" +
-		// lastItemIndex, Toast.LENGTH_SHORT).show();
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-		case MotionEvent.ACTION_MOVE:
-			if (!isRecored && (firstItemIndex == 0)) {
-				isRecored = true;
-				startY = tempY;
-			}
-			int temp = 1;
-			temp = (lastItemIndex) % pageSize;
-			if (!isRecoredfoot && (temp == 0)) {
-				isRecoredfoot = true;
-				startYfoot = tempyfoot;
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-		case MotionEvent.ACTION_CANCEL:
-			isRecored = false;
-			isRecoredfoot = false;
-			break;
-
-		default:
-			break;
-		}
-
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			break;
-		case MotionEvent.ACTION_UP:
-		case MotionEvent.ACTION_CANCEL:
-			ListData.setPadding(0, 0, 0, 0);
-			if (tempY - startY < 400) {
-				ListData.setPadding(0, -100, 0, 0);
-			} else {
-				curPage = 1;
-				Toast.makeText(getApplicationContext(), "正在刷新", Toast.LENGTH_SHORT).show();
-				getdatalist(curPage);
-			}
-			int temp = 1;
-			temp = (lastItemIndex) % pageSize;
-			// temp = 0;
-			if (temp == 0 && (startYfoot - tempyfoot > 400)) {
-				curPage++;
-				if (curPage > totalPage) {
-					Toast.makeText(getApplicationContext(), " 没有更多了", Toast.LENGTH_SHORT).show();
-					// // listinfoagain();
-				} else {
-					getdatalist(curPage);
-					Toast.makeText(getApplicationContext(), "正在加载下一页", Toast.LENGTH_SHORT).show();
-				}
-
-			} else {
-
-			}
-			break;
-		case MotionEvent.ACTION_MOVE:
-			if (isRecored && tempY > startY) {
-				ListData.setPadding(0, (int) ((tempY - startY) / RATIO - 100), 0, 0);
-			}
-			if (isRecoredfoot && startYfoot > tempyfoot) {
-				// footTextView.setVisibility(View.VISIBLE);
-				ListData.setPadding(0, -100, 0, (int) ((startYfoot - tempyfoot) / RATIO));
-			}
-			break;
-
-		default:
-			break;
-		}
-		return false;
 	}
 
 }
