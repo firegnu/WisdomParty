@@ -1,14 +1,16 @@
-package wuxc.wisdomparty.OtherActivity;
+package wuxc.wisdomparty.HomeOfHealth;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.PartyManage.SpecialDetailActivity;
 
-public class yaodian extends Activity implements OnClickListener {
+public class Yangsheng extends Activity implements OnClickListener {
 	private ImageView image_back;
 	private ImageView image1;
 	private ImageView image2;
@@ -26,7 +28,7 @@ public class yaodian extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.yaodian);
+		setContentView(R.layout.yangsheng);
 		image_back = (ImageView) findViewById(R.id.image_back);
 		image1 = (ImageView) findViewById(R.id.image1);
 		image2 = (ImageView) findViewById(R.id.image2);
@@ -55,14 +57,13 @@ public class yaodian extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// Intent intent = new Intent();
-		// intent.setClass(getApplicationContext(),
-		// SpecialDetailActivity.class);
-		// Bundle bundle = new Bundle();
-		// bundle.putString("Title", "中央党史研究新成果");
-		// bundle.putString("Time", "2016-11-23");
-		// bundle.putString("Name", "小李");
-		// intent.putExtras(bundle);
+		Intent intent = new Intent();
+		intent.setClass(getApplicationContext(), SpecialDetailActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("Title", "养生信息");
+		bundle.putString("Time", "2016-11-23");
+		bundle.putString("Name", "小李");
+		intent.putExtras(bundle);
 
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -70,36 +71,36 @@ public class yaodian extends Activity implements OnClickListener {
 		case R.id.image_back:
 			finish();
 			break;
-		// case R.id.image1:
-		// startActivity(intent);
-		// break;
-		// case R.id.image2:
-		// startActivity(intent);
-		// break;
-		// case R.id.image3:
-		// startActivity(intent);
-		// break;
-		// case R.id.image4:
-		// startActivity(intent);
-		// break;
-		// case R.id.image5:
-		// startActivity(intent);
-		// break;
-		// case R.id.image6:
-		// startActivity(intent);
-		// break;
-		// case R.id.image7:
-		// startActivity(intent);
-		// break;
-		// case R.id.image8:
-		// startActivity(intent);
-		// break;
-		// case R.id.image9:
-		// startActivity(intent);
-		// break;
-		// case R.id.image10:
-		// startActivity(intent);
-		// break;
+		case R.id.image1:
+			startActivity(intent);
+			break;
+		case R.id.image2:
+			startActivity(intent);
+			break;
+		case R.id.image3:
+			startActivity(intent);
+			break;
+		case R.id.image4:
+			startActivity(intent);
+			break;
+		case R.id.image5:
+			startActivity(intent);
+			break;
+		case R.id.image6:
+			startActivity(intent);
+			break;
+		case R.id.image7:
+			startActivity(intent);
+			break;
+		case R.id.image8:
+			startActivity(intent);
+			break;
+		case R.id.image9:
+			startActivity(intent);
+			break;
+		case R.id.image10:
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}

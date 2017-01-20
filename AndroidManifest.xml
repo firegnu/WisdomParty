@@ -419,12 +419,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.Yangsheng"
+            android:name="wuxc.wisdomparty.HomeOfHealth.Yangsheng"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="wuxc.wisdomparty.OtherActivity.yaodian"
+            android:name="wuxc.wisdomparty.HomeOfHealth.yaodian"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
@@ -440,6 +440,16 @@
         </activity>
         <activity
             android:name="wuxc.wisdomparty.HomeOfVolunteer.VolunteerDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfEmployee.AppearanceVipActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.HomeOfEmployee.AppeaeanceOfVipDetail"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/shape_10"
+        android:orientation="vertical" >
+
+        <wuxc.wisdomparty.WaterFallFlow.ScaleImageView
+            android:id="@+id/image_headimg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@null" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:text="乐儿帮"
+                android:textColor="#000000"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_department"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical|right"
+                android:singleLine="true"
+                android:text="三门峡市党支部"
+                android:textColor="@color/member_transform_stroke"
+                android:textSize="@dimen/member_transform_size" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background_grey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/image_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:src="@drawable/collect" />
+
+                <TextView
+                    android:id="@+id/text_collect"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="13"
+                    android:textColor="@color/member_transform_stroke"
+                    android:textSize="@dimen/member_transform_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/image_great"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:src="@drawable/collect" />
+
+                <TextView
+                    android:id="@+id/text_great"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="13"
+                    android:textColor="@color/member_transform_stroke"
+                    android:textSize="@dimen/member_transform_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

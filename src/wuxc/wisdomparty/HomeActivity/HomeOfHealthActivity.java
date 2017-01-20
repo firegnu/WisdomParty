@@ -32,19 +32,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.SpecialAdapter;
-import wuxc.wisdomparty.ChildFragment.SpecialTopEightFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopFiveFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopFourFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopNineFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopOneFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopSevenFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopSixFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopTenFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopThreeFragment;
-import wuxc.wisdomparty.ChildFragment.SpecialTopTwoFragment;
+import wuxc.wisdomparty.ChildFragment.HealthEightFragment;
+import wuxc.wisdomparty.ChildFragment.HealthFiveFragment;
+import wuxc.wisdomparty.ChildFragment.HealthFourFragment;
+import wuxc.wisdomparty.ChildFragment.HealthNineFragment;
+import wuxc.wisdomparty.ChildFragment.HealthOneFragment;
+import wuxc.wisdomparty.ChildFragment.HealthSevenFragment;
+import wuxc.wisdomparty.ChildFragment.HealthSixFragment;
+import wuxc.wisdomparty.ChildFragment.HealthTenFragment;
+import wuxc.wisdomparty.ChildFragment.HealthThreeFragment;
+import wuxc.wisdomparty.ChildFragment.HealthTwoFragment;
+import wuxc.wisdomparty.HomeOfHealth.Yangsheng;
+import wuxc.wisdomparty.HomeOfHealth.yaodian;
 import wuxc.wisdomparty.Model.SpecialModel;
-import wuxc.wisdomparty.OtherActivity.Yangsheng;
-import wuxc.wisdomparty.OtherActivity.yaodian;
 import wuxc.wisdomparty.PartyManage.SpecialDetailActivity;
 import wuxc.wisdomparty.layout.Childviewpaper;
 
@@ -59,9 +59,6 @@ public class HomeOfHealthActivity extends FragmentActivity
 	public List<Fragment> Fragments = new ArrayList<Fragment>();
 	private FragmentManager FragmentManager;
 	private int NumberPicture = 4;
-	private String[] Title = { "习大大的讲话1", "习大大的讲话2", "习大大的讲话3", "习大大的讲话4", "习大大的讲话5", "习大大的讲话6", "习大大的讲话7", "习大大的讲话8",
-			"习大大的讲话9", "习大大的讲话10" };
-	private TextView TextTitle;
 	private ListView ListData;
 	private ImageView ImageBack;
 	List<SpecialModel> list = new ArrayList<SpecialModel>();
@@ -77,10 +74,7 @@ public class HomeOfHealthActivity extends FragmentActivity
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
-	private ImageView img1;
-	private ImageView img2;
-	private ImageView img3;
-	private ImageView img4;
+	private LinearLayout LinWebMedical;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -167,31 +161,28 @@ public class HomeOfHealthActivity extends FragmentActivity
 			dot[i].setBackgroundResource(R.drawable.dotn);
 		}
 		dot[position].setBackgroundResource(R.drawable.dotc);
-		TextTitle.setText(Title[position]);
+
 	}
 
 	private void initfragment() {
 		// TODO Auto-generated method stub
-		Fragments.add(new SpecialTopOneFragment());
-		Fragments.add(new SpecialTopTwoFragment());
-		Fragments.add(new SpecialTopThreeFragment());
-		Fragments.add(new SpecialTopFourFragment());
-		Fragments.add(new SpecialTopFiveFragment());
-		Fragments.add(new SpecialTopSixFragment());
-		Fragments.add(new SpecialTopSevenFragment());
-		Fragments.add(new SpecialTopEightFragment());
-		Fragments.add(new SpecialTopNineFragment());
-		Fragments.add(new SpecialTopTenFragment());
+		Fragments.add(new HealthOneFragment());
+		Fragments.add(new HealthTwoFragment());
+		Fragments.add(new HealthThreeFragment());
+		Fragments.add(new HealthFourFragment());
+		Fragments.add(new HealthFiveFragment());
+		Fragments.add(new HealthSixFragment());
+		Fragments.add(new HealthSevenFragment());
+		Fragments.add(new HealthEightFragment());
+		Fragments.add(new HealthNineFragment());
+		Fragments.add(new HealthTenFragment());
 	}
 
 	private void setonclicklistener() {
 		// TODO Auto-generated method stub
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
-		img1.setOnClickListener(this);
-		img2.setOnClickListener(this);
-		img3.setOnClickListener(this);
-		img4.setOnClickListener(this);
+
 	}
 
 	private void initviewHeight() {
@@ -202,13 +193,17 @@ public class HomeOfHealthActivity extends FragmentActivity
 				.getLayoutParams();
 		LayoutParams.height = ScreenHeight;
 		RelativeViewPage.setLayoutParams(LayoutParams);
+		ScreenHeight = (int) (screenwidth / 3.4);
+		LayoutParams = (android.widget.LinearLayout.LayoutParams) LinWebMedical.getLayoutParams();
+		LayoutParams.height = ScreenHeight;
+		LinWebMedical.setLayoutParams(LayoutParams);
 	}
 
 	private void initview() {
 		// TODO Auto-generated method stub
 		RelativeViewPage = (RelativeLayout) findViewById(R.id.rel_viewpaper);
 		ViewPaper = (Childviewpaper) findViewById(R.id.viewPager);
-		TextTitle = (TextView) findViewById(R.id.text_title);
+
 		dot[0] = (ImageView) findViewById(R.id.dot1);
 		dot[1] = (ImageView) findViewById(R.id.dot2);
 		dot[2] = (ImageView) findViewById(R.id.dot3);
@@ -221,10 +216,8 @@ public class HomeOfHealthActivity extends FragmentActivity
 		dot[9] = (ImageView) findViewById(R.id.dot10);
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
-		img1 = (ImageView) findViewById(R.id.img1);
-		img2 = (ImageView) findViewById(R.id.img2);
-		img3 = (ImageView) findViewById(R.id.img3);
-		img4 = (ImageView) findViewById(R.id.img4);
+		LinWebMedical = (LinearLayout) findViewById(R.id.lin_webmedical);
+
 	}
 
 	private class MyPagerAdapter extends PagerAdapter {
@@ -282,26 +275,7 @@ public class HomeOfHealthActivity extends FragmentActivity
 		case R.id.image_back:
 			finish();
 			break;
-		case R.id.img1:
-			Intent intent = new Intent();
-			intent.setClass(getApplicationContext(), yaodian.class);
-			startActivity(intent);
-			break;
-		case R.id.img2:
-			Intent intent2 = new Intent();
-			intent2.setClass(getApplicationContext(), Yangsheng.class);
-			startActivity(intent2);
-			break;
-		case R.id.img3:
-			Intent intent3 = new Intent();
-			intent3.setClass(getApplicationContext(), Yangsheng.class);
-			startActivity(intent3);
-			break;
-		case R.id.img4:
-			Intent intent4 = new Intent();
-			intent4.setClass(getApplicationContext(), Yangsheng.class);
-			startActivity(intent4);
-			break;
+
 		default:
 			break;
 		}
