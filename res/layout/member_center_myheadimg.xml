@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/single.wuxc.wisdomparty"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rewards_back"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -29,64 +31,299 @@
             android:textSize="@dimen/text_size" />
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/resume_bottom"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:src="@drawable/changeheadimg1" />
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:layout_height="140dp"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <wuxc.wisdomparty.layout.RoundedImageView
+                android:id="@+id/rounded_headimg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/change_headimg"
+                app:corner_radius="14dp"
+                app:mutate_background="true"
+                app:oval="false" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rela_webmedical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="140dp" >
 
             <TextView
-                android:layout_width="1dp"
-                android:layout_height="50dp" />
-
-            <TextView
+                android:id="@+id/image_left"
                 android:layout_width="4dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="7dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
                 android:background="@color/member_transform_party_top_red" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
+                android:id="@+id/text_webmedical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/image_left"
                 android:gravity="center_vertical"
                 android:text="推荐头像"
                 android:textColor="#000000"
-                android:textSize="@dimen/member_transform_size"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:textSize="@dimen/member_transform_size" />
+        </RelativeLayout>
 
-        <ImageView
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:src="@drawable/changeheadimg2" />
+            android:layout_height="15dp"
+            android:layout_marginTop="190dp"
+            android:background="#ffffff" />
 
         <LinearLayout
+            android:id="@+id/lin_user_headimg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:layout_height="200dp"
+            android:layout_marginTop="205dp"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_1"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_2"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_3"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_4"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_5"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_6"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_7"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" >
+
+                    <wuxc.wisdomparty.layout.RoundedImageView
+                        android:id="@+id/rounded_headimg_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/user_headimg_8"
+                        app:corner_radius="14dp"
+                        app:mutate_background="true"
+                        app:oval="false" />
+
+                    <LinearLayout
+                        android:id="@+id/lin_headimg_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_14_stroke"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_below="@id/lin_user_headimg"
+            android:background="#ffffff" />
+
+        <LinearLayout
+            android:id="@+id/lin_up_pic"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:gravity="center"
             android:orientation="horizontal" >
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/choose_pic" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:src="@drawable/changeheadimg3" />
+                android:text="上传相册图片"
+                android:textSize="@dimen/member_transform_size" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

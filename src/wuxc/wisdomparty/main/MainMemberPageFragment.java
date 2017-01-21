@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.HomeActivity.HomeSearchActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSettingActivity;
-import wuxc.wisdomparty.HomeOfMember.NoticeDatalistActivity;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyActivity;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyBranch;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyCheck;
@@ -29,6 +28,7 @@ import wuxc.wisdomparty.MemberCenter.MemberCenterMyResume;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyReward;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMySelect;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyVote;
+import wuxc.wisdomparty.MemberCenter.NoticeDatalistActivity;
 import wuxc.wisdomparty.layout.RoundedImageView;
 
 public class MainMemberPageFragment extends MainBaseFragment implements OnClickListener {

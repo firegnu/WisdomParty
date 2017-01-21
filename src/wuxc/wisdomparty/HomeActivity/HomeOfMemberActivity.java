@@ -16,7 +16,7 @@ import wuxc.wisdomparty.HomeOfMember.MemberPartyDuesActivity;
 import wuxc.wisdomparty.HomeOfMember.MemberPartyTransformActivity;
 import wuxc.wisdomparty.HomeOfMember.MemberRespondActivity;
 import wuxc.wisdomparty.HomeOfMember.MemberRulesActivity;
-import wuxc.wisdomparty.HomeOfMember.NoticeDatalistActivity;
+import wuxc.wisdomparty.MemberCenter.NoticeDatalistActivity;
 
 public class HomeOfMemberActivity extends Activity implements OnClickListener {
 

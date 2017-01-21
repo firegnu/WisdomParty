@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.ChildFragment.MemberEducationEightFragment;
@@ -71,6 +72,7 @@ public class MemberEducationActivity extends FragmentActivity implements OnClick
 
 	private int currfragment = 0;
 	private int screenwidth;
+	private ImageView ImageBack;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +149,10 @@ public class MemberEducationActivity extends FragmentActivity implements OnClick
 		btn_labelup8.setOnClickListener(this);
 		btn_labelup9.setOnClickListener(this);
 		btn_labelup10.setOnClickListener(this);
-		scro = (HorizontalScrollView) findViewById(R.id.scro);
 
+		scro = (HorizontalScrollView) findViewById(R.id.scro);
+		ImageBack = (ImageView) findViewById(R.id.image_back);
+		ImageBack.setOnClickListener(this);
 	}
 
 	private void showlabelchange() {
@@ -457,7 +461,9 @@ public class MemberEducationActivity extends FragmentActivity implements OnClick
 		case R.id.btn_labelup10:
 			viewPager.setCurrentItem(9);
 			break;
-
+		case R.id.image_back:
+			finish();
+			break;
 		default:
 			break;
 		}

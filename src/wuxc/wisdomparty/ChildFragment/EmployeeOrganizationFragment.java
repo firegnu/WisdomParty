@@ -1,10 +1,7 @@
 package wuxc.wisdomparty.ChildFragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,12 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.HomeOfEmployee.AppeaeanceOfVipDetail;
 import wuxc.wisdomparty.HomeOfEmployee.AppearanceVipActivity;
-import wuxc.wisdomparty.HomeOfMember.NoticeDatalistActivity;
-import wuxc.wisdomparty.Model.AppearanceVipModel;
+import wuxc.wisdomparty.MemberCenter.NoticeDatalistActivity;
 import wuxc.wisdomparty.PartyManage.SpecialDetailActivity;
 import wuxc.wisdomparty.PartyManage.SpecialProjectActivity;
 

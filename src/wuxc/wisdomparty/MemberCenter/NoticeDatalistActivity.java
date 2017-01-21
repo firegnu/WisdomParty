@@ -1,9 +1,10 @@
-package wuxc.wisdomparty.HomeOfMember;
+package wuxc.wisdomparty.MemberCenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -202,6 +203,9 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
+		Intent intent_notice = new Intent();
+		intent_notice.setClass(this, NoticeDetailActivity.class);
+		startActivity(intent_notice);
 	}
 
 }

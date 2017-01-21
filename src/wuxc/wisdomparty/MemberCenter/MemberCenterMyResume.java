@@ -9,27 +9,55 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.layout.RoundedImageView;
 
 public class MemberCenterMyResume extends Activity implements OnClickListener {
-	private TextView text_change;
-	private TextView text_changeimg;
-	private TextView text_myrank;
-	private ImageView image_back;
-
+	private TextView TextChange;
+	private TextView TextChangeImg;
+	private TextView TextMyRank;
+	private ImageView ImageBack;
+	private RoundedImageView RoundedHeadImg;
+	private ImageView ImageHeadParty;
+	private TextView TextName;
+	private TextView TextNameList;
+	private TextView TextSex;
+	private TextView TextPhoneNumber;
+	private TextView TextAddress;
+	private TextView TextIfParty;
+	private TextView TextPartyAge;
+	private TextView TextMotto;
+	private String StrName;
+	private String StrNameList;
+	private String StrSex;
+	private String StrPhoneNumber;
+	private String StrAddress;
+	private String StrIfParty;
+	private String StrPartyAge;
+	private String StrMotto;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.member_center_myresume);
-		text_change = (TextView) findViewById(R.id.text_change);
-		text_changeimg = (TextView) findViewById(R.id.text_changeimg);
-		text_myrank = (TextView) findViewById(R.id.text_myrank);
-		image_back = (ImageView) findViewById(R.id.image_back);
-		text_change.setOnClickListener(this);
-		text_changeimg.setOnClickListener(this);
-		text_myrank.setOnClickListener(this);
-		image_back.setOnClickListener(this);
+		RoundedHeadImg = (RoundedImageView) findViewById(R.id.rounded_headimg);
+		ImageHeadParty = (ImageView) findViewById(R.id.image_head_party);
+		TextName = (TextView) findViewById(R.id.text_name);
+		TextNameList = (TextView) findViewById(R.id.text_name_list);
+		TextSex = (TextView) findViewById(R.id.text_sex);
+		TextPhoneNumber = (TextView) findViewById(R.id.text_phonenumber);
+		TextAddress = (TextView) findViewById(R.id.text_address);
+		TextIfParty = (TextView) findViewById(R.id.text_ifparty);
+		TextPartyAge = (TextView) findViewById(R.id.text_partyage);
+		TextMotto = (TextView) findViewById(R.id.text_motto);
+		TextChange = (TextView) findViewById(R.id.text_change);
+		TextChangeImg = (TextView) findViewById(R.id.text_changeimg);
+		TextMyRank = (TextView) findViewById(R.id.text_myrank);
+		ImageBack = (ImageView) findViewById(R.id.image_back);
+		TextChange.setOnClickListener(this);
+		TextChangeImg.setOnClickListener(this);
+		TextMyRank.setOnClickListener(this);
+		ImageBack.setOnClickListener(this);
 	}
 
 	@Override

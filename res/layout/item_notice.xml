@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/text_time"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="2015-11-12 20:00:00"
             android:textColor="@color/member_transform_stroke"
@@ -31,10 +31,11 @@
                 android:layout_marginTop="5dp"
                 android:src="@drawable/notice" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="25dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/notice_bac"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
@@ -42,6 +43,7 @@
                     android:id="@+id/text_style"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center"
                     android:text="您有新的奖励。"
                     android:textSize="@dimen/member_transform_size" />
@@ -49,16 +51,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40dp"
                     android:gravity="center"
                     android:text="查看详情"
                     android:textColor="@color/member_transform_party_top_red"
                     android:textSize="@dimen/member_transform_size" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="20dp"
                     android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
                     android:src="@drawable/arrow_right" />
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 

@@ -49,5 +49,16 @@
     <color name="vote_left">#6ba7bf</color>
     <color name="pink">#fef3f1</color>
     <color name="member_grey">#efefef</color>
+    <color name="vip5">#b117e9</color>
+    <color name="vip4">#c41706</color>
+    <color name="vip3">#f87002</color>
+    <color name="vip2">#fdb102</color>
+    <color name="vip1">#c9975c</color>
+    <color name="stroke5">#76149d</color>
+    <color name="stroke4">#a71000</color>
+    <color name="stroke3">#d75f00</color>
+    <color name="stroke2">#d09104</color>
+    <color name="stroke1">#917256</color>
+    <color name="vipdot">#7d5e32</color>
 
 </resources>

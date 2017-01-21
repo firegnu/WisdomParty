@@ -98,6 +98,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
+                    android:id="@+id/text_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="薛飞"
@@ -129,186 +130,199 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="170dp"
-            android:background="@drawable/shape_10"
-            android:orientation="vertical"
-            android:padding="10dp" >
+            android:scrollbars="none" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/shape_10"
+                android:orientation="vertical"
+                android:padding="10dp" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="姓名"
-                    android:textSize="@dimen/member_transform_size" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="姓名"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:id="@+id/text_name_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="薛飞"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="薛飞"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/member_transform_stroke" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/member_transform_stroke" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="性别"
+                        android:textSize="@dimen/member_transform_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="性别"
-                    android:textSize="@dimen/member_transform_size" />
+                    <TextView
+                        android:id="@+id/text_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="男"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="男"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/member_transform_stroke" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/member_transform_stroke" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="联系方式"
+                        android:textSize="@dimen/member_transform_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="联系方式"
-                    android:textSize="@dimen/member_transform_size" />
+                    <TextView
+                        android:id="@+id/text_phonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="13595392423"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="13595392423"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/member_transform_stroke" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/member_transform_stroke" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="联系地址"
+                        android:textSize="@dimen/member_transform_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="联系地址"
-                    android:textSize="@dimen/member_transform_size" />
+                    <TextView
+                        android:id="@+id/text_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="机关支部家属院"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="机关支部家属院"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/member_transform_stroke" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/member_transform_stroke" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="是否党员"
+                        android:textSize="@dimen/member_transform_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="是否党员"
-                    android:textSize="@dimen/member_transform_size" />
+                    <TextView
+                        android:id="@+id/text_ifparty"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="是"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="是"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/member_transform_stroke" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/member_transform_stroke" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="党龄"
+                        android:textSize="@dimen/member_transform_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="党龄"
-                    android:textSize="@dimen/member_transform_size" />
+                    <TextView
+                        android:id="@+id/text_partyage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="12年"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="12年"
-                    android:textSize="@dimen/member_transform_size" />
-            </LinearLayout>
+                    android:layout_height="1dp"
+                    android:background="@color/member_transform_stroke" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/member_transform_stroke" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="个性签名"
-                    android:textSize="@dimen/member_transform_size" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|right"
-                    android:text="在生活中践行入党时的誓言"
-                    android:textSize="@dimen/member_transform_size" />
+                    android:layout_height="50dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="个性签名"
+                        android:textSize="@dimen/member_transform_size" />
+
+                    <TextView
+                        android:id="@+id/text_motto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:text="在生活中践行入党时的誓言"
+                        android:textSize="@dimen/member_transform_size" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </LinearLayout>
