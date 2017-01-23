@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,20 +21,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.Adapter.DiscussionAdapter;
-import wuxc.wisdomparty.HomeOfMember.MemberDiscussionDetailActivity;
-import wuxc.wisdomparty.Adapter.DiscussionAdapter;
-import wuxc.wisdomparty.Model.DiscussionModel;
-import wuxc.wisdomparty.Model.DiscussionModel;
-import wuxc.wisdomparty.Model.DiscussionModel;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
+import wuxc.wisdomparty.Adapter.MyPublishAdapter;
+import wuxc.wisdomparty.Adapter.MyPublishAdapter.Callback;
+import wuxc.wisdomparty.Model.MyPublishModel;
 
-public class MemberCenterMyPublish extends Activity implements OnClickListener, OnTouchListener, OnItemClickListener {
+public class MemberCenterMyPublish extends Activity
+		implements OnClickListener, OnTouchListener, OnItemClickListener, Callback {
 	private ImageView ImageBack;
 	private ListView ListData;
-	List<DiscussionModel> list = new ArrayList<DiscussionModel>();
-	private static DiscussionAdapter mAdapter;
+	List<MyPublishModel> list = new ArrayList<MyPublishModel>();
+	private static MyPublishAdapter mAdapter;
 	private int firstItemIndex = 0;
 	private int lastItemIndex = 0;
 	private float startY = 0;
@@ -44,6 +42,7 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
+	private ImageView ImageReback;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +66,10 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 
 			for (int i = 0; i < 10; i++) {
 
-				DiscussionModel listinfo = new DiscussionModel();
-				listinfo.setTime("2016-12-14 20:00:00");
+				MyPublishModel listinfo = new MyPublishModel();
+				listinfo.setTime("23:34");
+				listinfo.setBigTime("去年");
 				listinfo.setTitle("党内监督没有禁区没有例外" + arg);
-				listinfo.setRoundUrl("");
-				listinfo.setName("薛飞");
-				listinfo.setAnswerNumber("13");
-				listinfo.setBrowseNumber("26");
 				list.add(listinfo);
 
 			}
@@ -91,7 +87,7 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
-		mAdapter = new DiscussionAdapter(this, list, ListData);
+		mAdapter = new MyPublishAdapter(this, list, ListData, this);
 		ListData.setAdapter(mAdapter);
 	}
 
@@ -113,11 +109,13 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 		// TODO Auto-generated method stub
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		ListData = (ListView) findViewById(R.id.list_data);
+		ImageReback = (ImageView) findViewById(R.id.image_myreback);
 	}
 
 	private void setonclicklistener() {
 		// TODO Auto-generated method stub
 		ImageBack.setOnClickListener(this);
+		ImageReback.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
 	}
 
@@ -127,6 +125,11 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 		switch (v.getId()) {
 		case R.id.image_back:
 			finish();
+			break;
+		case R.id.image_myreback:
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), MemberCenterMyReBack.class);
+			startActivity(intent);
 			break;
 		default:
 			break;
@@ -215,15 +218,21 @@ public class MemberCenterMyPublish extends Activity implements OnClickListener, 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		DiscussionModel data = list.get(position - 1);
+		MyPublishModel data = list.get(position - 1);
 		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), MemberDiscussionDetailActivity.class);
+		intent.setClass(getApplicationContext(), MemberCenterMyPublishDetail.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("Name", data.getName());
+		bundle.putString("Name", "姓名");
 		bundle.putString("Time", data.getTime());
 		bundle.putString("Title", data.getTitle());
 		intent.putExtras(bundle);
 		startActivity(intent);
+	}
+
+	@Override
+	public void click(View v) {
+		// TODO Auto-generated method stub
+		Toast.makeText(MemberCenterMyPublish.this, "删除第" + (Integer) v.getTag() + "条", Toast.LENGTH_SHORT).show();
 	}
 
 }

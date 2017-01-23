@@ -1,36 +1,36 @@
-package wuxc.wisdomparty.ChildFragment;
+package wuxc.wisdomparty.MemberCenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.Adapter.MydueAdapter;
-import wuxc.wisdomparty.Model.MydueModel;
+import wuxc.wisdomparty.Adapter.MyReBackAdapter;
+import wuxc.wisdomparty.Adapter.MyReBackAdapter.Callback;
+import wuxc.wisdomparty.Model.MyReBackModel;
 
-public class MyReturnFragment extends Fragment implements OnTouchListener, OnClickListener, OnItemClickListener {
-	private TextView text_list_title;
+public class MemberCenterMyReBack extends Activity
+		implements OnClickListener, OnTouchListener, OnItemClickListener, Callback {
+	private ImageView ImageBack;
 	private ListView ListData;
-	List<MydueModel> list = new ArrayList<MydueModel>();
-	private static MydueAdapter mAdapter;
+	List<MyReBackModel> list = new ArrayList<MyReBackModel>();
+	private static MyReBackAdapter mAdapter;
 	private int firstItemIndex = 0;
 	private int lastItemIndex = 0;
 	private float startY = 0;
@@ -42,62 +42,17 @@ public class MyReturnFragment extends Fragment implements OnTouchListener, OnCli
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
-	private Handler uiHandler = new Handler() {
-		@Override
-		public void handleMessage(Message msg1) {
-			switch (msg1.what) {
-			case 0:
-				getdatalist();
-				break;
-
-			default:
-				break;
-
-			}
-		}
-	};
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-	}
-
-	protected void getdatalist() {
+	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		text_list_title.setText("lail");
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// startpicturefly();
-		// changetime();
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-		View view = inflater.inflate(R.layout.member_center_myreturnfragment, container, false);
-		text_list_title = (TextView) view.findViewById(R.id.text_list_title);
-		initview(view);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.member_center_myreback);
+		initview();
 		setonclicklistener();
 		setheadtextview();
 		getdatalist(curPage);
-		return view;
-	}
-
-	private void setheadtextview() {
-		headTextView = new TextView(getActivity());
-		headTextView.setGravity(Gravity.CENTER);
-		headTextView.setMinHeight(100);
-		headTextView.setText("æ­£åœ¨åˆ·æ–°...");
-		headTextView.setTypeface(Typeface.DEFAULT_BOLD);
-		headTextView.setTextSize(15);
-		headTextView.setBackgroundColor(Color.WHITE);
-		headTextView.invalidate();
-		ListData.addHeaderView(headTextView, null, false);
-		ListData.setPadding(0, -100, 0, 0);
-		ListData.setOnTouchListener(this);
 	}
 
 	private void getdatalist(int arg) {
@@ -110,10 +65,10 @@ public class MyReturnFragment extends Fragment implements OnTouchListener, OnCli
 
 			for (int i = 0; i < 10; i++) {
 
-				MydueModel listinfo = new MydueModel();
-				listinfo.setTime("2016-12-14");
-				listinfo.setMoney("-2");
-				listinfo.setMonth("è¿çºª");
+				MyReBackModel listinfo = new MyReBackModel();
+				listinfo.setTime("×òÌì" + "  " + "23:34");
+				listinfo.setReBack("»Ø¸´£ººÜºÃ");
+				listinfo.setTitle("»°Ìâ£º" + "µ³ÄÚ¼à¶½Ã»ÓÐ½ûÇøÃ»ÓÐÀýÍâ" + arg);
 				list.add(listinfo);
 
 			}
@@ -131,18 +86,47 @@ public class MyReturnFragment extends Fragment implements OnTouchListener, OnCli
 
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
-		mAdapter = new MydueAdapter(getActivity(), list, ListData);
+		mAdapter = new MyReBackAdapter(this, list, ListData, this);
 		ListData.setAdapter(mAdapter);
 	}
 
-	private void initview(View view) {
+	private void setheadtextview() {
+		headTextView = new TextView(this);
+		headTextView.setGravity(Gravity.CENTER);
+		headTextView.setMinHeight(100);
+		headTextView.setText("ÕýÔÚË¢ÐÂ...");
+		headTextView.setTypeface(Typeface.DEFAULT_BOLD);
+		headTextView.setTextSize(15);
+		headTextView.setBackgroundColor(Color.WHITE);
+		headTextView.invalidate();
+		ListData.addHeaderView(headTextView, null, false);
+		ListData.setPadding(0, -100, 0, 0);
+		ListData.setOnTouchListener(this);
+	}
+
+	private void initview() {
 		// TODO Auto-generated method stub
-		ListData = (ListView) view.findViewById(R.id.list_data);
+		ImageBack = (ImageView) findViewById(R.id.image_back);
+		ListData = (ListView) findViewById(R.id.list_data);
 	}
 
 	private void setonclicklistener() {
 		// TODO Auto-generated method stub
+		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.image_back:
+			finish();
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override
@@ -188,7 +172,7 @@ public class MyReturnFragment extends Fragment implements OnTouchListener, OnCli
 				ListData.setPadding(0, -100, 0, 0);
 			} else {
 				curPage = 1;
-				Toast.makeText(getActivity(), "æ­£åœ¨åˆ·æ–°", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "ÕýÔÚË¢ÐÂ", Toast.LENGTH_SHORT).show();
 				getdatalist(curPage);
 			}
 			int temp = 1;
@@ -197,11 +181,11 @@ public class MyReturnFragment extends Fragment implements OnTouchListener, OnCli
 			if (temp == 0 && (startYfoot - tempyfoot > 400)) {
 				curPage++;
 				if (curPage > totalPage) {
-					Toast.makeText(getActivity(), " æ²¡æœ‰æ›´å¤šäº†", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), " Ã»ÓÐ¸ü¶àÁË", Toast.LENGTH_SHORT).show();
 					// // listinfoagain();
 				} else {
 					getdatalist(curPage);
-					Toast.makeText(getActivity(), "æ­£åœ¨åŠ è½½ä¸‹ä¸€é¡µ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "ÕýÔÚ¼ÓÔØÏÂÒ»Ò³", Toast.LENGTH_SHORT).show();
 				}
 
 			} else {
@@ -227,69 +211,21 @@ public class MyReturnFragment extends Fragment implements OnTouchListener, OnCli
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		// MydueModel data = list.get(position - 1);
-		// Intent intent = new Intent();
-		// intent.setClass(getActivity(), MydueDetailActivity.class);
-		// Bundle bundle = new Bundle();
-		// bundle.putString("Title", data.getTitle());
-		// bundle.putString("Time", data.getTime());
-		// intent.putExtras(bundle);
-		// startActivity(intent);
+		MyReBackModel data = list.get(position - 1);
+		Intent intent = new Intent();
+		intent.setClass(getApplicationContext(), MemberCenterMyReBackDetail.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("Reback", data.getReBack());
+		bundle.putString("Time", data.getTime());
+		bundle.putString("Title", data.getTitle());
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-	}
-
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
-
-	@Override
-	public void onDetach() {
-		super.onDetach();
-	}
-
-	@Override
-	public void onClick(View v) {
+	public void click(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.text_list_title:
-
-			break;
-
-		default:
-			break;
-		}
+		Toast.makeText(MemberCenterMyReBack.this, "É¾³ýµÚ" + (Integer) v.getTag() + "Ìõ", Toast.LENGTH_SHORT).show();
 	}
 
 }

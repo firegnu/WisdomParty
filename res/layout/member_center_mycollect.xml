@@ -27,6 +27,18 @@
             android:text="我的收藏"
             android:textColor="@color/text_white"
             android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/text_change"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/top_imageview_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/top_imageview_distance"
+            android:layout_marginTop="@dimen/top_imageview_distance"
+            android:text="编辑"
+            android:textColor="@color/member_transform_yellow"
+            android:textSize="@dimen/member_transform_size" />
+
     </RelativeLayout>
 
     <ListView

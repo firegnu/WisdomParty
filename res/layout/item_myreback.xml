@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginLeft="15dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/shape_5_grey"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="话题：党的建设"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="话题：党的建设"
+                android:textColor="@color/member_transform_stroke"
+                android:textSize="@dimen/member_text_size" />
+
+            <TextView
+                android:id="@+id/text_reback"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="话题：党的建设"
+                android:textColor="@color/member_transform_stroke"
+                android:textSize="@dimen/member_transform_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/image_delete"
+                android:layout_width="37dp"
+                android:layout_height="41dp"
+                android:src="@drawable/delete" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -3,8 +3,6 @@ package wuxc.wisdomparty.MemberCenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,17 +21,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
-import wuxc.wisdomparty.Adapter.PartyRespondAdapter;
+import wuxc.wisdomparty.Adapter.CollectAdapter;
 import wuxc.wisdomparty.HomeOfMember.MemberDiscussionDetailActivity;
-import wuxc.wisdomparty.HomeOfMember.RespondDetailActivity;
-import wuxc.wisdomparty.Model.RespondModel;
-import wuxc.wisdomparty.Model.RespondModel;
+import wuxc.wisdomparty.Model.CollectModel;
 
 public class MemberCenterMyCollect extends Activity implements OnTouchListener, OnClickListener, OnItemClickListener {
 	private ListView ListData;
 	private ImageView ImageBack;
-	List<RespondModel> list = new ArrayList<RespondModel>();
-	private static PartyRespondAdapter mAdapter;
+	List<CollectModel> list = new ArrayList<CollectModel>();
+	private static CollectAdapter mAdapter;
 	private int firstItemIndex = 0;
 	private int lastItemIndex = 0;
 	private float startY = 0;
@@ -45,6 +41,8 @@ public class MemberCenterMyCollect extends Activity implements OnTouchListener, 
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
+	private TextView TextChange;
+	private int TYPE = 1;// 1-正常 0- 编辑
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +80,16 @@ public class MemberCenterMyCollect extends Activity implements OnTouchListener, 
 
 			for (int i = 0; i < 10; i++) {
 
-				RespondModel listinfo = new RespondModel();
-				listinfo.setTime("2016-12-14 20:00:00");
+				CollectModel listinfo = new CollectModel();
+				listinfo.setTime("收藏于：2016-12-14");
 				listinfo.setTitle("党内监督没有禁区没有例外" + arg);
+				if (TYPE == 1) {
+					listinfo.setDelete(false);
+				} else {
+					listinfo.setDelete(true);
+				}
+
+				listinfo.setIsselected(false);
 				listinfo.setImageUrl("");
 				list.add(listinfo);
 
@@ -103,7 +108,7 @@ public class MemberCenterMyCollect extends Activity implements OnTouchListener, 
 
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
-		mAdapter = new PartyRespondAdapter(this, list, ListData);
+		mAdapter = new CollectAdapter(this, list, ListData);
 		ListData.setAdapter(mAdapter);
 	}
 
@@ -111,12 +116,14 @@ public class MemberCenterMyCollect extends Activity implements OnTouchListener, 
 		// TODO Auto-generated method stub
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
+		TextChange = (TextView) findViewById(R.id.text_change);
 	}
 
 	private void setonclicklistener() {
 		// TODO Auto-generated method stub
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
+		TextChange.setOnClickListener(this);
 	}
 
 	@Override
@@ -126,9 +133,36 @@ public class MemberCenterMyCollect extends Activity implements OnTouchListener, 
 		case R.id.image_back:
 			finish();
 			break;
+		case R.id.text_change:
+			if (TYPE == 0) {
+				TYPE = 1;
+			} else {
+				TYPE = 0;
+			}
+			ChangeMode(TYPE);
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void ChangeMode(int type) {
+		// TODO Auto-generated method stub
+		if (type == 0) {
+			for (int i = 0; i < list.size(); i++) {
+				CollectModel data = list.get(i);
+				data.setDelete(true);
+
+			}
+			TextChange.setText("删除");
+		} else {
+			for (int i = 0; i < list.size(); i++) {
+				CollectModel data = list.get(i);
+				data.setDelete(false);
+			}
+			TextChange.setText("编辑");
+		}
+		mAdapter.notifyDataSetChanged();
 	}
 
 	@Override
@@ -213,13 +247,29 @@ public class MemberCenterMyCollect extends Activity implements OnTouchListener, 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
-		RespondModel data = list.get(position - 1);
-		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), MemberDiscussionDetailActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putString("Title", position + data.getTitle());
-		intent.putExtras(bundle);
-		startActivity(intent);
+		if (TYPE == 1) {
+			CollectModel data = list.get(position - 1);
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), MemberCenterMyCollectDetail.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("Title", data.getTitle());
+			bundle.putString("Time", "2016-11-23");
+			bundle.putString("Name", "小李");
+			bundle.putString("PageTitle", "收藏详情");
+			bundle.putString("Detail",
+					"中国共产主义青年团，简称共青团，原名中国社会主义青年团，是中国共产党领导的一个由信仰共产主义的中国青年组成的群众性组织。共青团中央委员会受中共中央委员会领导，共青团的地方各级组织受同级党的委员会领导，同时受共青团上级组织领导。1922年5月，团的第一次代表大会在广州举行，正式成立中国社会主义青年团，1925年1月26日改称中国共产主义青年团。1959年5月4日共青团中央颁布共青团团徽。");
+			intent.putExtras(bundle);
+			startActivity(intent);
+		} else {
+			CollectModel data = list.get(position - 1);
+			if (data.isIsselected()) {
+				data.setIsselected(false);
+			} else {
+				data.setIsselected(true);
+			}
+			mAdapter.notifyDataSetChanged();
+		}
+
 	}
 
 }
