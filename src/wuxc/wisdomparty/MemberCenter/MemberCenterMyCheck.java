@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -44,6 +46,18 @@ public class MemberCenterMyCheck extends Activity implements OnTouchListener, On
 	private TextView headTextView = null;
 	private TextView TextSearch;
 	private EditText EditSearch;
+	private TextView TextClass;
+	private ImageView ImageClass;
+	private ImageView ImageClassClose;
+	private TextView TextClassAll;
+	private TextView TextClassWorm;
+	private TextView TextClassSpecial;
+	private TextView TextClassVolunteer;
+	private Button BtnClassConfirm;
+	private RelativeLayout RelaClass;
+	private String StrClass = "全部";
+	private int IntClass = 0;
+	private int ConfirmClass = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +68,9 @@ public class MemberCenterMyCheck extends Activity implements OnTouchListener, On
 		initview();
 		setonclicklistener();
 		setheadtextview();
+		setclass();
+		TextClass.setText(StrClass);
+		changeclass(IntClass);
 		getdatalist(curPage);
 	}
 
@@ -112,6 +129,16 @@ public class MemberCenterMyCheck extends Activity implements OnTouchListener, On
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		TextSearch = (TextView) findViewById(R.id.text_search);
 		EditSearch = (EditText) findViewById(R.id.edit_search);
+		RelaClass = (RelativeLayout) findViewById(R.id.rela_class);
+		TextClass = (TextView) findViewById(R.id.text_class);
+		ImageClass = (ImageView) findViewById(R.id.image_class);
+		ImageClassClose = (ImageView) findViewById(R.id.image_class_close);
+		TextClassAll = (TextView) findViewById(R.id.text_class_all);
+		TextClassWorm = (TextView) findViewById(R.id.text_class_worm);
+		TextClassSpecial = (TextView) findViewById(R.id.text_class_special);
+		TextClassVolunteer = (TextView) findViewById(R.id.text_class_volunteer);
+		BtnClassConfirm = (Button) findViewById(R.id.btn_class_confirm);
+		RelaClass.setVisibility(View.GONE);
 	}
 
 	private void setonclicklistener() {
@@ -119,6 +146,15 @@ public class MemberCenterMyCheck extends Activity implements OnTouchListener, On
 		ImageBack.setOnClickListener(this);
 		ListData.setOnItemClickListener(this);
 		TextSearch.setOnClickListener(this);
+		TextClass.setOnClickListener(this);
+		ImageClass.setOnClickListener(this);
+		ImageClassClose.setOnClickListener(this);
+		TextClassAll.setOnClickListener(this);
+		TextClassWorm.setOnClickListener(this);
+		TextClassSpecial.setOnClickListener(this);
+		TextClassVolunteer.setOnClickListener(this);
+		BtnClassConfirm.setOnClickListener(this);
+		RelaClass.setOnClickListener(this);
 	}
 
 	@Override
@@ -136,9 +172,85 @@ public class MemberCenterMyCheck extends Activity implements OnTouchListener, On
 				Toast.makeText(getApplicationContext(), "正在搜索...", Toast.LENGTH_SHORT).show();
 			}
 			break;
+		case R.id.image_class:
+			changeclass(ConfirmClass);
+			RelaClass.setVisibility(View.VISIBLE);
+			break;
+		case R.id.text_class:
+			changeclass(ConfirmClass);
+			RelaClass.setVisibility(View.VISIBLE);
+			break;
+		case R.id.btn_class_confirm:
+			TextClass.setText(StrClass);
+			ConfirmClass = IntClass;
+			RelaClass.setVisibility(View.GONE);
+			break;
+		case R.id.image_class_close:
+
+			RelaClass.setVisibility(View.GONE);
+			break;
+		case R.id.rela_class:
+
+			RelaClass.setVisibility(View.GONE);
+			break;
+		case R.id.text_class_all:
+			StrClass = "全部";
+			IntClass = 0;
+			changeclass(IntClass);
+
+			break;
+		case R.id.text_class_worm:
+			StrClass = "暖心活动";
+			IntClass = 1;
+			changeclass(IntClass);
+
+			break;
+		case R.id.text_class_special:
+			StrClass = "志愿者活动";
+			IntClass = 2;
+			changeclass(IntClass);
+
+			break;
+		case R.id.text_class_volunteer:
+			StrClass = "在线入党审批";
+			IntClass = 3;
+			changeclass(IntClass);
+
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void setclass() {
+		// TODO Auto-generated method stub
+
+		TextClassAll.setBackgroundResource(R.drawable.shape_10_stroke);
+		TextClassWorm.setBackgroundResource(R.drawable.shape_10_stroke);
+		TextClassSpecial.setBackgroundResource(R.drawable.shape_10_stroke);
+		TextClassVolunteer.setBackgroundResource(R.drawable.shape_10_stroke);
+		TextClassAll.setTextColor(Color.parseColor("#c2c2c2"));
+		TextClassWorm.setTextColor(Color.parseColor("#c2c2c2"));
+		TextClassSpecial.setTextColor(Color.parseColor("#c2c2c2"));
+		TextClassVolunteer.setTextColor(Color.parseColor("#c2c2c2"));
+	}
+
+	private void changeclass(int arg) {
+		setclass();
+		if (arg == 0) {
+			TextClassAll.setBackgroundResource(R.drawable.shape_10_red_grey_stroke);
+			TextClassAll.setTextColor(Color.parseColor("#ffffff"));
+		} else if (arg == 1) {
+			TextClassWorm.setBackgroundResource(R.drawable.shape_10_red_grey_stroke);
+			TextClassWorm.setTextColor(Color.parseColor("#ffffff"));
+		} else if (arg == 2) {
+			TextClassSpecial.setBackgroundResource(R.drawable.shape_10_red_grey_stroke);
+			TextClassSpecial.setTextColor(Color.parseColor("#ffffff"));
+		} else {
+			TextClassVolunteer.setBackgroundResource(R.drawable.shape_10_red_grey_stroke);
+			TextClassVolunteer.setTextColor(Color.parseColor("#ffffff"));
+		}
+
 	}
 
 	@Override

@@ -55,21 +55,18 @@
                 android:id="@+id/text_party_manager"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:textColor="@color/member_transform_stroke"
                 android:textSize="@dimen/member_transform_size" />
 
             <TextView
                 android:id="@+id/text_party_phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:textColor="@color/member_transform_stroke"
                 android:textSize="@dimen/member_transform_size" />
 
             <TextView
                 android:id="@+id/text_party_address"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:textColor="@color/member_transform_stroke"
                 android:textSize="@dimen/member_transform_size" />
 
             <ScrollView
@@ -82,7 +79,6 @@
                     android:id="@+id/text_party_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/member_transform_stroke"
                     android:textSize="@dimen/member_transform_size" />
             </ScrollView>
         </LinearLayout>

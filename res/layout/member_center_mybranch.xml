@@ -34,12 +34,92 @@
         android:layout_height="match_parent"
         android:background="@drawable/resume_bottom"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="15dp" >
 
-        <ImageView
+        <LinearLayout
+            android:id="@+id/lin_branch_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/infoxxx" />
+            android:layout_height="300dp"
+            android:background="@drawable/branch_bac"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名：吴新初"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_branch"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名：吴新初"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_branch_transfer_time"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名：吴新初"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_branch_address"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名：吴新初"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_branch_charge"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名：吴新初"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_branch_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="姓名：吴新初"
+                android:textSize="@dimen/member_transform_size" />
+
+            <TextView
+                android:id="@+id/text_branch_detail"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="3"
+                android:gravity="center_vertical|right"
+                android:text="支部详情>>"
+                android:textColor="@color/member_transform_party_top_red"
+                android:textSize="@dimen/member_transform_size" >
+            </TextView>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

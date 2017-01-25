@@ -60,5 +60,10 @@
     <color name="stroke2">#d09104</color>
     <color name="stroke1">#917256</color>
     <color name="vipdot">#7d5e32</color>
+    <color name="reward0">#f6c4c5</color>
+    <color name="reward1">#c9e7df</color>
+    <color name="reward2">#58A263</color>
+    <color name="reward3">#B38865</color>
+    <color name="reward4">#C163B1</color>
 
 </resources>

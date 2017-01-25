@@ -479,7 +479,17 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="wuxc.wisdomparty.MemberCenter.MemberCenterMyMarkTransfer"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="wuxc.wisdomparty.MemberCenter.MemberCenterMyReBackDetail"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.MemberCenter.MemberCenterMyMarkTransferRule"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

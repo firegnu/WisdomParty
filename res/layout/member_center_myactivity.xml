@@ -82,7 +82,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/top_height"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/top_height"
                         android:layout_marginRight="@dimen/top_height"
                         android:gravity="center"

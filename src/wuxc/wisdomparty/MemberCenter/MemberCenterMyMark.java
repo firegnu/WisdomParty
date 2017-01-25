@@ -144,7 +144,12 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 			startActivity(intent_image_fund_detail);
 			break;
 		case R.id.text_transfor:
-			showAlertDialog();
+			Intent intent = new Intent();
+			intent.setClass(getApplicationContext(), MemberCenterMyMarkTransfer.class);
+			Bundle bundle1 = new Bundle();
+			bundle1.putString("mark", "16");
+			intent.putExtras(bundle1);
+			startActivity(intent);
 			break;
 		default:
 			break;
