@@ -55,13 +55,33 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="wuxc.wisdomparty.main.MainActivity"
+            android:name="wuxc.wisdomparty.StartPage.StartLogoActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.StartPage.GuidePageActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.StartPage.RegisterActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.StartPage.LoginAactivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="wuxc.wisdomparty.main.MainActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="wuxc.wisdomparty.HomeActivity.HomeOfEmployeeActivity"
@@ -105,16 +125,6 @@
         </activity>
         <activity
             android:name="wuxc.wisdomparty.MemberCenter.NoticeDatalistActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="wuxc.wisdomparty.HomeOfMember.LoginAactivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="wuxc.wisdomparty.HomeOfMember.RegisterActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

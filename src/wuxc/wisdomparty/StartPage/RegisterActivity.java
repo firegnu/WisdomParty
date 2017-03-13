@@ -1,4 +1,4 @@
-package wuxc.wisdomparty.HomeOfMember;
+package wuxc.wisdomparty.StartPage;
 
 import android.app.Activity;
 import android.os.Bundle;
