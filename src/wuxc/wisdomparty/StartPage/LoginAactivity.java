@@ -141,6 +141,7 @@ public class LoginAactivity extends Activity implements OnClickListener {
 		edit.putString("address", address);
 		edit.putString("ticket", ticket);
 		edit.putString("sex", sex);
+		edit.putString("loginId", loginId);
 		edit.putString("sessionId", sessionId);
 		edit.putString("sex", sex);
 		edit.commit();

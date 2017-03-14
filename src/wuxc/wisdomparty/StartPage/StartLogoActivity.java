@@ -105,6 +105,8 @@ public class StartLogoActivity extends Activity {
 			if (Type.equals(GET_SUCCESS_RESULT)) {
 				Toast.makeText(getApplicationContext(), "µÇÂ½³É¹¦", Toast.LENGTH_SHORT).show();
 				GetDetailData(Data);
+			} else {
+				Toast.makeText(getApplicationContext(), "µÇÂ½Ê§°Ü", Toast.LENGTH_SHORT).show();
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -152,6 +154,7 @@ public class StartLogoActivity extends Activity {
 		edit.putString("address", address);
 		edit.putString("ticket", ticket);
 		edit.putString("sex", sex);
+		edit.putString("loginId", loginId);
 		edit.putString("sessionId", sessionId);
 		edit.putString("sex", sex);
 		edit.commit();

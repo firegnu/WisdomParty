@@ -1,7 +1,21 @@
 package wuxc.wisdomparty.main;
 
+import java.util.ArrayList;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +27,9 @@ import android.widget.TextView;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.HomeActivity.HomeSearchActivity;
 import wuxc.wisdomparty.HomeActivity.HomeSettingActivity;
+import wuxc.wisdomparty.Internet.GetBitmapFromServer;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyActivity;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyBranch;
 import wuxc.wisdomparty.MemberCenter.MemberCenterMyCheck;
@@ -52,6 +69,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 	private TextView TextMark;
 	private TextView TextFund;
 	private TextView TextEvaluate;
+	private TextView TextVipRank;
 	private LinearLayout LinMark;
 	private LinearLayout LinFund;
 	private LinearLayout LinEvaluate;
@@ -66,6 +84,82 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 	private RelativeLayout RelMyrelationship;
 	private RelativeLayout RelMyreward;
 	private RelativeLayout RelMycheck;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private String LoginId;
+	private String ticket;
+	private final static String IS_PARTY_MEMBER = "党员";
+	private final static String VIP_RANK_1 = "一级";
+	private final static String VIP_RANK_2 = "二级";
+	private final static String VIP_RANK_3 = "三级";
+	private final static String VIP_RANK_4 = "四级";
+	private final static String VIP_RANK_5 = "五级";
+	private final static int GET_USER_HEAD_IMAGE = 6;
+	private final static int READY_USERINFO = 4;
+	private final static int READY_MEMBERDATA = 5;
+	private static final String GET_SUCCESS_RESULT = "success";
+	private static final int GET_USERINFO_RESULT_DATA = 1;
+	private static final int GET_MEMBERDATA_RESULT_DATA = 2;
+	private String userPhoto;
+	private String userName;
+	private String address;
+	private String sex;
+	private String loginId;
+	private String memberLevel;
+	private String memberLevelDesc;
+	private String permisons;
+	private String personBg;
+	private String userClassify;
+	private String sign;
+	private String hobby;
+	private String balance;
+	private String cashBalance;
+	private String realName;
+	private String cityCode;
+	private String mobile;
+	private String alipayAccount;
+	private String alipayRealname;
+	private String renzhengName;
+	private String renzheng;
+	private String sixin;
+	private String guanzhu;
+	private String fensi;
+	private String shoucang;
+	private String isGuanZhu;
+	private String readNum;
+	private String unReadNum;
+	private String totalNum;
+	private String credits;
+	private String scoreInNum;
+	private String scoreOutNum;
+	private String scoreCurNum;
+	private String scoreTotalNum;
+	public Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_USER_HEAD_IMAGE:
+				ShowHeadImage(msg.obj);
+				break;
+			case READY_USERINFO:
+				ReadUserInfo();
+				ShowUserInfo();
+				GetHeadPic();
+				break;
+			case READY_MEMBERDATA:
+				ReadMemberData();
+				ShowMemberData();
+				break;
+			case GET_USERINFO_RESULT_DATA:
+				GetDataDetailFromUserInfoResultData(msg.obj);
+				break;
+			case GET_MEMBERDATA_RESULT_DATA:
+				GetDataDetailFromMemberDataResultData(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,11 +168,111 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		initview(view);
 		setonclicklistener();
 		setlayoutheight();
+		ReadTicket();
+		GetUserInfo();
+		GetMemberData();
 		return view;
+	}
+
+	private void ShowMemberData() {
+		// TODO Auto-generated method stub
+		TextMark.setText(credits);
+		TextEvaluate.setText(totalNum);
+	}
+
+	private void ReadMemberData() {
+		// TODO Auto-generated method stub
+		totalNum = PreUserInfo.getString("totalNum", null);
+		credits = PreUserInfo.getString("credits", null);
+	}
+
+	protected void ShowHeadImage(Object obj) {
+		// TODO Auto-generated method stub
+		if (!(obj == null)) {
+			try {
+				Bitmap HeadImage = (Bitmap) obj;
+				RoundedHeadimg.setImageBitmap(HeadImage);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		LoginId = PreUserInfo.getString("loginId", null);
+		ticket = PreUserInfo.getString("ticket", null);
+	}
+
+	private void GetHeadPic() {
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				Bitmap HeadImage = null;
+				HeadImage = GetBitmapFromServer
+						.getBitmapFromServer(URLcontainer.urlip + URLcontainer.GetFile + userPhoto);
+				Message msg = new Message();
+				msg.what = GET_USER_HEAD_IMAGE;
+				msg.obj = HeadImage;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
+	private void ShowUserInfo() {
+		// TODO Auto-generated method stub
+		try {
+			if (memberLevelDesc.equals(IS_PARTY_MEMBER)) {
+				ImageHeadParty.setVisibility(View.VISIBLE);
+			} else {
+				ImageHeadParty.setVisibility(View.GONE);
+			}
+			TextPartyMember.setText(memberLevelDesc);
+			TextName.setText(userName);
+			if (memberLevel.equals("1")) {
+				TextVipRank.setText(VIP_RANK_1);
+				ImageVipRank.setImageResource(R.drawable.vip1);
+			} else if (memberLevel.equals("2")) {
+				TextVipRank.setText(VIP_RANK_2);
+				ImageVipRank.setImageResource(R.drawable.vip2);
+			} else if (memberLevel.equals("3")) {
+				TextVipRank.setText(VIP_RANK_3);
+				ImageVipRank.setImageResource(R.drawable.vip3);
+			} else if (memberLevel.equals("4")) {
+				TextVipRank.setText(VIP_RANK_4);
+				ImageVipRank.setImageResource(R.drawable.vip4);
+			} else {
+				TextVipRank.setText(VIP_RANK_5);
+				ImageVipRank.setImageResource(R.drawable.vip5);
+			}
+			TextMotto.setText(sign);
+
+			TextFund.setText(balance);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+	private void ReadUserInfo() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
+		userPhoto = PreUserInfo.getString("userPhoto", null);
+		userName = PreUserInfo.getString("userName", null);
+
+		memberLevel = PreUserInfo.getString("memberLevel", null);
+		memberLevelDesc = PreUserInfo.getString("memberLevelDesc", null);
+		balance = PreUserInfo.getString("balance", null);
+
+		sign = PreUserInfo.getString("sign", null);
+		Log.e("PreUserInfo", balance);
 	}
 
 	private void initview(View view) {
 		// TODO Auto-generated method stub
+		PreUserInfo = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 		LinTopBack = (LinearLayout) view.findViewById(R.id.lin_top_back);
 		LinButton = (LinearLayout) view.findViewById(R.id.lin_button);
 		RelaHeadimg = (RelativeLayout) view.findViewById(R.id.rela_headimg);
@@ -96,6 +290,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		TextMark = (TextView) view.findViewById(R.id.text_mark);
 		TextFund = (TextView) view.findViewById(R.id.text_fund);
 		TextEvaluate = (TextView) view.findViewById(R.id.text_evaluate);
+		TextVipRank = (TextView) view.findViewById(R.id.text_vip_rank);
 		LinMark = (LinearLayout) view.findViewById(R.id.lin_mark);
 		LinFund = (LinearLayout) view.findViewById(R.id.lin_fund);
 		LinEvaluate = (LinearLayout) view.findViewById(R.id.lin_evaluate);
@@ -161,6 +356,41 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		LinButton.setLayoutParams(LayoutParams);
 	}
 
+	private void GetMemberData() {
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String LoginResultData = "";
+				LoginResultData = HttpGetData.GetData(URLcontainer.GetMemberData, ArrayValues);
+				Message msg = new Message();
+				msg.obj = LoginResultData;
+				msg.what = GET_MEMBERDATA_RESULT_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
+	private void GetUserInfo() {
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		ArrayValues.add(new BasicNameValuePair("queryUserId", LoginId));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String LoginResultData = "";
+				LoginResultData = HttpGetData.GetData(URLcontainer.GetUserInfo, ArrayValues);
+				Message msg = new Message();
+				msg.obj = LoginResultData;
+				msg.what = GET_USERINFO_RESULT_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
@@ -168,6 +398,176 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 
 		MainActivity.curFragmentTag = getString(R.string.str_member);
 
+	}
+
+	protected void GetDataDetailFromMemberDataResultData(Object obj) {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			Data = demoJson.getString("data");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetMemberDataDetailData(Data);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetMemberDataDetailData(String data) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject demoJson = new JSONObject(data);
+
+			readNum = demoJson.getString("readNum");
+			unReadNum = demoJson.getString("unReadNum");
+			totalNum = demoJson.getString("totalNum");
+			balance = demoJson.getString("balance");
+			cashBalance = demoJson.getString("cashBalance");
+			credits = demoJson.getString("credits");
+			memberLevel = demoJson.getString("memberLevel");
+			memberLevelDesc = demoJson.getString("memberLevelDesc");
+			scoreInNum = demoJson.getString("scoreInNum");
+			scoreOutNum = demoJson.getString("scoreOutNum");
+			scoreCurNum = demoJson.getString("scoreCurNum");
+			scoreTotalNum = demoJson.getString("scoreTotalNum");
+
+			WriteMemberData();
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void WriteMemberData() {
+		// TODO Auto-generated method stub
+		Editor edit = PreUserInfo.edit();
+		edit.putString("readNum", readNum);
+		edit.putString("unReadNum", unReadNum);
+		edit.putString("totalNum", totalNum);
+		edit.putString("balance", balance);
+		edit.putString("cashBalance", cashBalance);
+		edit.putString("credits", credits);
+		edit.putString("memberLevel", memberLevel);
+		edit.putString("memberLevelDesc", memberLevelDesc);
+		edit.putString("scoreInNum", scoreInNum);
+		edit.putString("scoreOutNum", scoreOutNum);
+		edit.putString("scoreCurNum", scoreCurNum);
+		edit.putString("scoreTotalNum", scoreTotalNum);
+
+		edit.commit();
+		Message msg = new Message();
+		msg.what = READY_MEMBERDATA;
+		uiHandler.sendMessage(msg);
+	}
+
+	protected void GetDataDetailFromUserInfoResultData(Object obj) {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			Data = demoJson.getString("data");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetDetailData(Data);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetDetailData(String data) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject demoJson = new JSONObject(data);
+
+			userPhoto = demoJson.getString("userPhoto");
+			userName = demoJson.getString("userName");
+			address = demoJson.getString("address");
+			sex = demoJson.getString("sex");
+			loginId = demoJson.getString("loginId");
+			memberLevel = demoJson.getString("memberLevel");
+			memberLevelDesc = demoJson.getString("memberLevelDesc");
+			permisons = demoJson.getString("permisons");
+			personBg = demoJson.getString("personBg");
+			userClassify = demoJson.getString("userClassify");
+			sign = demoJson.getString("sign");
+			hobby = demoJson.getString("hobby");
+			balance = demoJson.getString("balance");
+			cashBalance = demoJson.getString("cashBalance");
+			realName = demoJson.getString("realName");
+			cityCode = demoJson.getString("cityCode");
+			mobile = demoJson.getString("mobile");
+			alipayAccount = demoJson.getString("alipayAccount");
+			alipayRealname = demoJson.getString("alipayRealname");
+			renzhengName = demoJson.getString("renzhengName");
+			renzheng = demoJson.getString("renzheng");
+			sixin = demoJson.getString("sixin");
+			guanzhu = demoJson.getString("guanzhu");
+			fensi = demoJson.getString("fensi");
+			shoucang = demoJson.getString("shoucang");
+			isGuanZhu = demoJson.getString("isGuanZhu");
+
+			WriteUserInfo();
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void WriteUserInfo() {
+		// TODO Auto-generated method stub
+		Editor edit = PreUserInfo.edit();
+		edit.putString("userPhoto", userPhoto);
+		edit.putString("userName", userName);
+		edit.putString("address", address);
+		edit.putString("sex", sex);
+		edit.putString("loginId", loginId);
+		edit.putString("memberLevel", memberLevel);
+		edit.putString("memberLevelDesc", memberLevelDesc);
+		edit.putString("permisons", permisons);
+		edit.putString("personBg", personBg);
+		edit.putString("userClassify", userClassify);
+		edit.putString("sign", sign);
+		edit.putString("hobby", hobby);
+		edit.putString("balance", balance);
+		edit.putString("cashBalance", cashBalance);
+		edit.putString("realName", realName);
+		edit.putString("cityCode", cityCode);
+		edit.putString("mobile", mobile);
+		edit.putString("alipayAccount", alipayAccount);
+		edit.putString("alipayRealname", alipayRealname);
+		edit.putString("renzhengName", renzhengName);
+		edit.putString("renzheng", renzheng);
+		edit.putString("sixin", sixin);
+		edit.putString("guanzhu", guanzhu);
+		edit.putString("fensi", fensi);
+		edit.putString("shoucang", shoucang);
+		edit.putString("isGuanZhu", isGuanZhu);
+
+		edit.commit();
+		Message msg = new Message();
+		msg.what = READY_USERINFO;
+		uiHandler.sendMessage(msg);
 	}
 
 	@Override

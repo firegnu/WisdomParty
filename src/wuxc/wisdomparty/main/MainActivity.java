@@ -1,9 +1,21 @@
 package wuxc.wisdomparty.main;
 
+import java.util.ArrayList;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -14,7 +26,10 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 	public static String curFragmentTag;
@@ -30,6 +45,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private FragmentTransaction mFragmentTransaction;
 	private int page = 0;
 	private SharedPreferences FragmentPage;
+	public static Activity activity;
+ 
+	 
+ 
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +57,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainactivity);
+		activity = this;
 		initViews();
 		read();
 		mFragmentManager = getSupportFragmentManager();
@@ -51,11 +72,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		} else if (page == 0) {
 			setCurrentFragment();
 		}
-
+		
 	}
+
+	
+
+
+	
 
 	private void initViews() {
 		// TODO Auto-generated method stub
+
 		FragmentPage = getSharedPreferences("fragmentinfo", MODE_PRIVATE);
 
 		RelativeHomePage = findViewById(R.id.relative_recommned);
