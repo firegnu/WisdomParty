@@ -10,9 +10,12 @@ import com.umeng.socialize.utils.Log;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,8 +31,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.APPVersion;
 import wuxc.wisdomparty.Internet.HttpGetData;
 import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.layout.dialogtwo;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 	public static String curFragmentTag;
@@ -46,10 +51,22 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private int page = 0;
 	private SharedPreferences FragmentPage;
 	public static Activity activity;
- 
-	 
- 
 
+	private String ticket;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private static final int GET_VERSION_RESULT = 1;
+	private Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_VERSION_RESULT:
+				GetDataDetailFromVersion(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,17 +89,90 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		} else if (page == 0) {
 			setCurrentFragment();
 		}
-		
+		ReadTicket();
+
+		GetNewVersion();
 	}
 
-	
+	protected void GetDataDetailFromVersion(Object obj) {
+		// TODO Auto-generated method stub
 
+		// TODO Auto-generated method stub
+		String versionId = null;
+		String versionNum = null;
+		String versionPath = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			versionId = demoJson.getString("versionId");
+			versionNum = demoJson.getString("versionNum");
+			versionPath = demoJson.getString("versionPath");
+			if (versionId.equals(APPVersion.APPVersion)) {
+				Toast.makeText(getApplicationContext(), "已是最新版本", Toast.LENGTH_SHORT).show();
+			} else {
+				showAlertDialog(versionNum, versionPath);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
-	
+	}
+
+	public void showAlertDialog(String versionNum, final String versionPath) {
+
+		dialogtwo.Builder builder = new dialogtwo.Builder(this);
+		builder.setMessage("是否更新新版本？\n" + "版本号：" + versionNum);
+		builder.setTitle("版本更新");
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				Intent intent = new Intent();
+				intent.setAction("android.intent.action.VIEW");
+				String path = URLcontainer.urlip + URLcontainer.GetFile + versionPath;
+				Uri content_url = Uri.parse(path);
+				intent.setData(content_url);
+				startActivity(intent);
+
+			}
+		});
+
+		builder.setNegativeButton("取消", new android.content.DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+
+		builder.create().show();
+
+	}
+
+	private void GetNewVersion() {
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String LoginResultData = "";
+				LoginResultData = HttpGetData.GetData(URLcontainer.LoginIn, ArrayValues);
+				Message msg = new Message();
+				msg.obj = LoginResultData;
+				msg.what = GET_VERSION_RESULT;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
+	}
 
 	private void initViews() {
 		// TODO Auto-generated method stub
-
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 		FragmentPage = getSharedPreferences("fragmentinfo", MODE_PRIVATE);
 
 		RelativeHomePage = findViewById(R.id.relative_recommned);

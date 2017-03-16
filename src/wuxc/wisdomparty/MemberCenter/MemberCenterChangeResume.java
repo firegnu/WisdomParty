@@ -1,8 +1,13 @@
 package wuxc.wisdomparty.MemberCenter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Window;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.GetBitmapFromServer;
+import wuxc.wisdomparty.Internet.URLcontainer;
 import wuxc.wisdomparty.layout.RoundedImageView;
 import wuxc.wisdomparty.layout.dialogtwo;
 
@@ -37,6 +44,23 @@ public class MemberCenterChangeResume extends Activity implements OnClickListene
 	private String StrIfParty;
 	private String StrPartyAge;
 	private String StrMotto;
+	private String LoginId;
+	private String ticket;
+	private String userPhoto;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private final static int GET_USER_HEAD_IMAGE = 6;
+	private Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_USER_HEAD_IMAGE:
+				ShowHeadImage(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +68,7 @@ public class MemberCenterChangeResume extends Activity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.member_center_changeresume);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 		RoundedHeadImg = (RoundedImageView) findViewById(R.id.rounded_headimg);
 		ImageHeadParty = (ImageView) findViewById(R.id.image_head_party);
 		TextName = (TextView) findViewById(R.id.text_name);
@@ -60,6 +85,43 @@ public class MemberCenterChangeResume extends Activity implements OnClickListene
 		BtnChange.setOnClickListener(this);
 		TextSex.setOnClickListener(this);
 		TextIfParty.setOnClickListener(this);
+		ReadTicket();
+		GetHeadPic();
+	}
+
+	protected void ShowHeadImage(Object obj) {
+		// TODO Auto-generated method stub
+		if (!(obj == null)) {
+			try {
+				Bitmap HeadImage = (Bitmap) obj;
+				RoundedHeadImg.setImageBitmap(HeadImage);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		LoginId = PreUserInfo.getString("loginId", null);
+		ticket = PreUserInfo.getString("ticket", null);
+		userPhoto = PreUserInfo.getString("userPhoto", null);
+	}
+
+	private void GetHeadPic() {
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				Bitmap HeadImage = null;
+				HeadImage = GetBitmapFromServer
+						.getBitmapFromServer(URLcontainer.urlip + URLcontainer.GetFile + userPhoto);
+				Message msg = new Message();
+				msg.what = GET_USER_HEAD_IMAGE;
+				msg.obj = HeadImage;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
 	}
 
 	@Override

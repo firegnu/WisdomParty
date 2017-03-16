@@ -1,9 +1,14 @@
 package wuxc.wisdomparty.MemberCenter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.Window;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.GetBitmapFromServer;
+import wuxc.wisdomparty.Internet.URLcontainer;
 import wuxc.wisdomparty.layout.RoundedImageView;
 
 public class MemberCenterMyRank extends Activity implements OnClickListener {
@@ -35,6 +42,23 @@ public class MemberCenterMyRank extends Activity implements OnClickListener {
 	private TextView TextVipDot4;
 	private TextView TextVipDot5;
 	private int myrank = 400;
+	private String LoginId;
+	private String ticket;
+	private String userPhoto;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private final static int GET_USER_HEAD_IMAGE = 6;
+	private Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_USER_HEAD_IMAGE:
+				ShowHeadImage(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +66,7 @@ public class MemberCenterMyRank extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.member_center_myrank);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		IamgeHeadParty = (ImageView) findViewById(R.id.image_head_party);
 		RoundedHeadimg = (RoundedImageView) findViewById(R.id.rounded_headimg);
@@ -56,6 +81,41 @@ public class MemberCenterMyRank extends Activity implements OnClickListener {
 		ImageBack.setOnClickListener(this);
 		initheight();
 		SetRank(myrank);
+		ReadTicket();
+		GetHeadPic();
+	}
+	protected void ShowHeadImage(Object obj) {
+		// TODO Auto-generated method stub
+		if (!(obj == null)) {
+			try {
+				Bitmap HeadImage = (Bitmap) obj;
+				RoundedHeadimg.setImageBitmap(HeadImage);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		LoginId = PreUserInfo.getString("loginId", null);
+		ticket = PreUserInfo.getString("ticket", null);
+		userPhoto = PreUserInfo.getString("userPhoto", null);
+	}
+
+	private void GetHeadPic() {
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				Bitmap HeadImage = null;
+				HeadImage = GetBitmapFromServer
+						.getBitmapFromServer(URLcontainer.urlip + URLcontainer.GetFile + userPhoto);
+				Message msg = new Message();
+				msg.what = GET_USER_HEAD_IMAGE;
+				msg.obj = HeadImage;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
 	}
 
 	private void SetRank(int rank) {

@@ -133,6 +133,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 	private String scoreOutNum;
 	private String scoreCurNum;
 	private String scoreTotalNum;
+	private final static int GO_CHANGE_HEADIMG = 8;
 	public Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -449,6 +450,30 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		}
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (data == null)
+			return;
+		Bundle bundle = data.getExtras();
+		switch (requestCode) {
+		case GO_CHANGE_HEADIMG:
+			if (!(data == null)) {
+				boolean Result = bundle.getBoolean("UploadImage", false);
+				if (Result) {
+					ReadUserInfo();
+					GetHeadPic();
+				}
+			}
+
+			break;
+
+		default:
+			break;
+
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	private void WriteMemberData() {
 		// TODO Auto-generated method stub
 		Editor edit = PreUserInfo.edit();
@@ -592,7 +617,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		case R.id.text_resume:
 			Intent intent_text_resume = new Intent();
 			intent_text_resume.setClass(getActivity(), MemberCenterMyResume.class);
-			startActivity(intent_text_resume);
+			startActivityForResult(intent_text_resume, GO_CHANGE_HEADIMG); 
 			break;
 		case R.id.lin_mark:
 			Intent intent_lin_mark = new Intent();

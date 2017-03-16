@@ -1,35 +1,41 @@
 package wuxc.wisdomparty.MemberCenter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
-import android.annotation.TargetApi;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.Handler;
 import android.os.Message;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.view.Window;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.GetBitmapFromServer;
+import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.Internet.getImageAbsolutePath;
+import wuxc.wisdomparty.Internet.saveBitmap;
+import wuxc.wisdomparty.Internet.savePNG;
 import wuxc.wisdomparty.layout.RoundedImageView;
+import wuxc.wisdomparty.layout.UpLoadImage;
 
 public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 	private ImageView ImageBack;
@@ -42,6 +48,7 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 	private RoundedImageView RoundedHeadimg;
 	private static final int UPLOAD_PICTURE = 1;
 	private static final int GET_CUT_PICTURE = 2;
+	private static final int GET_UPLOAD_RESULT = 3;
 	private Bitmap mbitmap;
 	private RoundedImageView RoundHeadimg1;
 	private RoundedImageView RoundHeadimg2;
@@ -59,6 +66,28 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 	private LinearLayout LinHeadimg6;
 	private LinearLayout LinHeadimg7;
 	private LinearLayout LinHeadimg8;
+	private static String HeadimgAbsolutePath;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private String LoginId;
+	private String ticket;
+	private String userPhoto;
+	private final static int GET_USER_HEAD_IMAGE = 6;
+	private boolean UploadImage = false;
+	private Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_UPLOAD_RESULT:
+				GetUpLoadResult(msg.obj);
+				break;
+			case GET_USER_HEAD_IMAGE:
+				ShowHeadImage(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +95,8 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.member_center_myheadimg);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+		ReadTicket();
 		LinUserHeadimg = (LinearLayout) findViewById(R.id.lin_user_headimg);
 		LinUpPic = (LinearLayout) findViewById(R.id.lin_up_pic);
 		RoundedHeadimg = (RoundedImageView) findViewById(R.id.rounded_headimg);
@@ -97,8 +128,85 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 		ImageBack.setOnClickListener(this);
 		LinUpPic.setOnClickListener(this);
 		initheight();
-		SaveImageResource();
 		SetInitLayout();
+		GetHeadPic();
+	}
+
+	protected void ShowHeadImage(Object obj) {
+		// TODO Auto-generated method stub
+		if (!(obj == null)) {
+			try {
+				Bitmap HeadImage = (Bitmap) obj;
+				RoundedHeadimg.setImageBitmap(HeadImage);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private void GetHeadPic() {
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				Bitmap HeadImage = null;
+				HeadImage = GetBitmapFromServer
+						.getBitmapFromServer(URLcontainer.urlip + URLcontainer.GetFile + userPhoto);
+				Message msg = new Message();
+				msg.what = GET_USER_HEAD_IMAGE;
+				msg.obj = HeadImage;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+	}
+
+	protected void GetUpLoadResult(Object obj) {
+		// TODO Auto-generated method stub
+		if (!(obj == null)) {
+			String fileInfo = null;
+			try {
+				JSONObject demoJson = new JSONObject(obj.toString());
+				fileInfo = demoJson.getString("fileInfo");
+				if (!fileInfo.equals("") || !(fileInfo == null)) {
+					GetImageNameFromResult(fileInfo);
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+	}
+
+	private void GetImageNameFromResult(String fileInfo) {
+		// TODO Auto-generated method stub
+		String fileName = null;
+		String filePath = null;
+		try {
+			JSONObject demoJson = new JSONObject(fileInfo);
+			fileName = demoJson.getString("fileName");
+			filePath = demoJson.getString("filePath");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (fileName.equals("image_headimg")) {
+			Toast.makeText(getApplicationContext(), "上传成功！", Toast.LENGTH_SHORT).show();
+			WriteUsPhoto(filePath);
+			UploadImage = true;
+		} else {
+			Toast.makeText(getApplicationContext(), "上传失败！", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void WriteUsPhoto(String filePath) {
+		// TODO Auto-generated method stub
+		Editor edit = PreUserInfo.edit();
+		edit.putString("userPhoto", filePath);
+		edit.commit();
 	}
 
 	private void SetInitLayout() {
@@ -114,16 +222,24 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 
 	}
 
-	private void SaveImageResource() {// 保存图片以备上传
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		LoginId = PreUserInfo.getString("loginId", null);
+		ticket = PreUserInfo.getString("ticket", null);
+		userPhoto = PreUserInfo.getString("userPhoto", null);
+	}
+
+	private void SaveImageResource(int resourceid) {// 保存图片以备上传
 		// TODO Auto-generated method stub
 		Bitmap myBitmap = null;
 		try {
-			myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.user_headimg_1);
+			myBitmap = BitmapFactory.decodeResource(getResources(), resourceid);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		try {
-			saveMyBitmap("image_1", myBitmap);
+			File file = saveBitmap.saveMyBitmap("image_headimg", myBitmap);
+			setPicToView(file);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,9 +264,9 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 		switch (requestCode) {
 		case UPLOAD_PICTURE:
 			if (!(data == null)) {
-
+				HeadimgAbsolutePath = "";
 				startPhotoZoom(data.getData());
-
+				HeadimgAbsolutePath = getImageAbsolutePath.getPath(this, data.getData());
 			}
 
 			break;
@@ -173,54 +289,45 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 			mbitmap = photo;
 			Drawable drawable = new BitmapDrawable(photo);
 			RoundedHeadimg.setImageBitmap(photo);
+			final File file1 = savePNG.savePNG_After(photo, "wuxc", HeadimgAbsolutePath);
 			File file = null;
+
 			try {
-				file = saveMyBitmap("wuxc", photo);
+				file = saveBitmap.saveMyBitmap("wuxc", photo);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (file == null) {
-				Toast.makeText(getApplicationContext(), "失败", Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(getApplicationContext(), "成功 ", Toast.LENGTH_SHORT).show();
-			}
+
 			new Thread(new Runnable() { // 开启线程上传文件
 				@Override
 				public void run() {
-					// qquploadFile(file, URLcontainer.uploadSignleimage,
-					// loginId);
-					// Message msg = new Message();
-					// msg.what = 1;
-					// uiHandler.sendMessage(msg);
+					String UpLoadResult = UpLoadImage.uploadFile(file1, URLcontainer.urlip + URLcontainer.UpLoadSignle,
+							LoginId, ticket);
+					Message msg = new Message();
+					msg.what = GET_UPLOAD_RESULT;
+					msg.obj = UpLoadResult;
+					uiHandler.sendMessage(msg);
 				}
 			}).start();
 		}
 	}
 
-	public File saveMyBitmap(String bitName, Bitmap mBitmap) throws IOException {
-		String path = Environment.getExternalStorageDirectory() + "/MyParty/";
-		String myJpgPath = Environment.getExternalStorageDirectory() + "/MyParty/" + bitName + ".png";
-		File tmp = new File(path);
-		if (!tmp.exists()) {
-			tmp.mkdir();
+	private void setPicToView(final File file) {
+		if (file != null) {
+
+			new Thread(new Runnable() { // 开启线程上传文件
+				@Override
+				public void run() {
+					String UpLoadResult = UpLoadImage.uploadFile(file, URLcontainer.urlip + URLcontainer.UpLoadSignle,
+							LoginId, ticket);
+					Message msg = new Message();
+					msg.what = GET_UPLOAD_RESULT;
+					msg.obj = UpLoadResult;
+					uiHandler.sendMessage(msg);
+				}
+			}).start();
 		}
-		File f = new File(myJpgPath);
-		f.createNewFile();
-		FileOutputStream fOut = null;
-		try {
-			fOut = new FileOutputStream(f);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-		try {
-			fOut.flush();
-			fOut.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return f;
 	}
 
 	public void startPhotoZoom(Uri uri) {
@@ -242,6 +349,12 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.image_back:
+
+			Intent intentresult = new Intent();
+
+			intentresult.putExtra("UploadImage", UploadImage);
+
+			setResult(0, intentresult);
 			finish();
 			break;
 		case R.id.lin_up_pic:
@@ -253,45 +366,66 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_1);
 			SetInitLayout();
 			LinHeadimg1.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_1);
 			break;
 		case R.id.rounded_headimg_2:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_2);
 			SetInitLayout();
 			LinHeadimg2.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_2);
 			break;
 		case R.id.rounded_headimg_3:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_3);
 			SetInitLayout();
 			LinHeadimg3.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_3);
 			break;
 		case R.id.rounded_headimg_4:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_4);
 			SetInitLayout();
 			LinHeadimg4.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_4);
 			break;
 		case R.id.rounded_headimg_5:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_5);
 			SetInitLayout();
 			LinHeadimg5.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_5);
 			break;
 		case R.id.rounded_headimg_6:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_6);
 			SetInitLayout();
 			LinHeadimg6.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_6);
 			break;
 		case R.id.rounded_headimg_7:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_7);
 			SetInitLayout();
 			LinHeadimg7.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_7);
 			break;
 		case R.id.rounded_headimg_8:
 			RoundedHeadimg.setImageResource(R.drawable.user_headimg_8);
 			SetInitLayout();
 			LinHeadimg8.setVisibility(View.VISIBLE);
+			SaveImageResource(R.drawable.user_headimg_8);
 			break;
 		default:
 			break;
 		}
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intentresult = new Intent();
+
+			intentresult.putExtra("UploadImage", UploadImage);
+
+			setResult(0, intentresult);
+			finish();
+		}
+		return false;
+	}
 }
