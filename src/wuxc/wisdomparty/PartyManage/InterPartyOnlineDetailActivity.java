@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -25,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.Internet.UpLoadFile;
 import wuxc.wisdomparty.layout.ImageTools;
 
 public class InterPartyOnlineDetailActivity extends Activity implements OnClickListener {
@@ -249,7 +252,22 @@ public class InterPartyOnlineDetailActivity extends Activity implements OnClickL
 			if (data != null) {
 				Uri uri = data.getData();
 				if (uri != null) {
-					GetFile(uri);
+					final File file = GetFile(uri);
+					if (!(file == null)) {
+						new Thread(new Runnable() { // 开启线程上传文件
+							@Override
+							public void run() {
+								String UpLoadResult = UpLoadFile.uploadFile(file,
+										URLcontainer.urlip +URLcontainer.GetFile+ URLcontainer.formfileUploadUpLoadSignle, "attachment",
+										"7");
+								// Message msg = new Message();
+								// msg.what = GET_UPLOAD_RESULT;
+								// msg.obj = UpLoadResult;
+								// uiHandler.sendMessage(msg);
+							}
+						}).start();
+					}
+
 				}
 			}
 
@@ -264,7 +282,7 @@ public class InterPartyOnlineDetailActivity extends Activity implements OnClickL
 	 * 
 	 * @param uri
 	 */
-	private void GetFile(Uri uri) {
+	private File GetFile(Uri uri) {
 		String filePath = null;
 		if ("content".equalsIgnoreCase(uri.getScheme())) {
 			String[] projection = { "_data" };
@@ -286,17 +304,18 @@ public class InterPartyOnlineDetailActivity extends Activity implements OnClickL
 		if (file == null || !file.exists()) {
 
 			Toast.makeText(getApplicationContext(), "文件不存在", 0).show();
-			return;
+			return file;
 		}
 		if (file.length() > 20 * 1024 * 1024) {
 
 			Toast.makeText(getApplicationContext(), "文件不能大于20M", 0).show();
-			return;
+			return null;
 		}
 		StrFilePath = filePath;
 		TextFileWarning.setText("已选择");
 		TextFileWarning.setTextColor(Color.BLUE);
 		TextFilePath.setText(StrFilePath);
 		TextFilePath.setTextColor(Color.BLUE);
+		return file;
 	}
 }

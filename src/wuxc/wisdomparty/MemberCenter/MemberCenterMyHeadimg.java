@@ -31,11 +31,11 @@ import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Internet.GetBitmapFromServer;
 import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.Internet.UpLoadFile;
 import wuxc.wisdomparty.Internet.getImageAbsolutePath;
 import wuxc.wisdomparty.Internet.saveBitmap;
 import wuxc.wisdomparty.Internet.savePNG;
 import wuxc.wisdomparty.layout.RoundedImageView;
-import wuxc.wisdomparty.layout.UpLoadImage;
 
 public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 	private ImageView ImageBack;
@@ -302,8 +302,8 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 			new Thread(new Runnable() { // 开启线程上传文件
 				@Override
 				public void run() {
-					String UpLoadResult = UpLoadImage.uploadFile(file1, URLcontainer.urlip + URLcontainer.UpLoadSignle,
-							LoginId, ticket);
+					String UpLoadResult = UpLoadFile.uploadHeadImage(file1,
+							URLcontainer.urlip + URLcontainer.UpLoadSignle, LoginId, ticket);
 					Message msg = new Message();
 					msg.what = GET_UPLOAD_RESULT;
 					msg.obj = UpLoadResult;
@@ -319,8 +319,8 @@ public class MemberCenterMyHeadimg extends Activity implements OnClickListener {
 			new Thread(new Runnable() { // 开启线程上传文件
 				@Override
 				public void run() {
-					String UpLoadResult = UpLoadImage.uploadFile(file, URLcontainer.urlip + URLcontainer.UpLoadSignle,
-							LoginId, ticket);
+					String UpLoadResult = UpLoadFile.uploadHeadImage(file,
+							URLcontainer.urlip + URLcontainer.UpLoadSignle, LoginId, ticket);
 					Message msg = new Message();
 					msg.what = GET_UPLOAD_RESULT;
 					msg.obj = UpLoadResult;

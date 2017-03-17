@@ -27,7 +27,7 @@ public class HttpGetData {
 			httpResponse = httpClient.execute(httpPost);
 			is = httpResponse.getEntity().getContent();
 			jsonString = Util.convertStreamToString(is);
-			Log.e("HttpGetData"+Url, jsonString);
+			Log.e("HttpGetData", "url=" + Url + "\nresult=" + jsonString);
 			return jsonString;
 
 		} catch (ClientProtocolException e) {

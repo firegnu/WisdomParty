@@ -107,7 +107,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			versionNum = demoJson.getString("versionNum");
 			versionPath = demoJson.getString("versionPath");
 			if (versionId.equals(APPVersion.APPVersion)) {
-				Toast.makeText(getApplicationContext(), "已是最新版本", Toast.LENGTH_SHORT).show();
+				// Toast.makeText(getApplicationContext(), "已是最新版本",
+				// Toast.LENGTH_SHORT).show();
 			} else {
 				showAlertDialog(versionNum, versionPath);
 			}
@@ -156,7 +157,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			@Override
 			public void run() {
 				String LoginResultData = "";
-				LoginResultData = HttpGetData.GetData(URLcontainer.LoginIn, ArrayValues);
+				LoginResultData = HttpGetData.GetData(URLcontainer.GetLatestVersion, ArrayValues);
 				Message msg = new Message();
 				msg.obj = LoginResultData;
 				msg.what = GET_VERSION_RESULT;

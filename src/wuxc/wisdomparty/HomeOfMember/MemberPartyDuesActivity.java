@@ -1,8 +1,22 @@
 package wuxc.wisdomparty.HomeOfMember;
 
+import java.util.ArrayList;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
+import android.R.integer;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import single.wuxc.wisdomparty.R;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.Model.PartyBranchDataListModel;
 import wuxc.wisdomparty.layout.dialogtwo;
 
 public class MemberPartyDuesActivity extends Activity implements OnClickListener {
@@ -70,6 +87,7 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 	private ImageView ImageDot10;
 	private ImageView ImageDot11;
 	private ImageView ImageDot12;
+	private boolean GetMonth = true;
 	private int[] DotResourceId = { R.drawable.dot_ok, R.drawable.dot_grey };
 	private int[][] NumberResourceId = {
 			{ R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4, R.drawable.b5, R.drawable.b6, R.drawable.b7,
@@ -79,7 +97,7 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 	// 0--已交
 	// 1--未交
 
-	private int[] status = { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 };
+	private int[] status = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	// 0--未选
 	// 1--已选
 	private int[] condition = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -90,8 +108,32 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 	private float scale = 0;
 	private float scalepx = 0;
 	private float dp = 0;
-	private int inityear = 2016;
+	private int inityear = 2017;
 	private String monthstring = "";
+	private static final String[] STR_MONTH = { "-01", "-02", "-03", "-04", "-05", "-06", "-07", "-08", "-09", "-10",
+			"-11", "-12", };
+	// 0-无这一年的数据
+	// 1-有这一年的数据
+	private String ticket;
+	private final static int GET_USER_HEAD_IMAGE = 6;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private static final int GET_MONTH_RESULT_DATA = 1;
+	private static final String GET_SUCCESS_RESULT = "success";
+	private String Months = null;
+	public Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+
+			case GET_MONTH_RESULT_DATA:
+				GetDataDetailFromMonth(msg.obj);
+				break;
+
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +145,73 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 		setonclicklistener();
 		setlayoutheight();
 		setinitview();
+
+	}
+
+	protected void GetDataDetailFromMonth(Object obj) {
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		GetMonth = true;
+		BtnSearch.setText("查询");
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			Data = demoJson.getString("data");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetDetailData(Data);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetDetailData(String data) {
+		// TODO Auto-generated method stub
+		String Name = null;
+		String months = null;
+		try {
+			JSONObject demoJson = new JSONObject(data);
+			Name = demoJson.getString("name");
+			months = demoJson.getString("months");
+			Months = months;
+			TextName.setText("姓名：" + Name);
+			GetMonth(months);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetMonth(String months) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 12; i++) {
+			status[i] = 0;
+		}
+		JSONArray jArray;
+		try {
+			jArray = new JSONArray(months);
+
+			for (int i = 0; i < jArray.length(); i++) {
+
+				String month = jArray.getString(i);
+				for (int j = 0; j < 12; j++) {
+					if (month.equals(inityear + STR_MONTH[j])) {
+						status[j] = 1;
+					}
+				}
+			}
+			ShowResult();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -179,7 +288,13 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 		ImageDot10 = (ImageView) findViewById(R.id.image_dot_10);
 		ImageDot11 = (ImageView) findViewById(R.id.image_dot_11);
 		ImageDot12 = (ImageView) findViewById(R.id.image_dot_12);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+		ReadTicket();
+	}
 
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
 	}
 
 	private void setonclicklistener() {
@@ -411,11 +526,11 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 			break;
 		case R.id.image_left:
 			inityear = inityear - 1;
-			TextYear.setText("" + inityear);
+			GetMonth(Months);
 			break;
 		case R.id.image_right:
 			inityear = inityear + 1;
-			TextYear.setText("" + inityear);
+			GetMonth(Months);
 			break;
 		case R.id.text_year:
 
@@ -434,12 +549,35 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 			if (idnumber.equals("") || idnumber == null) {
 				Toast.makeText(getApplicationContext(), "证件号不可为空", Toast.LENGTH_SHORT).show();
 			} else {
-				ShowResult();
+				if (GetMonth) {
+					BtnSearch.setText("正在查询...");
+					GetMonth = false;
+					GetMonthData(idnumber);
+				}
+
 			}
 			break;
 		default:
 			break;
 		}
+	}
+
+	private void GetMonthData(String idnumber) {
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("idCardNo", idnumber));
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String LoginResultData = "";
+				LoginResultData = HttpGetData.GetData(URLcontainer.QueryFare, ArrayValues);
+				Message msg = new Message();
+				msg.obj = LoginResultData;
+				msg.what = GET_MONTH_RESULT_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
 	}
 
 	public void showAlertDialog() {
@@ -466,7 +604,6 @@ public class MemberPartyDuesActivity extends Activity implements OnClickListener
 
 	private void ShowResult() {
 		// TODO Auto-generated method stub
-		TextName.setText("姓名：吴安安");
 		RelativeResult.setVisibility(View.VISIBLE);
 		LinResult.setVisibility(View.VISIBLE);
 		LinButtonResult.setVisibility(View.VISIBLE);
