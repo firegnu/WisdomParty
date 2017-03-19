@@ -13,6 +13,7 @@ public class NoticeCache {
 	private View baseView;
 	private TextView TextTime;
 	private TextView TextStyle;
+	private TextView TextRead;
 
 	public NoticeCache(View baseView) {
 		this.baseView = baseView;
@@ -23,6 +24,13 @@ public class NoticeCache {
 			TextStyle = (TextView) baseView.findViewById(R.id.text_style);
 		}
 		return TextStyle;
+	}
+
+	public TextView getTextRead() {
+		if (TextRead == null) {
+			TextRead = (TextView) baseView.findViewById(R.id.text_is_read);
+		}
+		return TextRead;
 	}
 
 	public TextView getTextTime() {

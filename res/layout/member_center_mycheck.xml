@@ -212,7 +212,7 @@
                             android:layout_marginLeft="40dp"
                             android:background="@drawable/shape_10_stroke"
                             android:gravity="center"
-                            android:text="全部"
+                            android:text="专项活动"
                             android:textSize="@dimen/member_transform_size" />
 
                         <TextView

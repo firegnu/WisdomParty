@@ -29,4 +29,25 @@ public class savePNG {
 		}
 
 	}
+
+	public static File savePNG_After(Bitmap bitmap, String name) {
+		File file = new File(name);
+		try {
+			FileOutputStream out = new FileOutputStream(file);
+			if (bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)) {
+				out.flush();
+				out.close();
+				return file;
+			} else {
+				return null;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 }

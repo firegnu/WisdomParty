@@ -2,7 +2,10 @@ package wuxc.wisdomparty.Adapter;
 
 import java.util.List;
 
+import org.w3c.dom.Text;
+
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +45,14 @@ public class NoticeAdapter extends ArrayAdapter<NoticeModel> {
 		TextStyle.setText(imageAndText.getStyle());
 		TextView Time = viewCache.getTextTime();
 		Time.setText(imageAndText.getTime());
+		TextView TextRead = viewCache.getTextRead();
+		if (imageAndText.getReadState() == 1) {
+			TextRead.setText("ÒÑ¶Á");
+			TextRead.setTextColor(Color.BLACK);
+		} else {
+			TextRead.setText("Î´¶Á");
+			TextRead.setTextColor(Color.RED);
+		}
 		return rowView;
 	}
 

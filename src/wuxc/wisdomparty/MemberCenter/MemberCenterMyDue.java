@@ -3,11 +3,22 @@ package wuxc.wisdomparty.MemberCenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -24,6 +35,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.view.Window;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.MydueAdapter;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.Model.MydueModel;
 import wuxc.wisdomparty.Model.MydueModel;
 
 public class MemberCenterMyDue extends Activity implements OnTouchListener, OnClickListener, OnItemClickListener {
@@ -44,6 +58,22 @@ public class MemberCenterMyDue extends Activity implements OnTouchListener, OnCl
 	private TextView headTextView = null;
 	private TextView TextSearch;
 	private EditText EditSearch;
+	private String ticket;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private static final String GET_SUCCESS_RESULT = "success";
+	private static final int GET_DUE_DATA = 6;
+	public Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_DUE_DATA:
+				GetDataDueData(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +84,106 @@ public class MemberCenterMyDue extends Activity implements OnTouchListener, OnCl
 		initview();
 		setonclicklistener();
 		setheadtextview();
-		getdatalist(curPage);
+		GetData();
+		Toast.makeText(getApplicationContext(), "正在加载数据", Toast.LENGTH_SHORT).show();
+	}
+
+	protected void GetDataDueData(Object obj) {
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		String pager = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			pager = demoJson.getString("pager");
+			Data = demoJson.getString("datas");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetPager(pager);
+				GetDataList(Data, curPage);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetDataList(String data, int arg) {
+
+		if (arg == 1) {
+			list.clear();
+		}
+		JSONArray jArray = null;
+		try {
+			jArray = new JSONArray(data);
+			JSONObject json_data = null;
+			for (int i = 0; i < jArray.length(); i++) {
+				json_data = jArray.getJSONObject(i);
+				Log.e("json_data", "" + json_data);
+				JSONObject jsonObject = json_data.getJSONObject("data");
+				MydueModel listinfo = new MydueModel();
+				listinfo.setMoney(jsonObject.getString("amount")+"元");
+				listinfo.setMonth(jsonObject.getString("fareMonth"));
+				listinfo.setTime(jsonObject.getString("createTime"));
+				list.add(listinfo);
+
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (arg == 1) {
+			go();
+		} else {
+			mAdapter.notifyDataSetChanged();
+		}
+
+	}
+
+	private void GetPager(String pager) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject demoJson = new JSONObject(pager);
+
+			totalPage = demoJson.getInt("totalPage");
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
+	}
+
+	private void GetData() {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		ArrayValues.add(new BasicNameValuePair("curPage", "" + curPage));
+		ArrayValues.add(new BasicNameValuePair("pageSize", "" + pageSize));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String DueData = "";
+				DueData = HttpGetData.GetData(URLcontainer.partyFareRecordGetListJsonData, ArrayValues);
+				Message msg = new Message();
+				msg.obj = DueData;
+				msg.what = GET_DUE_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+
 	}
 
 	private void setheadtextview() {
@@ -71,35 +200,6 @@ public class MemberCenterMyDue extends Activity implements OnTouchListener, OnCl
 		ListData.setOnTouchListener(this);
 	}
 
-	private void getdatalist(int arg) {
-		if (arg == 1) {
-			list.clear();
-		}
-		// TODO Auto-generated method stub
-
-		try {
-
-			for (int i = 0; i < 10; i++) {
-
-				MydueModel listinfo = new MydueModel();
-				listinfo.setMoney("100元");
-				listinfo.setMonth("2016年3月");
-				listinfo.setTime("2016-11-03");
-				list.add(listinfo);
-
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (arg == 1) {
-			go();
-		} else {
-			mAdapter.notifyDataSetChanged();
-		}
-
-	}
-
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
 		mAdapter = new MydueAdapter(this, list, ListData);
@@ -112,6 +212,8 @@ public class MemberCenterMyDue extends Activity implements OnTouchListener, OnCl
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		TextSearch = (TextView) findViewById(R.id.text_search);
 		EditSearch = (EditText) findViewById(R.id.edit_search);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+		ReadTicket();
 	}
 
 	private void setonclicklistener() {
@@ -183,7 +285,7 @@ public class MemberCenterMyDue extends Activity implements OnTouchListener, OnCl
 			} else {
 				curPage = 1;
 				Toast.makeText(getApplicationContext(), "正在刷新", Toast.LENGTH_SHORT).show();
-				getdatalist(curPage);
+				GetData();
 			}
 			int temp = 1;
 			temp = (lastItemIndex) % pageSize;
@@ -193,7 +295,7 @@ public class MemberCenterMyDue extends Activity implements OnTouchListener, OnCl
 					Toast.makeText(getApplicationContext(), " 没有更多了", Toast.LENGTH_SHORT).show();
 					// // listinfoagain();
 				} else {
-					getdatalist(curPage);
+					GetData();
 					Toast.makeText(getApplicationContext(), "正在加载下一页", Toast.LENGTH_SHORT).show();
 				}
 			} else {

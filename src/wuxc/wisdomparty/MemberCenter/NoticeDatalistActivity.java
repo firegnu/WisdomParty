@@ -3,11 +3,22 @@ package wuxc.wisdomparty.MemberCenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +32,8 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.NoticeAdapter;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
 import wuxc.wisdomparty.Model.NoticeModel;
 import android.view.Window;
 
@@ -40,6 +53,23 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
+	private static final String GET_SUCCESS_RESULT = "success";
+	private static final int GET_NOTICE_DATA = 6;
+	private static final int INTENT_GO_DETAIL_NOTICE = 6;
+	private String ticket;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	public Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_NOTICE_DATA:
+				GetDataNoticeData(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +80,67 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 		initview();
 		setonclicklistener();
 		setheadtextview();
-		getdatalist(curPage);
+		GetData();
+		Toast.makeText(getApplicationContext(), "正在加载数据", Toast.LENGTH_SHORT).show();
+	}
+
+	protected void GetDataNoticeData(Object obj) {
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		String pager = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			pager = demoJson.getString("pager");
+			Data = demoJson.getString("datas");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetPager(pager);
+				GetDataList(Data, curPage);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetPager(String pager) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject demoJson = new JSONObject(pager);
+
+			totalPage = demoJson.getInt("totalPage");
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetData() {
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		ArrayValues.add(new BasicNameValuePair("curPage", "" + curPage));
+		ArrayValues.add(new BasicNameValuePair("pageSize", "" + pageSize));
+		ArrayValues.add(new BasicNameValuePair("systemMessageDto.receiveSendType", "receive"));
+		ArrayValues.add(new BasicNameValuePair("systemMessageDto.readState", ""));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String NoticeData = "";
+				NoticeData = HttpGetData.GetData(URLcontainer.GetListJsonData_2, ArrayValues);
+				Message msg = new Message();
+				msg.obj = NoticeData;
+				msg.what = GET_NOTICE_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
 	}
 
 	private void setheadtextview() {
@@ -67,26 +157,34 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 		ListData.setOnTouchListener(this);
 	}
 
-	private void getdatalist(int arg) {
+	private void GetDataList(String data, int arg) {
 		if (arg == 1) {
 			list.clear();
 		}
 		// TODO Auto-generated method stub
-
+		JSONArray jArray = null;
 		try {
-
-			for (int i = 0; i < 10; i++) {
-
+			Log.e("data", "" + data);
+			jArray = new JSONArray(data);
+			JSONObject json_data = null;
+			for (int i = 0; i < jArray.length(); i++) {
+				json_data = jArray.getJSONObject(i);
+				Log.e("json_data", "" + json_data);
+				JSONObject jsonObject = json_data.getJSONObject("data");
 				NoticeModel listinfo = new NoticeModel();
-				listinfo.setStyle("您有新的通知。");
-				listinfo.setTime("2016-11-03 20:10:20");
+				listinfo.setStyle(jsonObject.getString("title"));
+				listinfo.setKeyID(jsonObject.getString("keyid"));
+				listinfo.setTime(jsonObject.getString("sendDate"));
+				listinfo.setSendUserName(jsonObject.getString("sendUserName"));
+				listinfo.setReadState(jsonObject.getInt("readState"));
 				list.add(listinfo);
 
 			}
-		} catch (Exception e) {
+		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		if (arg == 1) {
 			go();
 		} else {
@@ -105,6 +203,13 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 		// TODO Auto-generated method stub
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+		ReadTicket();
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
 	}
 
 	private void setonclicklistener() {
@@ -167,7 +272,7 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 			} else {
 				curPage = 1;
 				Toast.makeText(getApplicationContext(), "正在刷新", Toast.LENGTH_SHORT).show();
-				getdatalist(curPage);
+				GetData();
 			}
 			int temp = 1;
 			temp = (lastItemIndex) % pageSize;
@@ -177,7 +282,7 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 					Toast.makeText(getApplicationContext(), " 没有更多了", Toast.LENGTH_SHORT).show();
 					// // listinfoagain();
 				} else {
-					getdatalist(curPage);
+					GetData();
 					Toast.makeText(getApplicationContext(), "正在加载下一页", Toast.LENGTH_SHORT).show();
 				}
 			} else {
@@ -201,11 +306,32 @@ public class NoticeDatalistActivity extends Activity implements OnTouchListener,
 	}
 
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (data == null)
+			return;
+		Bundle bundle = data.getExtras();
+		switch (requestCode) {
+		case INTENT_GO_DETAIL_NOTICE:
+			mAdapter.notifyDataSetChanged();
+			Log.e("mAdapter","mAdapter.notifyDataSetChanged");
+		}
+	}
+
+	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
+		NoticeModel data = list.get(position - 1);
 		Intent intent_notice = new Intent();
 		intent_notice.setClass(this, NoticeDetailActivity.class);
-		startActivity(intent_notice);
+		Bundle bundle = new Bundle();
+		bundle.putString("Keyid", data.getKeyID());
+		bundle.putString("sendUserName", data.getSendUserName());
+		bundle.putString("ticket", ticket);
+		data.setReadState(1);
+		intent_notice.putExtras(bundle);
+		startActivityForResult(intent_notice, INTENT_GO_DETAIL_NOTICE);
 	}
 
 }

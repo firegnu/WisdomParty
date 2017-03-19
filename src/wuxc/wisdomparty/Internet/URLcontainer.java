@@ -88,9 +88,9 @@ public class URLcontainer {
 	// 获取在线入党数据
 	public static String zxrdGetModelData = "api/pb/zxrd/getModelData";
 	// 在线入党图片上传
-	public static String formfileUploadUpLoadSignle = "form/formfileUpload/uploadSignle";
+	public static String formfileUploadUpLoadSignle = "console/form/formfileUpload/uploadSignle";
 	// 在线入党文件上传
-	public static String formfileUploadUpLoadSignle_2 = "form/formfileUpload/uploadSignle";
+	public static String formfileUploadUpLoadSignle_2 = "console/form/formfileUpload/uploadSignle";
 	// 在线入党数据保存
 	public static String zxrdsaveData = "api/pb/zxrd/saveData";
 

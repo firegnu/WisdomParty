@@ -3,7 +3,16 @@ package wuxc.wisdomparty.ChildFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -24,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.MydueAdapter;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
 import wuxc.wisdomparty.Model.MydueModel;
 
 public class MyPunishFragment extends Fragment implements OnTouchListener, OnClickListener, OnItemClickListener {
@@ -42,20 +53,116 @@ public class MyPunishFragment extends Fragment implements OnTouchListener, OnCli
 	private int curPage = 1;
 	private final static int RATIO = 2;
 	private TextView headTextView = null;
-	private Handler uiHandler = new Handler() {
+	private String ticket;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private static final String GET_SUCCESS_RESULT = "success";
+	private static final int GET_DUE_DATA = 6;
+	public Handler uiHandler = new Handler() {
 		@Override
-		public void handleMessage(Message msg1) {
-			switch (msg1.what) {
-			case 0:
-				getdatalist();
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_DUE_DATA:
+				GetDataDueData(msg.obj);
 				break;
-
 			default:
 				break;
-
 			}
 		}
 	};
+
+	protected void GetDataDueData(Object obj) {
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		String pager = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			pager = demoJson.getString("pager");
+			Data = demoJson.getString("datas");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetPager(pager);
+				GetDataList(Data, curPage);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetDataList(String data, int arg) {
+
+		if (arg == 1) {
+			list.clear();
+		}
+		JSONArray jArray = null;
+		try {
+			jArray = new JSONArray(data);
+			JSONObject json_data = null;
+			for (int i = 0; i < jArray.length(); i++) {
+				json_data = jArray.getJSONObject(i);
+				Log.e("json_data", "" + json_data);
+				JSONObject jsonObject = json_data.getJSONObject("data");
+				MydueModel listinfo = new MydueModel();
+				listinfo.setMoney("-" + jsonObject.getString("score"));
+				listinfo.setMonth(jsonObject.getString("description"));
+				listinfo.setTime(jsonObject.getString("operateTime"));
+				list.add(listinfo);
+
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (arg == 1) {
+			go();
+		} else {
+			mAdapter.notifyDataSetChanged();
+		}
+
+	}
+
+	private void GetPager(String pager) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject demoJson = new JSONObject(pager);
+
+			totalPage = demoJson.getInt("totalPage");
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetData() {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		ArrayValues.add(new BasicNameValuePair("curPage", "" + curPage));
+		ArrayValues.add(new BasicNameValuePair("pageSize", "" + pageSize));
+		ArrayValues.add(new BasicNameValuePair("rewardPunishmentDto.classify", "2"));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String DueData = "";
+				DueData = HttpGetData.GetData(URLcontainer.rewardPunishmentGetListJsonData, ArrayValues);
+				Message msg = new Message();
+				msg.obj = DueData;
+				msg.what = GET_DUE_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+
+	}
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -82,7 +189,7 @@ public class MyPunishFragment extends Fragment implements OnTouchListener, OnCli
 		initview(view);
 		setonclicklistener();
 		setheadtextview();
-		getdatalist(curPage);
+		GetData();
 		return view;
 	}
 
@@ -100,35 +207,6 @@ public class MyPunishFragment extends Fragment implements OnTouchListener, OnCli
 		ListData.setOnTouchListener(this);
 	}
 
-	private void getdatalist(int arg) {
-		if (arg == 1) {
-			list.clear();
-		}
-		// TODO Auto-generated method stub
-
-		try {
-
-			for (int i = 0; i < 10; i++) {
-
-				MydueModel listinfo = new MydueModel();
-				listinfo.setTime("2016-12-14");
-				listinfo.setMoney("-2");
-				listinfo.setMonth("违纪");
-				list.add(listinfo);
-
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (arg == 1) {
-			go();
-		} else {
-			mAdapter.notifyDataSetChanged();
-		}
-
-	}
-
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
 		mAdapter = new MydueAdapter(getActivity(), list, ListData);
@@ -138,6 +216,13 @@ public class MyPunishFragment extends Fragment implements OnTouchListener, OnCli
 	private void initview(View view) {
 		// TODO Auto-generated method stub
 		ListData = (ListView) view.findViewById(R.id.list_data);
+		PreUserInfo = getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+		ReadTicket();
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
 	}
 
 	private void setonclicklistener() {
@@ -189,7 +274,7 @@ public class MyPunishFragment extends Fragment implements OnTouchListener, OnCli
 			} else {
 				curPage = 1;
 				Toast.makeText(getActivity(), "正在刷新", Toast.LENGTH_SHORT).show();
-				getdatalist(curPage);
+				GetData();
 			}
 			int temp = 1;
 			temp = (lastItemIndex) % pageSize;
@@ -200,7 +285,7 @@ public class MyPunishFragment extends Fragment implements OnTouchListener, OnCli
 					Toast.makeText(getActivity(), " 没有更多了", Toast.LENGTH_SHORT).show();
 					// // listinfoagain();
 				} else {
-					getdatalist(curPage);
+					GetData();
 					Toast.makeText(getActivity(), "正在加载下一页", Toast.LENGTH_SHORT).show();
 				}
 

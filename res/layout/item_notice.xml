@@ -49,6 +49,7 @@
                     android:textSize="@dimen/member_transform_size" />
 
                 <TextView
+                    android:id="@+id/text_is_read"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
