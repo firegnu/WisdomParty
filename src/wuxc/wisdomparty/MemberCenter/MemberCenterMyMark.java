@@ -3,12 +3,23 @@ package wuxc.wisdomparty.MemberCenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.umeng.socialize.utils.Log;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -25,6 +36,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.view.Window;
 import single.wuxc.wisdomparty.R;
 import wuxc.wisdomparty.Adapter.MyfundAdapter;
+import wuxc.wisdomparty.Internet.HttpGetData;
+import wuxc.wisdomparty.Internet.URLcontainer;
+import wuxc.wisdomparty.Model.MyfundModel;
 import wuxc.wisdomparty.Model.MyfundModel;
 import wuxc.wisdomparty.layout.dialogtwo;
 
@@ -48,6 +62,22 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 	private String FundNumber;
 	private ImageView ImageFundDetail;
 	private TextView TextTransfor;
+	private String ticket;
+	private SharedPreferences PreUserInfo;// 存储个人信息
+	private static final String GET_SUCCESS_RESULT = "success";
+	private static final int GET_DUE_DATA = 6;
+	public Handler uiHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case GET_DUE_DATA:
+				GetDataDueData(msg.obj);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +88,12 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 		initview();
 		setonclicklistener();
 		setheadtextview();
-		getdatalist(curPage);
 		Intent intent = this.getIntent(); // 获取已有的intent对象
 		Bundle bundle = intent.getExtras(); // 获取intent里面的bundle对象
 		FundNumber = bundle.getString("mark");
 		TextFundNumber.setText(FundNumber);
+		GetData();
+
 	}
 
 	private void setheadtextview() {
@@ -79,35 +110,6 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 		ListData.setOnTouchListener(this);
 	}
 
-	private void getdatalist(int arg) {
-		if (arg == 1) {
-			list.clear();
-		}
-		// TODO Auto-generated method stub
-
-		try {
-
-			for (int i = 0; i < 10; i++) {
-
-				MyfundModel listinfo = new MyfundModel();
-				listinfo.setDetail("线下活动所得");
-				listinfo.setChange("+14");
-				listinfo.setTime("2016-11-03");
-				list.add(listinfo);
-
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (arg == 1) {
-			go();
-		} else {
-			mAdapter.notifyDataSetChanged();
-		}
-
-	}
-
 	protected void go() {
 		ListData.setPadding(0, -100, 0, 0);
 		mAdapter = new MyfundAdapter(this, list, ListData);
@@ -121,6 +123,106 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 		TextFundNumber = (TextView) findViewById(R.id.text_number);
 		ImageFundDetail = (ImageView) findViewById(R.id.image_fund_detail);
 		TextTransfor = (TextView) findViewById(R.id.text_transfor);
+		PreUserInfo = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+		ReadTicket();
+	}
+
+	protected void GetDataDueData(Object obj) {
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		String Data = null;
+		String pager = null;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			pager = demoJson.getString("pager");
+			Data = demoJson.getString("datas");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				GetPager(pager);
+				GetDataList(Data, curPage);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void GetDataList(String data, int arg) {
+
+		if (arg == 1) {
+			list.clear();
+		}
+		JSONArray jArray = null;
+		try {
+			jArray = new JSONArray(data);
+			JSONObject json_data = null;
+			for (int i = 0; i < jArray.length(); i++) {
+				json_data = jArray.getJSONObject(i);
+				Log.e("json_data", "" + json_data);
+				JSONObject jsonObject = json_data.getJSONObject("data");
+				MyfundModel listinfo = new MyfundModel();
+				listinfo.setChange(jsonObject.getString("amount"));
+				listinfo.setDetail(jsonObject.getString("reason"));
+				listinfo.setTime(jsonObject.getString("createTime"));
+				list.add(listinfo);
+
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (arg == 1) {
+			go();
+		} else {
+			mAdapter.notifyDataSetChanged();
+		}
+
+	}
+
+	private void GetPager(String pager) {
+		// TODO Auto-generated method stub
+		try {
+			JSONObject demoJson = new JSONObject(pager);
+
+			totalPage = demoJson.getInt("totalPage");
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	private void ReadTicket() {
+		// TODO Auto-generated method stub
+		ticket = PreUserInfo.getString("ticket", null);
+	}
+
+	private void GetData() {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		ArrayValues.add(new BasicNameValuePair("curPage", "" + curPage));
+		ArrayValues.add(new BasicNameValuePair("pageSize", "" + pageSize));
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String DueData = "";
+				DueData = HttpGetData.GetData(URLcontainer.userScoregetListJsonData, ArrayValues);
+				Message msg = new Message();
+				msg.obj = DueData;
+				msg.what = GET_DUE_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
+
 	}
 
 	private void setonclicklistener() {
@@ -147,7 +249,7 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 			Intent intent = new Intent();
 			intent.setClass(getApplicationContext(), MemberCenterMyMarkTransfer.class);
 			Bundle bundle1 = new Bundle();
-			bundle1.putString("mark", "16");
+			bundle1.putString("mark",FundNumber);
 			intent.putExtras(bundle1);
 			startActivity(intent);
 			break;
@@ -220,7 +322,7 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 			} else {
 				curPage = 1;
 				Toast.makeText(getApplicationContext(), "正在刷新", Toast.LENGTH_SHORT).show();
-				getdatalist(curPage);
+				GetData();
 			}
 			int temp = 1;
 			temp = (lastItemIndex) % pageSize;
@@ -230,7 +332,7 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 					Toast.makeText(getApplicationContext(), " 没有更多了", Toast.LENGTH_SHORT).show();
 					// // listinfoagain();
 				} else {
-					getdatalist(curPage);
+					GetData();
 					Toast.makeText(getApplicationContext(), "正在加载下一页", Toast.LENGTH_SHORT).show();
 				}
 			} else {

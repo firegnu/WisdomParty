@@ -623,7 +623,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 			Intent intent_lin_mark = new Intent();
 			intent_lin_mark.setClass(getActivity(), MemberCenterMyMark.class);
 			Bundle bundle1 = new Bundle();
-			bundle1.putString("mark", "16");
+			bundle1.putString("mark", credits);
 			intent_lin_mark.putExtras(bundle1);
 			startActivity(intent_lin_mark);
 			break;
@@ -631,7 +631,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 			Intent intent_lin_fund = new Intent();
 			intent_lin_fund.setClass(getActivity(), MemberCenterMyFund.class);
 			Bundle bundle = new Bundle();
-			bundle.putString("fund", "12");
+			bundle.putString("fund", balance);
 			intent_lin_fund.putExtras(bundle);
 			startActivity(intent_lin_fund);
 			break;

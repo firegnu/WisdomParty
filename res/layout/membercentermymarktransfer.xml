@@ -142,7 +142,8 @@
             android:layout_height="36dp"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_10_stroke" >
+            android:background="@drawable/shape_10_stroke"
+            android:visibility="invisible" >
 
             <TextView
                 android:id="@+id/text_transfer_rule"
