@@ -10,11 +10,13 @@ import org.json.JSONObject;
 
 import com.umeng.socialize.utils.Log;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -79,13 +82,20 @@ public class MemberCenterMyMarkTransfer extends Activity
 	private SharedPreferences PreUserInfo;// 存储个人信息
 	private static final String GET_SUCCESS_RESULT = "success";
 	private static final int GET_DUE_DATA = 6;
-	private int status = 0;
+	private static final int GET_CONVERT_DATA = 9;
+	private int status;
+	int first = 1;
+	private EditText EditMark;
+	private boolean UploadMark = false;
 	public Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case GET_DUE_DATA:
 				GetDataDueData(msg.obj);
+				break;
+			case GET_CONVERT_DATA:
+				GetConvertData(msg.obj);
 				break;
 			default:
 				break;
@@ -109,7 +119,34 @@ public class MemberCenterMyMarkTransfer extends Activity
 		settimelayout();
 		settextinORout();
 		TextTransferRule.setText(StrTime);
-		GetData();
+		GetData(first);
+	}
+
+	protected void GetConvertData(Object obj) {
+
+		// TODO Auto-generated method stub
+		String Type = null;
+		int useScore = 0;
+		try {
+			JSONObject demoJson = new JSONObject(obj.toString());
+			Type = demoJson.getString("type");
+			useScore = demoJson.getInt("useScore");
+			if (Type.equals(GET_SUCCESS_RESULT)) {
+				UploadMark = true;
+				Toast.makeText(getApplicationContext(), "转换成功", Toast.LENGTH_SHORT).show();
+				int totalnumber = Integer.parseInt(MarkNumber);
+				TextMarkNumber.setText("" + (totalnumber - useScore));
+
+				Editor edit = PreUserInfo.edit();
+				edit.putString("credits", "" + (totalnumber - useScore));
+				edit.commit();
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	protected void GetDataDueData(Object obj) {
@@ -149,7 +186,14 @@ public class MemberCenterMyMarkTransfer extends Activity
 				Log.e("json_data", "" + json_data);
 				JSONObject jsonObject = json_data.getJSONObject("data");
 				MyfundModel listinfo = new MyfundModel();
-				listinfo.setChange(jsonObject.getString("amount"));
+				int inout = jsonObject.getInt("inOut");
+				String Sign = "";
+				if (inout == 1) {
+					Sign = "+";
+				} else {
+					Sign = "-";
+				}
+				listinfo.setChange(Sign + jsonObject.getString("amount"));
 				listinfo.setDetail(jsonObject.getString("reason"));
 				listinfo.setTime(jsonObject.getString("createTime"));
 				list.add(listinfo);
@@ -188,7 +232,7 @@ public class MemberCenterMyMarkTransfer extends Activity
 		ticket = PreUserInfo.getString("ticket", null);
 	}
 
-	private void GetData() {
+	private void GetData(int first) {
 		// TODO Auto-generated method stub
 
 		// TODO Auto-generated method stub
@@ -196,7 +240,10 @@ public class MemberCenterMyMarkTransfer extends Activity
 		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
 		ArrayValues.add(new BasicNameValuePair("curPage", "" + curPage));
 		ArrayValues.add(new BasicNameValuePair("pageSize", "" + pageSize));
-		ArrayValues.add(new BasicNameValuePair("loveRecordDto.scoreInOut", "" + status));
+		if (first != 1) {
+			ArrayValues.add(new BasicNameValuePair("userScoreDto.inOut", "" + status));
+		}
+
 		new Thread(new Runnable() { // 开启线程上传文件
 			@Override
 			public void run() {
@@ -245,6 +292,7 @@ public class MemberCenterMyMarkTransfer extends Activity
 
 	private void initview() {
 		// TODO Auto-generated method stub
+		EditMark = (EditText) findViewById(R.id.edit_mark);
 		ListData = (ListView) findViewById(R.id.list_data);
 		ImageBack = (ImageView) findViewById(R.id.image_back);
 		TextMarkNumber = (TextView) findViewById(R.id.text_number);
@@ -292,23 +340,25 @@ public class MemberCenterMyMarkTransfer extends Activity
 			startActivity(intent);
 			break;
 		case R.id.rela_transfer_rule:
-			RelaTime.setVisibility(View.VISIBLE);
+			RelaTime.setVisibility(View.GONE);
 			break;
 		case R.id.text_transfer_rule:
-			RelaTime.setVisibility(View.VISIBLE);
+			RelaTime.setVisibility(View.GONE);
 			break;
 		case R.id.text_transfer_in:
 			settextinORout();
 			status = 1;
 			curPage = 1;
-			GetData();
+			first = 2;
+			GetData(first);
 			TextTransferIn.setTextColor(Color.BLUE);
 			break;
 		case R.id.text_transfer_out:
 			settextinORout();
 			status = 2;
 			curPage = 1;
-			GetData();
+			first = 2;
+			GetData(first);
 			TextTransferOut.setTextColor(Color.BLUE);
 			break;
 		case R.id.image_time_close:
@@ -338,10 +388,35 @@ public class MemberCenterMyMarkTransfer extends Activity
 			RelaTime.setVisibility(View.GONE);
 			break;
 		case R.id.image_back:
+			Intent intentresult = new Intent();
+
+			intentresult.putExtra("UploadMark", UploadMark);
+
+			setResult(0, intentresult);
 			finish();
 			break;
 		case R.id.text_transfer:
-			showAlertDialog();
+			String ChangeNumber = EditMark.getText().toString();
+			if (!(ChangeNumber.equals("") || ChangeNumber == null)) {
+				try {
+					int totalnumber = Integer.parseInt(MarkNumber);
+					int number = Integer.parseInt(ChangeNumber);
+					if (totalnumber > number) {
+						if (number >= 5) {
+							showAlertDialog(number);
+						} else {
+							Toast.makeText(getApplicationContext(), "转换积分应大于5", Toast.LENGTH_SHORT).show();
+						}
+
+					} else {
+						Toast.makeText(getApplicationContext(), "转换积分大于所有积分", Toast.LENGTH_SHORT).show();
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			} else {
+				Toast.makeText(getApplicationContext(), "请输入转换数据", Toast.LENGTH_SHORT).show();
+			}
 
 			break;
 		default:
@@ -349,7 +424,21 @@ public class MemberCenterMyMarkTransfer extends Activity
 		}
 	}
 
-	public void showAlertDialog() {
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intentresult = new Intent();
+
+			intentresult.putExtra("UploadMark", UploadMark);
+
+			setResult(0, intentresult);
+			finish();
+		}
+		return false;
+	}
+
+	public void showAlertDialog(final int number) {
 
 		dialogtwo.Builder builder = new dialogtwo.Builder(this);
 		builder.setMessage("您的所有积分都将转换为基金,请确认");
@@ -357,6 +446,11 @@ public class MemberCenterMyMarkTransfer extends Activity
 		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
+				try {
+					GetConvert(number);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 
 			}
 		});
@@ -368,6 +462,30 @@ public class MemberCenterMyMarkTransfer extends Activity
 		});
 
 		builder.create().show();
+
+	}
+
+	protected void GetConvert(int score) {
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
+		final ArrayList ArrayValues = new ArrayList();
+		ArrayValues.add(new BasicNameValuePair("ticket", ticket));
+		ArrayValues.add(new BasicNameValuePair("score", "" + score));
+
+		new Thread(new Runnable() { // 开启线程上传文件
+			@Override
+			public void run() {
+				String DueData = "";
+				DueData = HttpGetData.GetData(URLcontainer.convertScore, ArrayValues);
+				Message msg = new Message();
+				msg.obj = DueData;
+				msg.what = GET_CONVERT_DATA;
+				uiHandler.sendMessage(msg);
+			}
+		}).start();
 
 	}
 
@@ -413,7 +531,7 @@ public class MemberCenterMyMarkTransfer extends Activity
 			} else {
 				curPage = 1;
 				Toast.makeText(getApplicationContext(), "正在刷新", Toast.LENGTH_SHORT).show();
-				GetData();
+				GetData(first);
 			}
 			int temp = 1;
 			temp = (lastItemIndex) % pageSize;
@@ -423,7 +541,7 @@ public class MemberCenterMyMarkTransfer extends Activity
 					Toast.makeText(getApplicationContext(), " 没有更多了", Toast.LENGTH_SHORT).show();
 					// // listinfoagain();
 				} else {
-					GetData();
+					GetData(first);
 					Toast.makeText(getApplicationContext(), "正在加载下一页", Toast.LENGTH_SHORT).show();
 				}
 			} else {

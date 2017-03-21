@@ -134,6 +134,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 	private String scoreCurNum;
 	private String scoreTotalNum;
 	private final static int GO_CHANGE_HEADIMG = 8;
+	private final static int GO_CHANGE_MARK = 10;
 	public Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -321,9 +322,6 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		TextName.setOnClickListener(this);
 		TextPartyMember.setOnClickListener(this);
 		TextMotto.setOnClickListener(this);
-		TextMark.setOnClickListener(this);
-		TextFund.setOnClickListener(this);
-		TextEvaluate.setOnClickListener(this);
 		LinMark.setOnClickListener(this);
 		LinFund.setOnClickListener(this);
 		LinEvaluate.setOnClickListener(this);
@@ -464,7 +462,14 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 					GetHeadPic();
 				}
 			}
-
+		case GO_CHANGE_MARK:
+			if (!(data == null)) {
+				boolean Result = bundle.getBoolean("UploadMark", false);
+				if (Result) {
+					ReadMemberData();
+					ShowMemberData();
+				}
+			}
 			break;
 
 		default:
@@ -617,7 +622,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 		case R.id.text_resume:
 			Intent intent_text_resume = new Intent();
 			intent_text_resume.setClass(getActivity(), MemberCenterMyResume.class);
-			startActivityForResult(intent_text_resume, GO_CHANGE_HEADIMG); 
+			startActivityForResult(intent_text_resume, GO_CHANGE_HEADIMG);
 			break;
 		case R.id.lin_mark:
 			Intent intent_lin_mark = new Intent();
@@ -625,7 +630,7 @@ public class MainMemberPageFragment extends MainBaseFragment implements OnClickL
 			Bundle bundle1 = new Bundle();
 			bundle1.putString("mark", credits);
 			intent_lin_mark.putExtras(bundle1);
-			startActivity(intent_lin_mark);
+			startActivityForResult(intent_lin_mark, GO_CHANGE_MARK);
 			break;
 		case R.id.lin_fund:
 			Intent intent_lin_fund = new Intent();

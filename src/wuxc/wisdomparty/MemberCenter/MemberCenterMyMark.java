@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import com.umeng.socialize.utils.Log;
 
+import android.R.string;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,6 +68,9 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 	private SharedPreferences PreUserInfo;// 存储个人信息
 	private static final String GET_SUCCESS_RESULT = "success";
 	private static final int GET_DUE_DATA = 6;
+	private final static int GO_CHANGE_MARK = 8;
+	private boolean UploadMark = false;
+	private String credits = "";
 	public Handler uiHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -127,6 +132,31 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 		ReadTicket();
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (data == null)
+			return;
+		Bundle bundle = data.getExtras();
+		switch (requestCode) {
+		case GO_CHANGE_MARK:
+			if (!(data == null)) {
+				boolean Result = bundle.getBoolean("UploadMark", false);
+				UploadMark = Result;
+				if (Result) {
+					ReadTicket();
+					TextFundNumber.setText(credits);
+				}
+			}
+
+			break;
+
+		default:
+			break;
+
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	protected void GetDataDueData(Object obj) {
 
 		// TODO Auto-generated method stub
@@ -164,7 +194,14 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 				Log.e("json_data", "" + json_data);
 				JSONObject jsonObject = json_data.getJSONObject("data");
 				MyfundModel listinfo = new MyfundModel();
-				listinfo.setChange(jsonObject.getString("amount"));
+				int inout = jsonObject.getInt("inOut");
+				String Sign = "";
+				if (inout == 1) {
+					Sign = "+";
+				} else {
+					Sign = "-";
+				}
+				listinfo.setChange(Sign + jsonObject.getString("amount"));
 				listinfo.setDetail(jsonObject.getString("reason"));
 				listinfo.setTime(jsonObject.getString("createTime"));
 				list.add(listinfo);
@@ -201,6 +238,7 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 	private void ReadTicket() {
 		// TODO Auto-generated method stub
 		ticket = PreUserInfo.getString("ticket", null);
+		credits = PreUserInfo.getString("credits", null);
 	}
 
 	private void GetData() {
@@ -234,10 +272,29 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 	}
 
 	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intentresult = new Intent();
+
+			intentresult.putExtra("UploadMark", UploadMark);
+
+			setResult(0, intentresult);
+			finish();
+		}
+		return false;
+	}
+
+	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.image_back:
+			Intent intentresult = new Intent();
+
+			intentresult.putExtra("UploadMark", UploadMark);
+
+			setResult(0, intentresult);
 			finish();
 			break;
 		case R.id.image_fund_detail:
@@ -249,35 +306,13 @@ public class MemberCenterMyMark extends Activity implements OnTouchListener, OnC
 			Intent intent = new Intent();
 			intent.setClass(getApplicationContext(), MemberCenterMyMarkTransfer.class);
 			Bundle bundle1 = new Bundle();
-			bundle1.putString("mark",FundNumber);
+			bundle1.putString("mark", FundNumber);
 			intent.putExtras(bundle1);
-			startActivity(intent);
+			startActivityForResult(intent, GO_CHANGE_MARK);
 			break;
 		default:
 			break;
 		}
-	}
-
-	public void showAlertDialog() {
-
-		dialogtwo.Builder builder = new dialogtwo.Builder(this);
-		builder.setMessage("您的所有积分都将转换为基金,请确认");
-		builder.setTitle("积分转换确认");
-		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-
-			}
-		});
-
-		builder.setNegativeButton("取消", new android.content.DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
-
-		builder.create().show();
-
 	}
 
 	@Override
